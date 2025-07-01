@@ -195,8 +195,9 @@ pokemon_list = ["img/pok/abra.png","img/pok/absol.png","img/pok/aerodactyl.png",
    "img/pok/vulpix.png","img/pok/wartortle.png","img/pok/weedle.png",
    "img/pok/weepinbell.png","img/pok/weezing.png","img/pok/wigglytuff.png",
    "img/pok/wobbuffet.png",#240wobbuffet
-   "img/pok/wooper.png","img/pok/xatu.png","img/pok/yanma.png",
-   "img/pok/zapdos.png","img/pok/zubat.png"]#244zub
+   "img/pok/wooper.png","img/pok/wurmple.png","img/pok/wynaut.png","img/pok/xatu.png","img/pok/yanma.png",
+   "img/pok/zangoose.png",
+   "img/pok/zapdos.png","img/pok/zigzagoon.png","img/pok/zubat.png"]#249zub
 for img in pokemon_list:
 	pokemon_images.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
@@ -209,7 +210,7 @@ pokemon_type_list1 = [12,13,5,0,12,3,8,6,16,6,10, 10,9,0,10,6,6,12,0,8,8, 8,9,14
                       4,11,0,0,0,11,16,6,9,9, 9,9,8,0,0,1,9,5,9,8, 9,11,11,8,0,0,9,4,4,4,#180v
                       4,6,6,9,9,9,0,9,6,15, 10,9,9,9,8,0,16,13,0,14, 0,6,9,0,9,9, 15,5,9,10,#210v
                       10,16,10,0,0,9,9,14,14,9, 8,5,1,13,12,0,9,6,6,10, 10,10,11,8,9,6,10,3,0,12, #240v
-                      9,12,6,11,3]#245v
+                      9,6,12,12,6,0,11,0,3]#249v
 #0..normal    1..lucha    2..volador   3..veneno   4..tierra   5..roca   6..bicho
 #7..fantasma   8..fuego   9..agua   10..planta   11..electrico   12..psiquico
 #13..siniestro   14..hada   15..acero   16..hielo   17..dragon
@@ -225,7 +226,7 @@ pokemon_type_list2 = [None,None,2,None,None,None,None,3,2,3,None, 3,None,None,3,
                       None,15,2,None,None,None,None,None,5,2, 2,12,12,12,None,None,12,16,None,None,#200v
                       2,3,None,None,12,None,4,None,None,None, None,4,None,None,None,3,3,None,2,None,#220v
                       None,13,None,None,None,None,None,3,3,3, 3,3,None,None,None,3,3,None,14,None,#240v
-                      4,2,2,2,2]#245v
+                      4,None,None,2,2,None,2,None,2]#249v
 
 class Arrow(pygame.sprite.Sprite):
    def __init__(self):
@@ -265,9 +266,9 @@ pokemon_hp = [50,70,80,70,80,70,70,50,120,82,90,85,85,270,74,70,60,130,259,67,73
               100,100,100,90,90,110,80,120,70,65,120, 85,82,85,80,90,80,70,95,75,100,80,70,99,80,90,80,77,100,
               #188shukle100,191slowbro90,193slowpoke110,198snorlax120,199snubbull85,200spearow82,203stantler90,210sunkern70,fin216tentacruel
               80,83,80,95,120,80,100,75,120,130,78,90,95,100,100,75,80,110,60,90,100,150,220,
-              #217togepi,223umbreon100,229venusaur95,234wartortle,fin239wobb
-              112,66,80,120,92]
-              #240woop,241xatu,242yanma,243zapdos,244zubat(224)
+              #217togepi,223umbreon100,229venusaur95,234wartortle,fin240wobb
+              112,100,150,66,80,74,120,100,92]
+              #241woop,242wurmple,243wynaut,244xatu,245yanma,246zangoose,247zapdos,248zigzagoon,249zubat
 
 tipo_ataque_list = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
@@ -313,21 +314,21 @@ matriz_efectividad = [
    
    [1,  1,  1, 0.5, 0.5,  0.5,  1,  1,  1,  1,  2,  1,  1,  1,  2,  0.5,  1,  1],#4veneno
    
-   [1,  1,  1,  2, 0.5, 2, 0.5,  1,  1,  1,  0.5,  2,  1,  1,  1,  2,  1,             1],#5tierra
+   [1,  1,  1,  2, 0.5, 2, 0.5,  1,  2,  1,  0.5,  2,  1,  1,  1,  2,  1,             1],#5tierra
    
    [1, 0.5,  2,  1, 0.5, 0.5,  2,  1,  2,  1,  1,  1,  1,  1,  1,  0.5,  1,            1],#6roca
    
-   [1, 0.5,  1, 0.5,  1,  1, 0.5,  1, 0.5,  1,  2,  1,  2,  1, 0.5,  0.5,  1,          1],#7bicho
+   [1, 0.5,  1, 0.5,  1,  1, 0.5,  1, 0.5,  1,  2,  1,  2,  2, 0.5,  0.5,  1,          1],#7bicho
    
    [0.5,  1,  1,  1,  1,  1,  1,  2,  1,  1,  1,  1,  2, 0.5,  1,  1,  1,           1],#8fantasma
    
-   [1,  1,  1,  1,  1,  0.5,  2,  1, 0.5, 0.5,  2,  1,  1,  1,  1,  2,  1,           1],#9fuego
+   [1,  1,  1,  1,  1,  0.5,  2,  1, 0.5, 0.5,  2,  1,  1,  1,  1,  2,  1,         0.5],#9fuego
    
-   [1,  1,  1,  2,  1,  2,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  2,  1,            1],#10agua
+   [1,  1,  1,  2,  2,  2,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  2,  1,           0.5],#10agua
    
-   [1,  1,  1, 0.5,  2,  2, 0.5,  1, 0.5, 2, 0.5,  1,  1,  1,  1,  1,  1,             1],#11planta
+   [1,  1,  1, 0.5,  2,  2, 0.5,  1, 0.5, 2, 0.5,  1,  1,  1,  1,  1,  1,           0.5],#11planta
    
-   [1,  1,  1, 0.5,  1,  1,  1,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  1,           1],#12electrico
+   [1,  1,  1, 0.5,  0.5,  1,  1,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  1,           0.5],#12electrico
    
    [1,  2,  1,  2,  1,  1,  1,  1,  1,  1,  1,  1, 0.5, 0.5,  1,  0.5,  1,             1],#13psiquico
    
@@ -337,7 +338,7 @@ matriz_efectividad = [
    
    [1,  1,  1,  1,  1,  2,  1,  1, 0.5, 0.5,  1, 0.5,  1,  1,  2,  0.5,  1,  1],#16acero
    
-   [1,  1,  1,  2,  1,  1,  1,  1, 0.5, 0.5,  2,  1,  1,  1,  1,  0.5,  0.5,  2],#17hielo
+   [1,  1,  1,  2,  2,  1,  1,  1, 0.5, 0.5,  2,  1,  1,  1,  1,  0.5,  0.5,  2],#17hielo
    
    [1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,0.5,  0.5,  1,  2],#18dragon
 ]
