@@ -94,6 +94,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(self,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
+      # else:
+      #    for poke in all_sprites:
+      #       if poke.team_int == 1:
+      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+      #             poke.hp -= damage(self,poke)
+      #             self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -105,15 +111,32 @@ class Pokemon(pygame.sprite.Sprite):
             
          self.kill()
 
+class Type(pygame.sprite.Sprite):
+   def __init__(self,img_int,x,y,team_int,scx,scy):
+      super().__init__()
+      self.img_int = img_int
+      if 0 <= img_int < len(type_images):
+         self.image = pygame.transform.scale(type_images[img_int],(scx,scy))
+      else:
+         raise ValueError("img_int fuera de rango")
 
+      self.rect = self.image.get_rect()
+      self.team_int = team_int
+      self.rect.x = x
+      self.rect.y = y
 
 pokemon_images = []
 pokemon_list = ["img/pok/abra.png","img/pok/absol.png","img/pok/aerodactyl.png",
                 "img/pok/aggron.png","img/pok/aipom.png","img/pok/alakazam.png",
                 "img/pok/altaria.png","img/pok/anorith.png","img/pok/arbok.png","img/pok/arcanine.png",
-                "img/pok/ariados.png","img/pok/armaldo.png","img/pok/articuno.png","img/pok/beedrill.png",#10 ariados
-                "img/pok/bellossom.png","img/pok/bellsprout.png","img/pok/blastoise.png",
-                "img/pok/blissey.png","img/pok/bulbasaur.png", "img/pok/butterfree.png",
+                "img/pok/ariados.png","img/pok/armaldo.png","img/pok/aron.png",
+                "img/pok/articuno.png","img/pok/azurill.png","img/pok/bagon.png",
+                "img/pok/baltoy.png","img/pok/banette.png","img/pok/barboach.png",
+                "img/pok/beautifly.png","img/pok/beedrill.png","img/pok/beldum.png",#10 ariados
+                "img/pok/bellossom.png","img/pok/bellsprout.png","img/pok/blastoise.png",#20beedrill
+                "img/pok/blaziken.png","img/pok/blissey.png","img/pok/breloom.png",
+                "img/pok/bulbasaur.png", "img/pok/butterfree.png","img/pok/cacnea.png",
+                "img/pok/cacturne.png","img/pok/camerupt.png",
                 "img/pok/caterpi.png","img/pok/celebi.png","img/pok/chansey.png", 
                 "img/pok/charizard.png", "img/pok/charmander.png","img/pok/charmeleon.png",#20_celebi
                 "img/pok/chinchou.png","img/pok/clefable.png","img/pok/clefairy.png",
@@ -202,31 +225,33 @@ for img in pokemon_list:
 	pokemon_images.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 
-pokemon_type_list1 = [12,13,5,15,0,12,17,5,3,8,6, 5,16,6,10,10,9,0,10,6,6, 12,0,8,8,8,9,14,14,14,9,#30v
-                      9,3,9,4,8,16,9,4,0,0, 0,4,17,17,17,12,4,0,0,3, 11,11,11,8,12,10,10,0,0,9,#60v
-                      11,8,6,0,7,7,5,0,4,10, 3,9,9,5,14,5,3,8,9,7, 6,1,1,1,0,10,9,13,13,8,#90v
-                      12,0,10,0,11,10,16,5,5,12, 6,0,9,9,3,9,9,9,5,6, 0,12,1,1,1,8,8,9,8,11,#120v
-                      11,1,9,11,9,4,10,0,6,12, 12,0,7,8,12,3,13,12,3,3, 3,3,3,3,8,0,9,10,5,5,#150v
-                      5,6,6,0,4,11,0,0,0,11, 16,6,9,9,9,9,8,0,0,1, 9,5,9,8,9,11,11,8,0,0,#180v
-                      9,4,4,4,4,6,6,9,9,9, 0,9,6,15,10,9,9,9,8,0, 16,13,0,14,0,6,9,0,9,9, #210v
-                      15,5,9,10,10,16,10,0,0,9, 9,14,14,9,8,5,1,13,12,0, 9,6,6,10,10,10,11,8,9,6,#240v
-                      10,3,9,9,0,12,9,6,12,12, 6,0,11,0,3]#255v
-#0..normal    1..lucha    2..volador   3..veneno   4..tierra   5..roca   6..bicho
+pokemon_type_list1 = [12,13,5,15,0,12,17,5,3,8,6, 5,15,16,0,17,4,7,9,6,6, 15,10,10,9,8,0,10,10,6,10,#30v
+                      10,8,6,12,0,8,8,8,9,14, 14,14,9,9,3,9,4,8,16,9, 4,0,0,0,4,17,17,17,12,4,#60v
+                      0,0,3,11,11,11,8,12,10,10, 0,0,9,11,8,6,0,7,7,5, 0,4,10,3,9,9,5,14,5,3,#90v
+                      8,9,7,6,1,1,1,0,10,9, 13,13,8,12,0,10,0,11,10,16, 5,5,12,6,0,9,9,3,9,9,#120v
+                      9,5,6,0,12,1,1,1,8,8, 9,8,11,11,1,9,11,9,4,10, 0,6,12,12,0,7,8,12,3,13,#150v
+                      12,3,3,3,3,3,3,8,0,9, 10,5,5,5,6,6,0,4,11,0, 0,0,11,16,6,9,9,9,9,8,#180v
+                      0,0,1,9,5,9,8,9,11,11, 8,0,0,9,4,4,4,4,6,6, 9,9,9,0,9,6,15,10,9,9,#210v
+                      9,8,0,16,13,0,14,0,6,9, 0,9,9,15,5,9,10,10,16,10, 0,0,9,9,14,14,9,8,5,1,#240v
+                      13,12,0,9,6,6,10,10,10,11, 8,9,6,10,3,9,9,0,12,9, 6,12,12,6,0,11,0,3]#268v
+#0..normal    1..lucha    2..volador   3..veneno   4..tierra   5..roca   6..bicho78cacn
 #7..fantasma   8..fuego   9..agua   10..planta   11..electrico   12..psiquico
 #13..siniestro   14..hada   15..acero   16..hielo   17..dragon
-pokemon_type_list2 = [None,None,2,5,None,None,2,6,None,None,3, 6,2,3,None,3,None,None,3,2,None,#20v
-                      10,None,2,None,None,11,None,None,None,16, 5,2,None,None,None,2,16,None,None,2,#40v
-                      2,None,None,2,None,None,None,None,None,None, None,None,None,None,None,12,12,2,2,None,#60v
-                      None,None,15,None,3,3,4,12,2,3, 2,None,None,4,None,4,None,None,2,3,#80v
-                      1,None,None,None,2,2,None,8,8,2, None,14,3,14,None,2,12,9,9,None,#100v
-                      3,None,17,None,None,None,11,16,4,2, None,2,None,None,None,None,5,None,None,15,#120v
-                      15,None,2,None,14,None,None,None,None,None, None,None,None,2,14,None,2,2,4,4,#140v
-                      None,None,None,None,None,2,None,3,9,9, 4,10,10,None,None,None,2,2,2,None,#160
-                      4,None,None,None,None,1,None,None,None,None, None,4,4,None,3,None,None,None,None,None,#180v
-                      None,5,5,None,None,15,2,None,None,None, None,None,5,2,2,12,12,12,None,None,#200v
-                      12,16,None,None,2,3,None,None,12,None, 4,None,None,None,None,4,None,None,None,3,#220v
-                      3,None,2,None,None,13,None,None,None,None, None,3,3,3,3,3,None,None,None,3,#240v
-                      3,None,2,4,14,None,4,None,None,2, 2,None,2,None,2]#255v
+
+pokemon_type_list2 = [18,18,2,5,18,18,2,6,18,18,3, 6,5,2,14,18,12,18,4,2,3,#20v
+                      12,18,3,18,1,18,1,3,2,18, 13,4,18,10,18,2,18,18,11,18,#40v
+                      18,18,16,5,2,18,18,18,2,16, 18,18,2,2,18,18,2,18,18,18,#60v
+                      18,18,18,18,18,18,18,18,12,12, 2,2,18,18,18,15,18,3,3,4,#80v
+                      12,2,3,2,18,18,4,18,4,18, 18,2,3,1,18,18,18,2,2,18,#100v
+                      8,8,2,18,14,3,14,18,2,12, 9,9,18,3,18,17,18,18,18,11,#120v
+                      16,4,2,18,2,18,18,18,18,5, 18,18,15,15,18,2,18,14,18,18,#140v
+                      18,18,18,18,18,18,2,14,18,2, 2,4,4,18,18,18,18,18,2,18,#160
+                      3,9,9,4,10,10,18,18,18,2, 2,2,18,4,18,18,18,18,1,18,#180v
+                      18,18,18,18,4,4,18,3,18,18, 18,18,18,18,5,5,18,18,15,2,#200v
+                      18,18,18,18,18,5,2,2,12,12, 12,18,18,12,16,18,18,2,3,18,#220v
+                      18,12,18,4,18,18,18,18,4,18, 18,18,3,3,18,2,18,18,13,18,#240v
+                      18,18,18,18,3,3,3,3,3,18, 18,18,3,3,18,2,4,14,18,4,#260v
+                      18,18,2,2,18,2,18,2]#268v
 
 class Arrow(pygame.sprite.Sprite):
    def __init__(self):
@@ -249,33 +274,45 @@ class Arrow(pygame.sprite.Sprite):
 
 """
 """
-pokemon_hp = [50,70,80,120,70,80,67,60,70,70,50, 70,120,82,90,85,85,270,74,70,60,# 20
+pokemon_hp = [50,70,80,120,70,80,67,60,70,70,50, 70,75,120,90,73,75,70,90,60,82,# 20
               
-              130,259,67,73,70,103,103,97,90,100, 87,80,90,84,75,71,120,56,85,70,#40
+              78,90,85,85,85,270,70,74,70,55, 80,80,60,130,259,67,73,70,103,103,#40
               
-              62,70,72,70,75,70,50,100,89,72, 60,65,70,80,80,90,105,77,90,90,#60
+              97,90,100,87,80,90,84,75,71,120, 56,85,70,62,70,72,70,75,70,50,#60
               
-              108,90,120,90,58,90,68,100,90,75, 100,80,110,110,85,90,90,75,90,80,#80
+              100,89,72,60,65,70,80,80,90,105, 77,90,90,108,90,120,90,58,90,68,#80
               
-              90,80,80,80,70,60,89,80,72,140, 79,150,90,177,70,90,80,70,70,70,#100
+              100,90,75,100,80,110,110,85,90,90, 75,90,80,90,80,80,80,70,60,89,#100
               
-              90,100,90,70,70,60,100,100,83,89, 100,130,70,65,90,70,65,110,80,52,#120
+              80,72,140,79,150,90,177,70,90,80, 70,70,70,90,100,90,70,70,60,100,#120
               
-              80,70,90,93,150,70,100,87,120,90, 100,90,68,120,70,90,73,70,110,110,#140
+              100,83,89,100,130,70,65,90,70,65, 110,80,52,80,70,90,93,150,70,100,#140
               
-              89,98,90,90,75,100,90,71,55,90, 68,68,70,85,110,70,95,93,92,74,#160
+              87,120,90,100,90,68,120,70,90,73, 70,110,110,89,98,90,90,75,100,90,#160
               
-              100,80,100,82,90,100,70,90,90,80, 80,90,95,90,75,80,110,80,90,74,#180
+              71,55,90,68,68,70,85,110,70,95, 93,92,74,100,80,100,82,90,100,70,#180
               
-              74,100,90,74,100,95,75,100,100,110, 80,65,100,100,100,90,90,110,80,120,#200
+              90,90,80,80,90,95,90,75,80,110, 80,90,74,74,100,90,74,100,95,75,#200
               
-              70,65,120,85,82,85,80,90,80,70, 95,75,100,80,70,99,80,90,80,77,#220
+              100,100,110,80,65,100,100,100,90,90, 110,80,120,70,65,120,85,82,85,80,#220
               
-              100,80,83,80,95,120,80,100,75,120, 130,78,90,95,100,100,75,80,110,60,#240
+              90,80,70,95,75,100,80,70,99,80, 90,80,77,100,80,83,80,95,120,80,#240
               
-              90,100,87,100,150,220,112,100,150,66, 80,74,120,100,92]#255zubat
+              100,75,120,130,78,90,95,100,100,75, 80,110,60,90,100,87,100,150,220,112,#260
+              
+              100,150,66,80,74,120,100,92]#268
 
 tipo_ataque_list = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+
+type_images = []
+
+type_list = ["img/type/normal.png","img/type/lucha.png","img/type/volador.png","img/type/veneno.png",
+             "img/type/tierra.png","img/type/roca.png","img/type/bicho.png","img/type/fantasma.png",
+             "img/type/fuego.png","img/type/agua.png","img/type/planta.png","img/type/electrico.png",
+             "img/type/psiquico.png","img/type/siniestro.png","img/type/hada.png","img/type/acero.png",
+             "img/type/hielo.png","img/type/dragon.png","img/type/none.png"]
+for img in type_list:
+   type_images.append(pygame.transform.scale(pygame.image.load(img),(50,50)).convert())
 
 def show_game_over_screenp1():
    screen.fill(BLACK)
@@ -311,7 +348,7 @@ def show_game_over_screenp2():
 
 matriz_efectividad = [
    #1N, 2L, 3V, 4V, 5T, 6R, 7B, 8F, 9F, 10A, 11P, 12E, 13P, 14S, 15H, 16A, 18D
-   [0.5,  1,  1,  1,  1,  0.5,  1, 0.5,  1,  1,  1,  1,  1,  1,  1,  0.5,  1,  1],#1Normal
+   [1,  1,  1,  1,  1,  0.5,  1, 0.5,  1,  1,  1,  1,  1,  1,  1,  0.5,  1,  1],#1Normal
 
    [2, 0.5,  1, 0.5,  1,  2, 0.5, 0.5,  1,  1,  1,  1, 0.5,  2, 0.5,  2,  1,  1],#2lucha
    
@@ -319,25 +356,25 @@ matriz_efectividad = [
    
    [1,  1,  1, 0.5, 0.5,  0.5,  1,  1,  1,  1,  2,  1,  1,  1,  2,  0.5,  1,  1],#4veneno
    
-   [1,  1,  1,  2, 0.5, 2, 0.5,  1,  2,  1,  0.5,  2,  1,  1,  1,  2,  1,             1],#5tierra
+   [1,  1,  1,  2, 0.5, 2, 0.5,  1,  2,  1,  0.5,  2,  1,  1,  1,  2,  1,         1],#5tierra
    
-   [1, 0.5,  2,  1, 0.5, 0.5,  2,  1,  2,  1,  1,  1,  1,  1,  1,  0.5,  1,            1],#6roca
+   [1, 0.5,  2,  1, 0.5, 0.5,  2,  1,  2,  1,  1,  1,  1,  1,  1,  0.5,  1,        1],#6roca
    
-   [1, 0.5,  1, 0.5,  1,  1, 0.5,  1, 0.5,  1,  2,  1,  2,  2, 0.5,  0.5,  1,          1],#7bicho
+   [1, 0.5,  1, 0.5,  1,  1, 0.5,  1, 0.5,  1,  2,  1,  2,  2, 0.5,  0.5,  1,      1],#7bicho
    
-   [0.5,  1,  1,  1,  1,  1,  1,  2,  1,  1,  1,  1,  2, 0.5,  1,  1,  1,           1],#8fantasma
+   [0.5,  1,  1,  1,  1,  1,  1,  2,  1,  1,  1,  1,  2, 0.5,  1,  1,  1,       1],#8fantasma
    
-   [1,  1,  1,  1,  1,  0.5,  2,  1, 0.5, 0.5,  2,  1,  1,  1,  1,  2,  1,         0.5],#9fuego
+   [1,  1,  1,  1,  1,  0.5,  2,  1, 0.5, 0.5,  2,  1,  1,  1,  1,  2,  1,     0.5],#9fuego
    
-   [1,  1,  1,  2,  2,  2,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  2,  1,           0.5],#10agua
+   [1,  1,  1,  2,  2,  2,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  2,  1,       0.5],#10agua
    
-   [1,  1,  1, 0.5,  2,  2, 0.5,  1, 0.5, 2, 0.5,  1,  1,  1,  1,  0.5,  1,           0.5],#11planta
+   [1,  1,  1, 0.5,  2,  2, 0.5,  1, 0.5, 2, 0.5,  1,  1,  1,  1,  0.5,  1,       0.5],#11planta
    
-   [1,  1,  1, 1,  0.5,  1,  1,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  1,           0.5],#12electrico
+   [1,  1,  1, 1,  0.5,  1,  1,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  1,        0.5],#12electrico
    
-   [1,  2,  1,  2,  1,  1,  1,  1,  1,  1,  1,  1, 0.5, 0.5,  1,  0.5,  1,             1],#13psiquico
+   [1,  2,  1,  2,  1,  1,  1,  1,  1,  1,  1,  1, 0.5, 0.5,  1,  0.5,  1,        1],#13psiquico
    
-   [1, 0.5,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  2, 0.5, 0.5,  1,  1,            1],#14siniestro
+   [1, 0.5,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  2, 0.5, 0.5,  1,  1,        1],#14siniestro
    
    [1,  2,  1, 0.5,  1,  1,  1,  1, 0.5,  1,  1,  1,  1,  2,  1, 0.5,  1,  2],#15hada
    
@@ -356,7 +393,7 @@ def damage(atacante,defensor):
 
 
    efectividad_total = 1
-   if tipo_defensor2 is not None:
+   if tipo_defensor2 is not 18:
       efectividad_total *= matriz_efectividad[tipo_atacante][tipo_defensor1]
       efectividad_total *= matriz_efectividad[tipo_atacante][tipo_defensor2]
    else:
@@ -381,6 +418,8 @@ player_pokemon_hp = 0
 op_pokemon_hp = 0
 
 all_sprites = pygame.sprite.Group()
+type_pokemon = pygame.sprite.Group()
+type2_pokemon = pygame.sprite.Group()
 
 start_time = 0
 
@@ -423,7 +462,11 @@ while fighting:
       player_pokemon_list.append(pokemon1)
       all_sprites.add(pokemon1)
       player_pokemon_hp = pokemon1.hp
-      #energia_max_pok1 = player_pokemon_list[0]
+      type1 = Type(pokemon_type_list1[pokemon1.img_int],270,460,0,50,50)
+      type_pokemon.add(type1)
+      type1a = Type(pokemon_type_list1[pokemon1.img_int],pokemon1.rect.x,pokemon1.rect.top - 30,0,25,25)
+      type1b = Type(pokemon_type_list2[pokemon1.img_int],pokemon1.rect.x + 30,pokemon1.rect.top - 30,0,25,25)
+      type2_pokemon.add(type1a,type1b)
       pokemon2 = Pokemon(randint(0,200),0)
       player_pokemon_list.append(pokemon2)
       pokemon3 = Pokemon(randint(0,200),0)
@@ -432,7 +475,11 @@ while fighting:
       op_pokemon_list.append(pokemon4)
       all_sprites.add(pokemon4)
       op_pokemon_hp = pokemon4.hp
-      #energia_max_pok2 = op_pokemon_list[0]
+      type2 = Type(pokemon_type_list1[pokemon4.img_int],670,260,1,50,50)
+      type_pokemon.add(type2)
+      type2a = Type(pokemon_type_list1[pokemon4.img_int],pokemon4.rect.x,pokemon4.rect.top - 30,1,25,25)
+      type2b = Type(pokemon_type_list2[pokemon4.img_int],pokemon4.rect.x + 30,pokemon4.rect.top - 30,1,25,25)
+      type2_pokemon.add(type2a,type2b)
       pokemon5 = Pokemon(randint(0,200),1)
       op_pokemon_list.append(pokemon5)
       pokemon6 = Pokemon(randint(0,200),1)
@@ -446,11 +493,33 @@ while fighting:
                for poke in all_sprites:
                   if poke.team_int == 1:
                      op_pokemon_hp = poke.hp
+                     for ty in type_pokemon:
+                        if ty.team_int == 1:
+                           ty.kill()
+                           type2 = Type(pokemon_type_list1[poke.img_int],670,260,1,50,50)
+                           type_pokemon.add(type2)
+                     for ty in type2_pokemon:
+                        if ty.team_int == 1:
+                           ty.kill()
+                     type2a = Type(pokemon_type_list1[poke.img_int],poke.rect.x,poke.rect.top - 30,1,25,25)
+                     type2b = Type(pokemon_type_list2[poke.img_int],poke.rect.x + 30,poke.rect.top - 30,1,25,25)
+                     type2_pokemon.add(type2a,type2b)
             else:
                all_sprites.add(random.choice(player_pokemon_list))
                for pokem in all_sprites:
                   if pokem.team_int == 0:
                      player_pokemon_hp = pokem.hp
+                     for typ in type_pokemon:
+                        if typ.team_int == 0:
+                           typ.kill()
+                           type1 = Type(pokemon_type_list1[pokem.img_int],270,460,0,50,50)
+                           type_pokemon.add(type1)
+                     for typ in type2_pokemon:
+                        if typ.team_int == 0:
+                           typ.kill()
+                     type1a = Type(pokemon_type_list1[pokem.img_int],pokem.rect.x,pokem.rect.top - 30,0,25,25)
+                     type1b = Type(pokemon_type_list2[pokem.img_int],pokem.rect.x + 30,pokem.rect.top - 30,0,25,25)
+                     type2_pokemon.add(type1a,type1b)
    #print(len(player_pokemon_list))
    if len(player_pokemon_list) == 0 or len(op_pokemon_list) == 0:
       if len(player_pokemon_list) == 0:
@@ -463,13 +532,17 @@ while fighting:
    screen.fill(BLACK)
    all_sprites.update()
    all_sprites.draw(screen)
+   type_pokemon.draw(screen)
+   type2_pokemon.draw(screen)
    for pok in all_sprites:
       if pok.team_int == 0:
          draw_hp_bar(screen,pok.rect.x,pok.rect.y,(pok.hp/(player_pokemon_hp))*100)
          draw_text2(screen,f"{int(pok.hp)}/{player_pokemon_hp}",10,pok.rect.centerx,pok.rect.y)
+         draw_text1(screen,"ATTACK:",10,pok.rect.x,480)
       else:
          draw_hp_bar(screen,pok.rect.x,pok.rect.y,(pok.hp/op_pokemon_hp)*100)
          draw_text2(screen,f"{int(pok.hp)}/{op_pokemon_hp}",10,pok.rect.centerx,pok.rect.y)
+         draw_text1(screen,"ATTACK:",10,pok.rect.x,280)
    pygame.display.update()
 
 
@@ -535,7 +608,7 @@ pokemon_name_list = ["abomasnow",
       #82jigg177,83jolt70,84jumpluff90,85jynx80,86kabut70,87kada70,88kakuna70,89kang90,90kingdra100,
 #91kingler90,92koffing70,93krabb70,94lapras100, 60,95larvitar80,96
 #82
-#77porygon, +101caterpc344, 76spearow470, 63shelder, 100seel,79hypno, 89eevee, 92pidgey, 82sandygast, 
+#77porygon, +101caterpc344, 76spearow470, 63shelder, 100seel,79hypno, 92pidgey, 82sandygast, 
 # 90rhyhorn489,1*, 90venonat, 95noibat, 89luv(pezrosa),lunatone87,sableye70,0*, absol57,0*,phantum75,
 #stufful89,2*,seviper74, omanyte58,snubbull85,
 """
