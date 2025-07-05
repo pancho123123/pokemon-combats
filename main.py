@@ -129,37 +129,44 @@ pokemon_images = []
 pokemon_list = ["img/pok/abra.png","img/pok/absol.png","img/pok/aerodactyl.png",
                 "img/pok/aggron.png","img/pok/aipom.png","img/pok/alakazam.png",
                 "img/pok/altaria.png","img/pok/anorith.png","img/pok/arbok.png","img/pok/arcanine.png",
-                "img/pok/ariados.png","img/pok/armaldo.png","img/pok/aron.png",
+                "img/pok/ariados.png","img/pok/armaldo.png","img/pok/aron.png",#10 ariados
                 "img/pok/articuno.png","img/pok/azurill.png","img/pok/bagon.png",
                 "img/pok/baltoy.png","img/pok/banette.png","img/pok/barboach.png",
-                "img/pok/beautifly.png","img/pok/beedrill.png","img/pok/beldum.png",#10 ariados
-                "img/pok/bellossom.png","img/pok/bellsprout.png","img/pok/blastoise.png",#20beedrill
+                "img/pok/beautifly.png","img/pok/beedrill.png","img/pok/beldum.png",#20 beedrill
+                "img/pok/bellossom.png","img/pok/bellsprout.png","img/pok/blastoise.png",
                 "img/pok/blaziken.png","img/pok/blissey.png","img/pok/breloom.png",
-                "img/pok/bulbasaur.png", "img/pok/butterfree.png","img/pok/cacnea.png",
-                "img/pok/cacturne.png","img/pok/camerupt.png",
+                "img/pok/bulbasaur.png", "img/pok/butterfree.png","img/pok/cacnea.png",#30 cacnea
+                "img/pok/cacturne.png","img/pok/camerupt.png","img/pok/carvanha.png",
+                "img/pok/cascoon.png","img/pok/castform.png",
                 "img/pok/caterpi.png","img/pok/celebi.png","img/pok/chansey.png", 
-                "img/pok/charizard.png", "img/pok/charmander.png","img/pok/charmeleon.png",#20_celebi
-                "img/pok/chinchou.png","img/pok/clefable.png","img/pok/clefairy.png",
-                "img/pok/cleffa.png","img/pok/cloyster.png", "img/pok/corsola.png",
-                "img/pok/crobat.png","img/pok/croconaw.png","img/pok/cubone.png",#30 corsola
-                "img/pok/cyndaquil.png", "img/pok/delibird.png", "img/pok/dewong.png",
+                "img/pok/charizard.png", "img/pok/charmander.png","img/pok/charmeleon.png",#40 charmander
+                "img/pok/chimecho.png","img/pok/chinchou.png","img/pok/clamperl.png",
+                "img/pok/claydol.png","img/pok/clefable.png","img/pok/clefairy.png",
+                "img/pok/cleffa.png","img/pok/cloyster.png","img/pok/combusken.png", #50 combusken
+                "img/pok/corpish.png","img/pok/corsola.png","img/pok/cradily.png",
+                "img/pok/crawdaunt.png",
+                "img/pok/crobat.png","img/pok/croconaw.png","img/pok/cubone.png",
+                "img/pok/cyndaquil.png","img/pok/delcatty.png", "img/pok/delibird.png", "img/pok/dewong.png",#60delibird
                 "img/pok/diglett.png","img/pok/ditto.png", "img/pok/dodrio.png",
-                "img/pok/doduo.png","img/pok/donphan.png","img/pok/dragonair.png",#40 doduo
+                "img/pok/doduo.png","img/pok/donphan.png","img/pok/dragonair.png",
                 "img/pok/dragonite.png", 
-   "img/pok/dratini.png","img/pok/drowzee.png","img/pok/dugtrio.png", 
-   "img/pok/dunsparce.png", "img/pok/eevee.png","img/pok/ekans.png",
-   "img/pok/electabuzz.png","img/pok/electrode.png","img/pok/elekid.png","img/pok/entei.png",#50electabuzz
+   "img/pok/dratini.png","img/pok/drowzee.png","img/pok/dugtrio.png", #70drowzee
+   "img/pok/dunsparce.png","img/pok/dusclops.png","img/pok/duskull.png", 
+   "img/pok/dustox.png","img/pok/eevee.png","img/pok/ekans.png",
+   "img/pok/electabuzz.png","img/pok/electrike.png","img/pok/electrode.png",#80electrode
+   "img/pok/elekid.png","img/pok/entei.png",
    "img/pok/espeon.png","img/pok/exeggcute.png","img/pok/exeggutor.png",
-   "img/pok/farfetch.png","img/pok/fearow.png","img/pok/feraligatr.png",
-   "img/pok/flaaffy.png","img/pok/flareon.png","img/pok/forretress.png",#60 flaaffy
-   "img/pok/furret.png","img/pok/gastly.png","img/pok/gengar.png",
-   "img/pok/geodude.png","img/pok/girafarig.png","img/pok/gligar.png",
+   "img/pok/exploud.png","img/pok/farfetch.png","img/pok/fearow.png",
+   "img/pok/feebas.png","img/pok/feraligatr.png",#90feraligatr
+   "img/pok/flaaffy.png","img/pok/flareon.png","img/pok/flygon.png","img/pok/forretress.png",
+   "img/pok/furret.png","img/pok/gardevoir.png","img/pok/gastly.png","img/pok/gengar.png",
+   "img/pok/geodude.png","img/pok/girafarig.png","img/pok/glalie.png","img/pok/gligar.png",#100girafa
    "img/pok/gloom.png","img/pok/golbat.png","img/pok/goldeen.png",
-   "img/pok/golduck.png","img/pok/golem.png", "img/pok/granbull.png",#70golbat
-   "img/pok/graveler.png","img/pok/grimer.png","img/pok/growlithe.png", 
+   "img/pok/golduck.png","img/pok/golem.png", "img/pok/granbull.png",
+   "img/pok/graveler.png","img/pok/grimer.png","img/pok/growlithe.png",#110 grimer
    "img/pok/gyarados.png","img/pok/haunter.png","img/pok/heracross.png",
-   "img/pok/hitmonchan.png","img/pok/hitmonlee.png","img/pok/hitmontop.png",#80heracross
-   "img/pok/hoothoot.png","img/pok/hoppip.png","img/pok/horsea.png",
+   "img/pok/hitmonchan.png","img/pok/hitmonlee.png","img/pok/hitmontop.png",
+   "img/pok/hoothoot.png","img/pok/hoppip.png","img/pok/horsea.png",#120horsea
    "img/pok/houndoom.png","img/pok/houndour.png","img/pok/ho-oh.png",
    "img/pok/hypno.png","img/pok/igglybuff.png",
    "img/pok/ivysaur.png","img/pok/jigglypuff.png","img/pok/jolteon.png",#90hypno
@@ -224,34 +231,38 @@ pokemon_list = ["img/pok/abra.png","img/pok/absol.png","img/pok/aerodactyl.png",
 for img in pokemon_list:
 	pokemon_images.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
+"""
 
-pokemon_type_list1 = [12,13,5,15,0,12,17,5,3,8,6, 5,15,16,0,17,4,7,9,6,6, 15,10,10,9,8,0,10,10,6,10,#30v
-                      10,8,6,12,0,8,8,8,9,14, 14,14,9,9,3,9,4,8,16,9, 4,0,0,0,4,17,17,17,12,4,#60v
-                      0,0,3,11,11,11,8,12,10,10, 0,0,9,11,8,6,0,7,7,5, 0,4,10,3,9,9,5,14,5,3,#90v
-                      8,9,7,6,1,1,1,0,10,9, 13,13,8,12,0,10,0,11,10,16, 5,5,12,6,0,9,9,3,9,9,#120v
-                      9,5,6,0,12,1,1,1,8,8, 9,8,11,11,1,9,11,9,4,10, 0,6,12,12,0,7,8,12,3,13,#150v
-                      12,3,3,3,3,3,3,8,0,9, 10,5,5,5,6,6,0,4,11,0, 0,0,11,16,6,9,9,9,9,8,#180v
-                      0,0,1,9,5,9,8,9,11,11, 8,0,0,9,4,4,4,4,6,6, 9,9,9,0,9,6,15,10,9,9,#210v
-                      9,8,0,16,13,0,14,0,6,9, 0,9,9,15,5,9,10,10,16,10, 0,0,9,9,14,14,9,8,5,1,#240v
-                      13,12,0,9,6,6,10,10,10,11, 8,9,6,10,3,9,9,0,12,9, 6,12,12,6,0,11,0,3]#268v
+"""
+pokemon_type_list1 = [12,13,5,15,0,12,17,5,3,8,6, 5,15,16,0,17,4,7,9,6,6, 15,10,10,9,8,0,10,10,6,10, #30v
+                      10,8,9,6,0,6,12,0,8,8, 8,12,9,9,4,14,14,14,9,8, 9,9,5,9,3,9,4,8,0,16, #60v
+                      9,4,0,0,0,4,17,17,17,12, 4,0,7,7,6,0,3,11,11,11, 11,8,12,10,10,0,0,0,9,9, #90v
+                      11,8,4,6,0,12,7,7,5,0, 16,4,10,3,9,9,5,14,5,3, 8,9,7,6,1,1,1,0,10,9, #120v
+                      13,13,8,12,0,10,0,11,10,16, 5,5,12,6,0,9,9,3,9,9, 9,5,6,0,12,1,1,1,8,8, #150v
+                      9,8,11,11,1,9,11,9,4,10, 0,6,12,12,0,7,8,12,3,13, 12,3,3,3,3,3,3,8,0,9, #180v
+                      10,5,5,5,6,6,0,4,11,0, 0,0,11,16,6,9,9,9,9,8, 0,0,1,9,5,9,8,9,11,11, #210v
+                      8,0,0,9,4,4,4,4,6,6, 9,9,9,0,9,6,15,10,9,9, 9,8,0,16,13,0,14,0,6,9, #240v
+                      0,9,9,15,5,9,10,10,16,10, 0,0,9,9,14,14,9,8,5,1, 13,12,0,9,6,6,10,10,10,11, #270v
+                      8,9,6,10,3,9,9,0,12,9, 6,12,12,6,0,11,0,3]#288v
 #0..normal    1..lucha    2..volador   3..veneno   4..tierra   5..roca   6..bicho78cacn
 #7..fantasma   8..fuego   9..agua   10..planta   11..electrico   12..psiquico
 #13..siniestro   14..hada   15..acero   16..hielo   17..dragon
 
-pokemon_type_list2 = [18,18,2,5,18,18,2,6,18,18,3, 6,5,2,14,18,12,18,4,2,3,#20v
-                      12,18,3,18,1,18,1,3,2,18, 13,4,18,10,18,2,18,18,11,18,#40v
-                      18,18,16,5,2,18,18,18,2,16, 18,18,2,2,18,18,2,18,18,18,#60v
-                      18,18,18,18,18,18,18,18,12,12, 2,2,18,18,18,15,18,3,3,4,#80v
-                      12,2,3,2,18,18,4,18,4,18, 18,2,3,1,18,18,18,2,2,18,#100v
-                      8,8,2,18,14,3,14,18,2,12, 9,9,18,3,18,17,18,18,18,11,#120v
-                      16,4,2,18,2,18,18,18,18,5, 18,18,15,15,18,2,18,14,18,18,#140v
-                      18,18,18,18,18,18,2,14,18,2, 2,4,4,18,18,18,18,18,2,18,#160
-                      3,9,9,4,10,10,18,18,18,2, 2,2,18,4,18,18,18,18,1,18,#180v
-                      18,18,18,18,4,4,18,3,18,18, 18,18,18,18,5,5,18,18,15,2,#200v
-                      18,18,18,18,18,5,2,2,12,12, 12,18,18,12,16,18,18,2,3,18,#220v
-                      18,12,18,4,18,18,18,18,4,18, 18,18,3,3,18,2,18,18,13,18,#240v
-                      18,18,18,18,3,3,3,3,3,18, 18,18,3,3,18,2,4,14,18,4,#260v
-                      18,18,2,2,18,2,18,2]#268v
+pokemon_type_list2 = [18,18,2,5,18,18,2,6,18,18,3, 6,5,2,14,18,12,18,4,2,3, #20v
+                      12,18,3,18,1,18,1,3,2,18, 13,4,13,18,18,18,10,18,2,18, #40v
+                      18,18,11,18,12,18,18,18,16,1, 18,5,10,13,2,18,18,18,18,2,#60v
+                      16,18,18,2,2,18,18,2,18,18, 18,18,18,18,3,18,18,18,18,18,#80v
+                      18,18,18,12,12,18,2,2,18,18, 18,18,17,15,18,14,3,3,4,12,#100v
+                      18,2,3,2,18,18,4,18,4,18, 18,2,3,1,18,18,18,2,2,18, #120v
+                      8,8,2,18,14,3,14,18,2,12, 9,9,18,3,18,17,18,18,18,11, #140v
+                      16,4,2,18,2,18,18,18,18,5, 18,18,15,15,18,2,18,14,18,18, #160
+                      18,18,18,18,18,18,2,14,18,2, 2,4,4,18,18,18,18,18,2,18, #180v
+                      3,9,9,4,10,10,18,18,18,2, 2,2,18,4,18,18,18,18,1,18, #200v
+                      18,18,18,18,4,4,18,3,18,18, 18,18,18,18,5,5,18,18,15,2, #220v
+                      18,18,18,18,18,5,2,2,12,12, 12,18,18,12,16,18,18,2,3,18, #240v
+                      18,12,18,4,18,18,18,18,4,18, 18,18,3,3,18,2,18,18,13,18, #260v
+                      18,18,18,18,3,3,3,3,3,18, 18,18,3,3,18,2,4,14,18,4, #280v
+                      18,18,2,2,18,2,18,2]#288v
 
 class Arrow(pygame.sprite.Sprite):
    def __init__(self):
@@ -274,33 +285,35 @@ class Arrow(pygame.sprite.Sprite):
 
 """
 """
-pokemon_hp = [50,70,80,120,70,80,67,60,70,70,50, 70,75,120,90,73,75,70,90,60,82,# 20
+pokemon_hp = [50,70,80,120,70,80,67,60,70,70,50, 70,75,120,90,73,75,70,90,60,82, #20v
               
-              78,90,85,85,85,270,70,74,70,55, 80,80,60,130,259,67,73,70,103,103,#40
+              78,90,85,85,85,270,70,74,70,78, 80,80,77,90,85,100,130,259,67,73, #40v
               
-              97,90,100,87,80,90,84,75,71,120, 56,85,70,62,70,72,70,75,70,50,#60
+              70,80,103,64,80,103,97,90,100,80, 70,87,90,75,80,90,84,75,90,75, #60
               
-              100,89,72,60,65,70,80,80,90,105, 77,90,90,108,90,120,90,58,90,68,#80
+              120,56,85,70,62,70,72,70,75,70, 50,100,72,68,85,89,72,60,65,70,  #80
               
-              100,90,75,100,80,110,110,85,90,90, 75,90,80,90,80,80,80,70,60,89,#100
+              75,80,80,90,105,100,77,90,35,90, 100,80,90,90,58,90,68,88,68,100, #100
               
-              80,72,140,79,150,90,177,70,90,80, 70,70,70,90,100,90,70,70,60,100,#120
+              90,70,75,85,85,110,110,85,90,90, 75,90,80,90,80,80,80,70,60,89, #120
               
-              100,83,89,100,130,70,65,90,70,65, 110,80,52,80,70,90,93,150,70,100,#140
+              80,72,140,79,150,90,177,70,90,80, 70,70,70,90,100,90,70,70,60,100, #140
               
-              87,120,90,100,90,68,120,70,90,73, 70,110,110,89,98,90,90,75,100,90,#160
+              100,83,89,100,130,70,65,90,70,65, 110,80,52,80,70,90,93,150,70,100, #160
               
-              71,55,90,68,68,70,85,110,70,95, 93,92,74,100,80,100,82,90,100,70,#180
+              87,120,90,100,90,68,120,70,90,73, 70,110,110,89,98,90,90,75,100,90, #180
               
-              90,90,80,80,90,95,90,75,80,110, 80,90,74,74,100,90,74,100,95,75,#200
+              71,55,90,68,68,70,85,110,70,95, 93,92,74,100,80,100,82,90,100,70, #200
               
-              100,100,110,80,65,100,100,100,90,90, 110,80,120,70,65,120,85,82,85,80,#220
+              90,90,80,80,90,95,90,75,80,110, 80,90,74,74,100,90,74,100,95,75, #220
               
-              90,80,70,95,75,100,80,70,99,80, 90,80,77,100,80,83,80,95,120,80,#240
+              100,100,110,80,65,100,100,100,90,90, 110,80,120,70,65,120,85,82,85,80, #240
               
-              100,75,120,130,78,90,95,100,100,75, 80,110,60,90,100,87,100,150,220,112,#260
+              90,80,70,95,75,100,80,70,99,80, 90,80,77,100,80,83,80,95,120,80, #260
               
-              100,150,66,80,74,120,100,92]#268
+              100,75,120,130,78,90,95,100,100,75, 80,110,60,90,100,87,100,150,220,112, #280
+              
+              100,150,66,80,74,120,100,92]#288
 
 tipo_ataque_list = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
@@ -366,7 +379,7 @@ matriz_efectividad = [
    
    [1,  1,  1,  1,  1,  0.5,  2,  1, 0.5, 0.5,  2,  1,  1,  1,  1,  2,  1,     0.5],#9fuego
    
-   [1,  1,  1,  2,  2,  2,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  2,  1,       0.5],#10agua
+   [1,  1,  1,  1,  2,  2,  1,  1,  2, 0.5, 0.5,  1,  1,  1,  1,  2,  1,       0.5],#10agua
    
    [1,  1,  1, 0.5,  2,  2, 0.5,  1, 0.5, 2, 0.5,  1,  1,  1,  1,  0.5,  1,       0.5],#11planta
    
