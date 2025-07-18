@@ -10,7 +10,7 @@ WHITE = (255,255,255)
 RED = (255,0,0)
 GREEN = (0,255,0)
 BLUE = (0,0,255)
-YELLOW = ()
+YELLOW = (255,255,0)
 
 
 pygame.init()
@@ -42,13 +42,22 @@ def draw_hp_bar(surface, x, y, percentage):
    pygame.draw.rect(surface, GREEN, fill)
    pygame.draw.rect(surface, WHITE, border, 2)
 
-def draw_exp_bar(surface, x, y, percentage):
-   BAR_LENGHT = 100
+def draw_hp_bar2(surface, x, y, percentage):
+   BAR_LENGHT = 200
    BAR_HEIGHT = 10
    fill = (percentage / 100) * BAR_LENGHT
    border = pygame.Rect(x, y, BAR_LENGHT, BAR_HEIGHT)
    fill = pygame.Rect(x, y, fill, BAR_HEIGHT)
-   pygame.draw.rect(surface, BLUE, fill)
+   pygame.draw.rect(surface, YELLOW, fill)
+   pygame.draw.rect(surface, WHITE, border, 2)
+
+def draw_hp_bar3(surface, x, y, percentage):
+   BAR_LENGHT = 200
+   BAR_HEIGHT = 10
+   fill = (percentage / 100) * BAR_LENGHT
+   border = pygame.Rect(x, y, BAR_LENGHT, BAR_HEIGHT)
+   fill = pygame.Rect(x, y, fill, BAR_HEIGHT)
+   pygame.draw.rect(surface, RED, fill)
    pygame.draw.rect(surface, WHITE, border, 2)
 
 
@@ -252,24 +261,26 @@ pokemon_list = ["img/pok/abra.png","img/pok/absol.png","img/pok/aerodactyl.png",
                 "img/pok/smeargle.png","img/pok/smoochum.png","img/pok/sneasel.png",#300 smeargle
                 "img/pok/snorlax.png","img/pok/snorunt.png","img/pok/snubbull.png",
                 "img/pok/solrock.png","img/pok/spearow.png","img/pok/spheal.png",
-                "img/pok/spinarak.png","img/pok/squirtle.png","img/pok/stantler.png",#310 squirtle
-                "img/pok/starmie.png","img/pok/staryu.png","img/pok/steelix.png",
-                "img/pok/sudowoodo.png","img/pok/suicune.png","img/pok/sunflora.png",
-                "img/pok/sunkern.png","img/pok/swinub.png","img/pok/tangela.png",#320 tangela
-                "img/pok/tauros.png","img/pok/teddiursa.png","img/pok/tentacool.png",
-                "img/pok/tentacruel.png","img/pok/togepi.png","img/pok/togetic.png",
-                "img/pok/totodile.png","img/pok/typhlosion.png","img/pok/tyranitar.png",
-                "img/pok/tyrogue.png","img/pok/umbreon.png","img/pok/unown.png",#330 tyrogue
-                "img/pok/ursaring.png","img/pok/vaporeon.png","img/pok/venomoth.png",
-                "img/pok/venonat.png","img/pok/venusaur.png","img/pok/victreebel.png",
-                "img/pok/vileplume.png","img/pok/voltorb.png","img/pok/vulpix.png",#340 voltorb
-                "img/pok/wartortle.png","img/pok/weedle.png","img/pok/weepinbell.png",
-                "img/pok/weezing.png","img/pok/wingull.png","img/pok/whiscash.png",
-                "img/pok/wigglytuff.png","img/pok/wobbuffet.png","img/pok/wooper.png",#350 wooper
-                "img/pok/wurmple.png",
-                "img/pok/wynaut.png","img/pok/xatu.png","img/pok/yanma.png",
-                "img/pok/zangoose.png","img/pok/zapdos.png","img/pok/zigzagoon.png",
-                "img/pok/zubat.png"]#358 zubat
+                "img/pok/spinarak.png","img/pok/spinda.png","img/pok/spoink.png",#310 spinda
+                "img/pok/squirtle.png","img/pok/stantler.png","img/pok/starmie.png",
+                "img/pok/staryu.png","img/pok/steelix.png","img/pok/sudowoodo.png",
+                "img/pok/suicune.png","img/pok/sunflora.png","img/pok/sunkern.png",#320 sunkern
+                "img/pok/surskit.png","img/pok/swablu.png","img/pok/swalot.png",
+                "img/pok/swampert.png","img/pok/swellow.png","img/pok/swinub.png",
+                "img/pok/taillow.png","img/pok/tangela.png","img/pok/tauros.png",
+                "img/pok/teddiursa.png","img/pok/tentacool.png","img/pok/tentacruel.png",#330 teddiursa
+                "img/pok/togepi.png","img/pok/togetic.png","img/pok/torchik.png",
+                "img/pok/torkoal.png","img/pok/totodile.png","img/pok/typhlosion.png",
+                "img/pok/tyranitar.png","img/pok/tyrogue.png","img/pok/umbreon.png",#340 tyrogue
+                "img/pok/unown.png","img/pok/ursaring.png","img/pok/vaporeon.png",
+                "img/pok/venomoth.png","img/pok/venonat.png","img/pok/venusaur.png",
+                "img/pok/victreebel.png","img/pok/vileplume.png","img/pok/voltorb.png",#350 voltorb
+                "img/pok/vulpix.png","img/pok/wartortle.png","img/pok/weedle.png",
+                "img/pok/weepinbell.png","img/pok/weezing.png","img/pok/wingull.png",
+                "img/pok/whiscash.png","img/pok/wigglytuff.png","img/pok/wobbuffet.png",
+                "img/pok/wooper.png","img/pok/wurmple.png","img/pok/wynaut.png",#360 wooper
+                "img/pok/xatu.png","img/pok/yanma.png","img/pok/zangoose.png",
+                "img/pok/zapdos.png","img/pok/zigzagoon.png","img/pok/zubat.png"]#368 zubat
 for img in pokemon_list:
 	pokemon_images.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
@@ -286,8 +297,9 @@ pokemon_type_list1 = [12,13,5,15,0,12,17,5,3,8,6, 5,15,16,0,17,4,7,9,6,6, 15,10,
                       3,3,3,6,8,6,0,5,8,10, 9,10,5,5,5,6,6,9,0,4, 11,0,0,0,11,16,6,11,9,9,#240v
                       9,9,8,13,0,0,1,9,5,9, 8,9,11,11,12,8,0,0,17,16, 5,15,9,9,4,4,10,13,17,4,#270v
                       4,10,6,6,9,9,16,10,9,0, 3,9,6,17,9,10,10,6,7,6, 15,10,0,0,0,9,9,9,8,0,#300v
-                      16,13,0,16,14,5,0,16,6,9, 0,9,9,15,5,9,10,10,16,10, 0,0,9,9,14,14,9,8,5,1, #330
-                      13,12,0,9,6,6,10,10,10,11, 8,9,6,10,3,9,9,0,12,9, 6,12,12,6,0,11,0,3]#358v
+                      16,13,0,16,14,5,0,16,6,0, 12,9,0,9,9,15,5,9,10,10, 10,0,3,9,0,16,0,10,0,0,#330
+                      9,9,14,14,8,8,9,8,5,1, 13,12,0,9,6,6,10,10,10,11, 8,9,6,10,3,9,9,0,12,9, #360
+                      6,12,12,6,0,11,0,3]#368v
 #0..normal    1..lucha    2..volador   3..veneno   4..tierra   5..roca   6..bicho78cacn
 #7..fantasma   8..fuego   9..agua   10..planta   11..electrico   12..psiquico
 #13..siniestro   14..hada   15..acero   16..hielo   17..dragon
@@ -307,32 +319,14 @@ pokemon_type_list2 = [18,18,2,5,18,18,2,6,18,18,3, 6,5,2,14,18,12,18,4,2,3, #20v
                       18,1,18,18,18,18,18,18,4,4, 18,3,18,18,14,18,18,18,2,18, #260v
                       18,18,5,18,5,5,3,7,18,18, 18,18,15,2,18,18,9,18,18,18,#280v
                       18,13,7,18,18,13,18,5,18,18, 2,2,18,18,18,12,12,12,18,18,#300v
-                      12,16,18,18,18,12,2,9,3,18, 18,12,18,4,18,18,18,18,4,18, #320v
-                      18,18,3,3,18,2,18,18,13,18, 18,18,18,18,3,3,3,3,3,18, #340v
-                      18,18,3,3,18,2,4,14,18,4, 18,18,2,2,18,2,18,2]#358v
-
-class Arrow(pygame.sprite.Sprite):
-   def __init__(self):
-         super().__init__()
-         self.image = pygame.image.load("img/flechas/flecha_negra.png")
-         self.rect = self.image.get_rect()
-         self.rect.topleft = 320,439
-
-   def update(self):
-      for event in pygame.event.get():
-         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
-               self.rect.top = 439
-            if event.key == pygame.K_s:
-               self.rect.top = 486
-            if event.key == pygame.K_a:
-               self.rect.left = 320
-            if event.key == pygame.K_d:
-               self.rect.left = 465
+                      12,16,18,18,18,12,2,9,3,18, 18,18,18,12,18,4,18,18,18,18, #320v
+                      9,2,18,4,2,4,2,18,18,18, 3,3,18,2,18,18,18,18,13,18, #340v
+                      18,18,18,18,3,3,3,3,3,18, 18,18,3,3,18,2,4,14,18,4, #360
+                      18,18,2,2,18,2,18,2]#368v
 
 """
 """
-pokemon_hp = [50,70,80,120,70,80,67,60,70,70,50, 70,75,120,90,73,75,70,90,60,82, #20v
+pokemon_hp = [50,70,80,120,70,80,67,60,70,85,50, 70,75,120,90,73,75,70,90,60,82, #20v
               
               78,90,85,85,85,270,70,74,70,78, 80,80,77,90,85,100,130,259,67,73, #40v
               
@@ -362,11 +356,13 @@ pokemon_hp = [50,70,80,120,70,80,67,60,70,70,50, 70,75,120,90,73,75,70,90,60,82,
               
               70,65,70,80,65,70,70,100,65,80, 100,100,70,90,70,90,90,110,80,120,#300
               
-              70,65,120,70,85,80,82,70,85,80, 90,80,70,95,75,100,80,70,99,80, #320 
+              70,65,120,70,85,80,82,70,85,70, 70,80,90,80,70,95,75,100,80,70,#320
               
-              90,80,77,100,80,83,80,95,120,80, 100,75,120,130,78,90,95,100,100,75, #340
+              70,70,120,90,80,99,70,80,90,80, 77,100,80,83,70,70,80,95,120,80, #340
               
-              80,110,60,90,100,87,100,150,220,112, 100,150,66,80,74,120,100,92]#358
+              100,75,120,130,78,90,95,100,100,75, 80,110,60,90,100,87,100,150,220,112, #360
+              
+              100,150,66,80,74,120,100,92]#368
 
 tipo_ataque_list = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
@@ -518,7 +514,7 @@ while fighting:
       all_sprites.empty()
       player_pokemon_list = []
       op_pokemon_list = []
-      pokemon1 = Pokemon(randint(0,200),0)
+      pokemon1 = Pokemon(randint(0,368),0)
       player_pokemon_list.append(pokemon1)
       all_sprites.add(pokemon1)
       player_pokemon_hp = pokemon1.hp
@@ -527,11 +523,11 @@ while fighting:
       type1a = Type(pokemon_type_list1[pokemon1.img_int],pokemon1.rect.x,pokemon1.rect.top - 30,0,25,25)
       type1b = Type(pokemon_type_list2[pokemon1.img_int],pokemon1.rect.x + 30,pokemon1.rect.top - 30,0,25,25)
       type2_pokemon.add(type1a,type1b)
-      pokemon2 = Pokemon(randint(0,200),0)
+      pokemon2 = Pokemon(randint(0,368),0)
       player_pokemon_list.append(pokemon2)
-      pokemon3 = Pokemon(randint(0,200),0)
+      pokemon3 = Pokemon(randint(0,368),0)
       player_pokemon_list.append(pokemon3)
-      pokemon4 = Pokemon(randint(0,200),1)
+      pokemon4 = Pokemon(randint(0,368),1)
       op_pokemon_list.append(pokemon4)
       all_sprites.add(pokemon4)
       op_pokemon_hp = pokemon4.hp
@@ -540,9 +536,9 @@ while fighting:
       type2a = Type(pokemon_type_list1[pokemon4.img_int],pokemon4.rect.x,pokemon4.rect.top - 30,1,25,25)
       type2b = Type(pokemon_type_list2[pokemon4.img_int],pokemon4.rect.x + 30,pokemon4.rect.top - 30,1,25,25)
       type2_pokemon.add(type2a,type2b)
-      pokemon5 = Pokemon(randint(0,200),1)
+      pokemon5 = Pokemon(randint(0,368),1)
       op_pokemon_list.append(pokemon5)
-      pokemon6 = Pokemon(randint(0,200),1)
+      pokemon6 = Pokemon(randint(0,368),1)
       op_pokemon_list.append(pokemon6)
       pokeball1 = Pokeball(0,0)
       pokeball2 = Pokeball(1,0)
@@ -606,12 +602,22 @@ while fighting:
    pokeballs.draw(screen)
    for pok in all_sprites:
       if pok.team_int == 0:
-         draw_hp_bar(screen,pok.rect.x,pok.rect.y,(pok.hp/(player_pokemon_hp))*100)
+         if pok.hp/player_pokemon_hp > 0.5:
+            draw_hp_bar(screen,pok.rect.x,pok.rect.y,(pok.hp/(player_pokemon_hp))*100)
+         elif pok.hp/player_pokemon_hp > 0.20:
+            draw_hp_bar2(screen,pok.rect.x,pok.rect.y,(pok.hp/(player_pokemon_hp))*100)
+         else:
+            draw_hp_bar3(screen,pok.rect.x,pok.rect.y,(pok.hp/(player_pokemon_hp))*100)
          draw_text2(screen,f"{int(pok.hp)}/{player_pokemon_hp}",10,pok.rect.centerx,pok.rect.y)
          draw_text1(screen,"ATTACK:",10,pok.rect.x,480)
          draw_text1(screen,f"Pokemones: {len(player_pokemon_list)}",15,pok.rect.x,495)
       else:
-         draw_hp_bar(screen,pok.rect.x,pok.rect.y,(pok.hp/op_pokemon_hp)*100)
+         if pok.hp/op_pokemon_hp > 0.5:
+            draw_hp_bar(screen,pok.rect.x,pok.rect.y,(pok.hp/op_pokemon_hp)*100)
+         elif pok.hp/op_pokemon_hp > 0.20:
+            draw_hp_bar2(screen,pok.rect.x,pok.rect.y,(pok.hp/op_pokemon_hp)*100)
+         else:
+            draw_hp_bar3(screen,pok.rect.x,pok.rect.y,(pok.hp/op_pokemon_hp)*100)
          draw_text2(screen,f"{int(pok.hp)}/{op_pokemon_hp}",10,pok.rect.centerx,pok.rect.y)
          draw_text1(screen,"ATTACK:",10,pok.rect.x,280)
          draw_text1(screen,f"Pokemones: {len(op_pokemon_list)}",15,pok.rect.x,295)
