@@ -103,12 +103,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(self,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(self,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(self,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -126,6 +126,7 @@ class Type(pygame.sprite.Sprite):
       self.img_int = img_int
       if 0 <= img_int < len(type_images):
          self.image = pygame.transform.scale(type_images[img_int],(scx,scy))
+         #self.image.set_colorkey(WHITE)
       else:
          raise ValueError("img_int fuera de rango")
 
