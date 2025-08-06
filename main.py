@@ -103,12 +103,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(self,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      else:
-         for poke in all_sprites:
-            if poke.team_int == 1:
-               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-                  poke.hp -= damage(self,poke)
-                  self.ultimo_ataque = pygame.time.get_ticks()
+      # else:
+      #    for poke in all_sprites:
+      #       if poke.team_int == 1:
+      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+      #             poke.hp -= damage(self,poke)
+      #             self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
