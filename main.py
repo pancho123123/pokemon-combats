@@ -103,12 +103,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -190,7 +190,7 @@ pokemon_list = ["img/pok/abomasnow.png","img/pok/abra.png","img/pok/absol.png",
                 "img/pok/cresselia.png","img/pok/croagunk.png","img/pok/crobat.png",
                 "img/pok/croconaw.png","img/pok/cubone.png","img/pok/cyndaquil.png",
                 "img/pok/delcatty.png","img/pok/delibird.png","img/pok/deoxys.png", #90 delcatty
-                "img/pok/dewong.png","img/pok/diglett.png","img/pok/ditto.png",
+                "img/pok/dewgong.png","img/pok/diglett.png","img/pok/ditto.png",
                 "img/pok/dodrio.png","img/pok/doduo.png","img/pok/donphan.png",
                 "img/pok/dragonair.png","img/pok/dragonite.png","img/pok/dratini.png", #100 dragonite
                 "img/pok/drifblim.png","img/pok/drifloon.png","img/pok/drowzee.png",
@@ -478,7 +478,7 @@ matriz_efectividad = [
    
    [1,  1,  1, 0.625,  1.6,  1.6, 0.625,  1, 0.625, 1.6, 0.625,  1,  1,  1,  1,  0.625,  1,       0.625],#11planta
    
-   [1,  1,  1, 1,  0.625,  1,  1,  1,  1,  1.6, 0.625, 0.625,  1,  1,  1,  1,  1,        0.625],#12electrico
+   [1,  1,  1.6, 1,  0.625,  1,  1,  1,  1,  1.6, 0.625, 0.625,  1,  1,  1,  1,  1,        0.625],#12electrico
    
    [1,  1.6,  1,  1.6,  1,  1,  1,  1,  1,  1,  1,  1, 0.625, 0.625,  1,  0.625,  1,        1],#13psiquico
    
