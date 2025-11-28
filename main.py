@@ -103,12 +103,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -177,7 +177,7 @@ pokemon_list = ["img/pok/abomasnow.png","img/pok/abra.png","img/pok/absol.png",
                 "img/pok/bulbasaur.png","img/pok/buneary.png","img/pok/burmy.png", 
                 "img/pok/butterfree.png","img/pok/cacnea.png","img/pok/cacturne.png", #50 cacturne
                 "img/pok/camerupt.png","img/pok/carnivine.png","img/pok/carvanha.png",
-                "img/pok/cascoon.png","img/pok/castform.png","img/pok/caterpi.png",
+                "img/pok/cascoon.png","img/pok/castform.png","img/pok/caterpie.png",
                 "img/pok/celebi.png","img/pok/chansey.png","img/pok/charizard.png",
                 "img/pok/charmander.png","img/pok/charmeleon.png","img/pok/chatot.png", #60 charmander
                 "img/pok/cherrim.png","img/pok/cherubi.png","img/pok/chikorita.png",
@@ -199,7 +199,7 @@ pokemon_list = ["img/pok/abomasnow.png","img/pok/abra.png","img/pok/absol.png",
                 "img/pok/ekans.png","img/pok/electabuzz.png","img/pok/electrike.png",
                 "img/pok/electrode.png","img/pok/elekid.png","img/pok/empoleon.png",
                 "img/pok/entei.png","img/pok/espeon.png","img/pok/exeggcute.png",
-                "img/pok/exeggutor.png","img/pok/exploud.png","img/pok/farfetch.png", #120 exeggutor
+                "img/pok/exeggutor.png","img/pok/exploud.png","img/pok/farfetchd.png", #120 exeggutor
                 "img/pok/fearow.png","img/pok/feebas.png","img/pok/feraligatr.png",
                 "img/pok/flaaffy.png","img/pok/flareon.png","img/pok/floatzel.png",
                 "img/pok/flygon.png","img/pok/forretress.png","img/pok/furret.png", #130 forretress
@@ -246,7 +246,7 @@ pokemon_list = ["img/pok/abomasnow.png","img/pok/abra.png","img/pok/absol.png",
                 "img/pok/milotic.png","img/pok/miltank.png","img/pok/mimejr.png",
                 "img/pok/minum.png","img/pok/misdreavus.png","img/pok/mismagius.png",
                 "img/pok/moltres.png","img/pok/monferno.png","img/pok/mothim.png", #260 mothim
-                "img/pok/mr.mime.png","img/pok/mudkip.png","img/pok/muk.png",
+                "img/pok/mrmime.png","img/pok/mudkip.png","img/pok/muk.png",
                 "img/pok/munchlax.png","img/pok/murkrow.png","img/pok/natu.png",
                 "img/pok/nidoking.png","img/pok/nidoqueen.png","img/pok/nidoran1.png", 
                 "img/pok/nidoran2.png","img/pok/nidorina.png","img/pok/nidorino.png", #270 nidoran2
@@ -315,9 +315,60 @@ pokemon_list = ["img/pok/abomasnow.png","img/pok/abra.png","img/pok/absol.png",
 for img in pokemon_list:
 	pokemon_images.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
-"""
 
-"""
+pokemon_name_list = ["abomasnow","abra","absol","aerodactyl","aggron","aipom","alakazam",
+                     "altaria","ambipom","ampharos","anorith","arbok","arcanine","archeops",
+                     "ariados","armaldo","aron","articuno","audino","azelf","azurill","bagon",
+                     "baltoy","banette","barboach","bastiodon","bayleef","beautifly","beedrill",
+                     "beldum","bellossom","bellsprout","bibarel","bidoof","blastoise","blaziken",
+                     "blissey","blitzle","boldore","bonsly","breloom","bronzong","bronzor","budew",
+                     "buizel","bulbasaur","buneary","burmy","butterfree","cacnea","cacturne",
+                     "camerupt","carnivine","carvanha","cascoon","castform","caterpie","celebi",
+                     "chansey","charizard","charmander","charmeleon","chatot","cherrim","cherubi",
+                     "chikorita","chimchar","chimecho","chinchou","chingling","clamperl","clauncher",
+                     "claydol","clefable","clefairy","cleffa","cloyster","combee","combusken",
+                     "conkeldurr","corphish","corsola","cradily","cranidos","crawdaunt",
+                     "cresselia","croagunk","crobat","croconaw","cubone","cyndaquil",
+                     "delcatty","delibird","delphox","dewgong","diglett","ditto","dodrio","doduo",
+                     "donphan","dragonair","dragonite","dratini","drifblim","drifloon","drowzee",
+                     "dugtrio","dunsparce","dusclops","duskull","dustox","eevee","ekans","electabuzz","electrike",
+                     "electrode","elekid","empoleon","entei","espeon","exeggcute","exeggutor","exploud",
+                     "farfetch'd","fearow","fennekin","feraligatr","ferroseed","ferrothorn",
+                     "fidough","finneon","flaaffy","flabebe","flareon","fletchling","floatzel",
+                     "floette","floragato","flygon","fomantis","foongus","forretress","frigibax",
+                     "frillish","froakie","fuecoco","furfrou","furret","gabite","galvantula",
+                     "garbodor","garchomp","gardevoir","gastly","genesect","gengar","geodude",
+                     "gible","gigalith","girafarig","giratina","glaceon","glalie","glameow","gligar",
+                     "gliscor","gloom","golbat","goldeen","golduck","golem","golett","golisopod",
+                     "golurk","goodra","goomy","gossifleur","gothita","gourgeist","grandbull",
+                     "graveler","greavard","greedent","greninja","grimer","grookey","groudon",
+                     "grovyle","growlithe","grubbin","grumpig","gulpin","gumshoos","gurdurr",
+                     "guzzlord","gyarados","happiny","hariyama","hatenna","haunter","haxorus",
+                     "heatmor","heatran","heliolisk","helioptile","heracross","hitmonchan","hitmonlee",
+                     "hitmontop","hoothoot","hoppip","horsea","houndoom","houndour","hypno","ivysaur",
+                     "jigglypuff","jolteon","jumpluff","jynx","kabutops","kadabra","kakuna","kangaskhan",
+                     "kingdra","kingler","koffing","krabby","lapras","larvitar","ledian",
+                     "ledyba","lickitung","machamp","machoke","machop","magby","magcargo","magikarp","magmar",
+                     "magnemite","magneton","mantine","marill","marowak","meowth","metapod","miltank","misdreavus",
+                     "monkey","mr.mime","muk","murkrow","natu","nidoking","nidoqueen","nidoran1","nidoran2",
+                     "nidorina","nidorino","ninetales","noctowl","oddish","omastar","onix","paras","parasect",
+                     "persian","phanpy","pidgeot","pidgeotto","pidgey","pikachu","piloswine","pineco",
+                     "politoed","poliwag","poliwhirl","poliwrath","ponyta","porygon","primeape","psyduck",
+                     "pupitar","quagsire","quilava","qwilfish","raichu","rapidash","raticate","rattata",
+                     "raikou","remoraid","rhydon","rhyhorn","sandshrew","sandslash","scyther","seadra",
+                     "seaking","seel","sentret","shellder","skarmory","skiploom","slowbro","slowking",
+                     "slowpoke","slugma","sneasel","snorlax","snubbull","spearow","spinarak","squirtle",
+                     "stantler","/starmie","staryu","steelix","sudowoodo","sunkern","swinub",
+                     "tauros","teddiursa","tentacool","tentacruel","togepi","totodile","typhlosion",
+                     "tyranitar","tyrogue","umbreon","unnown","ursaring","vaporeon","venomoth","venonat","venusaur",
+                     "vespiquen","vibrava",
+                     "victreebel","vigoroth","vileplume","volbeat","voltorb","vulpix","wailmer","wailord",
+                     "walrein","wartortle","weedle","weepinbell",
+                     "weezing","whiscash","whismur","wigglytuff","wingull","wobbuffet",
+                     "wooper","wormadam","wurmple","wynaut","xatu","yanma","zangoose","zapdos",
+                     "zigzagoon","zubat.png"
+      ]
+
 pokemon_type_list1 = [16,12,13,5,15,0,12,17,0,11,5, 3,8,0,6,5,15,16,0,12,0, 17,4,7,9,5,10,6,6,15,10, #30v
                       10,0,0,9,8,0,11,5,5,10, 15,15,10,9,10,0,6,6,10,10, 8,10,9,6,0,6,12,0,8,8, #60v
                       8,0,10,10,10,8,12,9,12,9, 4,14,14,14,9,6,8,1,9,9, 5,5,9,12,3,3,9,4,8,0, #90v
