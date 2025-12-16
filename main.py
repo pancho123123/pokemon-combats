@@ -86,11 +86,17 @@ class Pokemon(pygame.sprite.Sprite):
          self.type2 = pokemon_type_hoenn2[self.img_int]
          self.hp = pokemon_hp_hoenn[self.img_int]
       elif reg_int == 3:
-         self.img_int = randint(0,36)
+         self.img_int = randint(0,106)
          self.image = pokemon_images_sinnoh[self.img_int]
          self.type1 = pokemon_type_sinnoh1[self.img_int]
          self.type2 = pokemon_type_sinnoh2[self.img_int]
          self.hp = pokemon_hp_sinnoh[self.img_int]
+      elif reg_int == 4:
+         self.img_int = randint(0,155)
+         self.image = pokemon_images_teselia[self.img_int]
+         self.type1 = pokemon_type_teselia1[self.img_int]
+         self.type2 = pokemon_type_teselia2[self.img_int]
+         self.hp = pokemon_hp_teselia[self.img_int]
       else:
          raise ValueError("img_int fuera de rango")
       #self.image.set_colorkey(WHITE)
@@ -116,12 +122,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -342,49 +348,115 @@ pokemon_list_sinnoh = [
    "img/pok/chatot.png","img/pok/spiritomb.png","img/pok/gible.png",
    "img/pok/gabite.png","img/pok/garchomp.png","img/pok/munchlax.png",
    "img/pok/riolu.png","img/pok/lucario.png","img/pok/hippopotas.png",# 60 riolu
-   "img/pok/hippowdon.png",
-                
-"img/pok/abomasnow.png",
-                "img/pok/arceus.png",
-                "img/pok/audino.png","img/pok/azelf.png", 
-                "img/pok/bellossom.png",
-                "img/pok/blitzle.png","img/pok/boldore.png",
-                "img/pok/carnivine.png",
-                "img/pok/chinchou.png",
-                "img/pok/conkeldurr.png", 
-                "img/pok/cresselia.png","img/pok/croagunk.png",
-                "img/pok/octillery.png", 
-                ]
+   "img/pok/hippowdon.png","img/pok/skorupi.png","img/pok/drapion.png",
+   "img/pok/croagunk.png","img/pok/toxicroak.png","img/pok/carnivine.png",
+   "img/pok/finneon.png","img/pok/lumineon.png","img/pok/mantyke.png",# 70 lumineon
+   "img/pok/snover.png","img/pok/abomasnow.png","img/pok/weavile.png",
+   "img/pok/magnezone.png","img/pok/lickilicky.png","img/pok/rhyperior.png",
+   "img/pok/tangrowth.png","img/pok/electivire.png","img/pok/magmortar.png",
+   "img/pok/togekiss.png","img/pok/yanmega.png","img/pok/leafeon.png",
+   "img/pok/glaceon.png","img/pok/gliscor.png","img/pok/mamoswine.png",
+   "img/pok/porygon-z.png","img/pok/gallade.png","img/pok/probopass.png",
+   "img/pok/dusknoir.png","img/pok/froslass.png","img/pok/rotom.png",
+   "img/pok/uxie.png","img/pok/mesprit.png","img/pok/azelf.png",
+   "img/pok/dialga.png","img/pok/palkia.png",
+   "img/pok/heatran.png","img/pok/regigigas.png","img/pok/giratina.png",
+   "img/pok/cresselia.png","img/pok/phione.png","img/pok/manaphy.png",
+   "img/pok/darkrai.png","img/pok/shaymin.png","img/pok/arceus.png"
+   ]
 for img in pokemon_list_sinnoh:
 	pokemon_images_sinnoh.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_teselia = []
-pokemon_list_teselia = []
+pokemon_list_teselia = [
+   "img/pok/victini.png","img/pok/snivy.png","img/pok/servine.png",
+   "img/pok/serperior.png","img/pok/tepig.png","img/pok/pignite.png",
+   "img/pok/emboar.png","img/pok/oshawott.png","img/pok/dewott.png",
+   "img/pok/samurott.png","img/pok/patrat.png","img/pok/watchog.png",#10patrat
+   "img/pok/lillipup.png","img/pok/herdier.png","img/pok/stoutland.png",
+   "img/pok/purrloin.png","img/pok/liepard.png","img/pok/pansage.png",
+   "img/pok/simisage.png","img/pok/pansear.png","img/pok/simisear.png",#20simisear
+   "img/pok/panpour.png","img/pok/simipour.png","img/pok/munna.png",
+   "img/pok/musharna.png","img/pok/pidove.png","img/pok/tranquill.png",
+   "img/pok/unfezant.png","img/pok/blitzle.png","img/pok/zebstrika.png",
+   "img/pok/roggenrola.png","img/pok/boldore.png","img/pok/gigalith.png",#30 roggenrola
+   "img/pok/woobat.png","img/pok/swoobat.png","img/pok/drilbur.png",
+   "img/pok/excadrill.png","img/pok/audino.png","img/pok/timburr.png",
+   "img/pok/gurdurr.png","img/pok/conkeldurr.png","img/pok/tympole.png",#40 conkeldurr
+   "img/pok/palpitoad.png","img/pok/seismitoad.png","img/pok/throh.png",
+   "img/pok/sawk.png","img/pok/sewaddle.png","img/pok/swadloon.png",
+   "img/pok/leavanny.png","img/pok/venipede.png","img/pok/whirlipede.png",#50 whirlipede
+   "img/pok/scolipede.png","img/pok/coottonee.png","img/pok/whimsicott.png",
+   "img/pok/petilil.png","img/pok/lilligant.png","img/pok/basculin.png",
+   "img/pok/sandile.png","img/pok/krokorok.png","img/pok/krookodile.png",#60 darumka
+   "img/pok/darumka.png","img/pok/darmanitan.png","img/pok/maractus.png",
+   "img/pok/dwebble.png","img/pok/crustle.png","img/pok/scraggy.png",
+   "img/pok/scrafty.png","img/pok/sigilyph.png","img/pok/yamask.png",
+   "img/pok/cofagrigus.png","img/pok/tirtouga.png","img/pok/carracosta.png",#70 tirtoga
+   "img/pok/archen.png","img/pok/archeops.png","img/pok/trubbish.png",
+   "img/pok/garbodor.png","img/pok/zorua.png","img/pok/zoroark.png",
+   "img/pok/minccino.png","img/pok/cinccino.png","img/pok/gothita.png",#80 gothita
+   "img/pok/gothorita.png","img/pok/gothitelle.png","img/pok/solosis.png",
+   "img/pok/duosion.png","img/pok/reuniclus.png","img/pok/ducklett.png",
+   "img/pok/swanna.png","img/pok/vanillite.png","img/pok/vanillish.png",#90 vanilluxe
+   "img/pok/vanilluxe.png","img/pok/deerling.png","img/pok/sawsbuck.png",
+   "img/pok/emolga.png","img/pok/karrablast.png","img/pok/escavalier.png",
+   "img/pok/foongus.png","img/pok/amoonguss.png","img/pok/frillish.png",
+   "img/pok/jellicent.png","img/pok/alomomola.png","img/pok/joltik.png",#100 alomomola
+   "img/pok/galvantula.png","img/pok/ferroseed.png","img/pok/ferrothorn.png",
+   "img/pok/klink.png","img/pok/klang.png","img/pok/klinklang.png",
+   "img/pok/tynamo.png","img/pok/eelektrik.png","img/pok/eelektross.png",
+   "img/pok/elgyem.png","img/pok/beheeyem.png","img/pok/litwick.png",
+   "img/pok/lampent.png","img/pok/chandelure.png","img/pok/axew.png",
+   "img/pok/fraxure.png","img/pok/haxorus.png","img/pok/cubchoo.png",
+   "img/pok/beartic.png","img/pok/cryogonal.png","img/pok/shelmet.png",
+   "img/pok/accelgor.png","img/pok/stunfisk.png","img/pok/mienfoo.png",
+   "img/pok/mienshao.png","img/pok/druddigon.png","img/pok/golett.png",
+   "img/pok/golurk.png","img/pok/pawniard.png","img/pok/bisharp.png",
+   "img/pok/bouffalant.png","img/pok/rufflet.png","img/pok/braviary.png",
+   "img/pok/vullaby.png","img/pok/mandibuzz.png","img/pok/heatmor.png",
+   "img/pok/durant.png","img/pok/deino.png","img/pok/zweilous.png",
+   "img/pok/hydreigon.png","img/pok/larvesta.png","img/pok/volcarona.png",
+   "img/pok/cobalion.png","img/pok/terrakion.png","img/pok/virizion.png",
+   "img/pok/tornadus.png","img/pok/thundurus.png","img/pok/reshiram.png",
+   "img/pok/zekrom.png","img/pok/landorus.png","img/pok/kyurem.png",
+   "img/pok/keldeo.png","img/pok/meloetta.png","img/pok/genesect.png"
+]
 for img in pokemon_list_teselia:
 	pokemon_images_teselia.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_kalos = []
-pokemon_list_kalos = []
+pokemon_list_kalos = [
+ #  "img/pok/.png"
+]
 for img in pokemon_list_kalos:
 	pokemon_images_kalos.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_alola = []
-pokemon_list_alola = []
+pokemon_list_alola = [
+#   "img/pok/.png"
+]
 for img in pokemon_list_alola:
 	pokemon_images_alola.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_galar = []
-pokemon_list_galar = []
+pokemon_list_galar = [
+ #  "img/pok/.png"
+]
 for img in pokemon_list_galar:
 	pokemon_images_galar.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_hisui = []
-pokemon_list_hisui = []
+pokemon_list_hisui = [
+ #  "img/pok/.png"
+]
 for img in pokemon_list_hisui:
 	pokemon_images_hisui.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_paldea = []
-pokemon_list_paldea = []
+pokemon_list_paldea = [
+  # "img/pok/.png"
+]
 for img in pokemon_list_paldea:
 	pokemon_images_paldea.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
@@ -496,14 +568,39 @@ pokemon_type_hoenn2 = [
 
 pokemon_type_sinnoh1 = [
    10,10,10,8,8,8,9,9,9,0,0, 0,0,0,6,6,11,11,11,10,10, 5,5,5,5,6,6,6,6,6,11,#30
-   9,9,10,10,9,9,
+   9,9,10,10,9,9,0,7,7,0, 0,7,13,0,0,12,3,3,15,15, 5,12,0,0,7,17,17,17,0,1,#60
+   1,4,4,3,3,3,3,10,9,9, 9,10,10,13,11,0,4,10,11,8, 14,6,10,16,4,16,0,12,5,7,#90
+   16,11,12,12,12,15,9,8,0,7, 12,9,9,13,10,0
    ]
 
 pokemon_type_sinnoh2 = [
    18,18,4,18,1,1,18,18,15,2,2, 2,18,9,18,18,18,18,18,3,3, 18,18,15,15,18,10,2,2,2,18,#30
-   18,18,18,18,18,4,
+   18,18,18,18,18,4,18,2,2,18, 18,18,2,18,18,18,13,13,12,12, 18,14,18,2,13,4,4,4,18,18,#60
+   15,18,18,6,13,1,1,18,18,18, 2,16,16,16,15,18,5,18,18,18, 2,2,18,18,2,4,18,1,15,18,#90
+   7,7,18,18,18,17,17,15,18,17, 18,18,18,18,18,18
    ]
 
+pokemon_type_teselia1 = [
+   12,10,10,10,8,8,8,9,9,9,0, 0,0,0,0,13,13,10,10,8,8,#20
+   9,9,12,12,0,0,0,11,11,5, 5,5,12,12,4,4,0,1,1,1,#40
+   9,9,9,1,1,6,6,6,6,6, 6,10,10,10,10,9,4,4,4,8,#60
+   8,10,6,6,13,13,12,7,7,9, 9,5,5,3,3,13,13,0,0,12,#80
+   12,12,12,12,12,9,9,16,16,16, 0,0,11,6,6,10,10,9,9,9,#100
+   6,6,10,10,15,15,15,11,11,11, 12,12,7,7,7,17,17,17,16,16,#120
+   16,6,6,4,1,1,17,4,4,13, 13,0,0,0,13,13,8,6,13,13,#140
+   13,6,6,15,5,10,2,11,17,17, 4,17,9,0,6
+   ]
+
+pokemon_type_teselia2 = [
+   8,18,18,18,18,1,1,18,18,18,18, 18,18,18,18,18,18,18,18,18,18,#20
+   18,18,18,18,2,2,2,18,18,18, 18,18,2,2,18,15,18,18,18,18,#40
+   18,4,4,18,18,10,10,10,3,3, 3,14,14,18,18,18,13,13,13,18,#60
+   18,18,5,5,1,1,2,18,18,5, 5,2,2,18,18,18,18,18,18,18,#80
+   18,18,18,18,18,2,2,18,18,18, 10,10,2,18,15,3,3,7,7,18,#100
+   11,11,15,15,18,18,18,18,18,18, 18,18,8,8,8,18,18,18,18,18,#120
+   18,18,18,11,18,18,18,7,7,15, 15,18,2,2,2,2,18,15,17,17,#140
+   17,8,8,1,1,1,18,2,8,11, 2,16,1,12,15
+   ]
 
 pokemon_hp_kanto = [
    75,72,95,75,71,66,81,76,72,120,126, 69,113,120,73,91,90,81,77,68,84,#20
@@ -542,6 +639,14 @@ pokemon_hp_sinnoh = [
    92,79,73,54,74,72,
 ]
 
+pokemon_hp_teselia = [
+   73,86,78,72,95,88,82,88,82,77,89, 69,83,78,71,86,72,87,71,86,71, 86,71,104,89,91,81,68,85,71,81,#30
+   73,66,98,77,80,80,106,94,81,75, 91,92,86,96,65,81,77,68,77,71, 60,90,66,77,65,72,82,80,74,86,#60
+   79,73,77,65,71,66,66,74,62,72, 67,66,59,84,74,69,59,96,73,82, 75,67,68,71,84,103,75,70,68,63,#90
+   89,74,71,77,61,104,102,80,87,134, 83,70,81,71,76,69,59,78,77,71, 76,65,84,73,52,69,67,58,87,74,#120
+   68,91,74,96,67,60,67,86,73,66, 59,77,84,77,91,99,77,57,84,80, 68,74,62,71,65,71,62,62,61,61,#150
+   64,75,65,67,57
+   ]
 pokemon_attack = []
 
 pokemon_def = []
@@ -616,7 +721,7 @@ matriz_efectividad = [
    
    [1,  1,  1.6, 1,  0.625,  1,  1,  1,  1,  1.6, 0.625, 0.625,  1,  1,  1,  1,  1,        0.625],#12electrico
    
-   [1,  1.6,  1,  1.6,  1,  1,  1,  1,  1,  1,  1,  1, 0.625, 0.625,  1,  0.625,  1,        1],#13psiquico
+   [1,  1.6,  1,  1.6,  1,  1,  0.625,  1,  1,  1,  1,  1, 0.625, 0.625,  1,  0.625,  1,        1],#13psiquico
    
    [1, 0.625,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1.6, 0.625, 0.625,  1,  1,        1],#14siniestro
    
@@ -656,7 +761,7 @@ op_pokemon_attack = 0
 fighting = True
 
 numero_max_pokemon = 458
-numero_de_regiones = 3
+numero_de_regiones = 4
 
 carga1 = True
 game_over1 = False
