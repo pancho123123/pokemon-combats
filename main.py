@@ -97,6 +97,12 @@ class Pokemon(pygame.sprite.Sprite):
          self.type1 = pokemon_type_teselia1[self.img_int]
          self.type2 = pokemon_type_teselia2[self.img_int]
          self.hp = pokemon_hp_teselia[self.img_int]
+      elif reg_int == 5:
+         self.img_int = randint(0,71)
+         self.image = pokemon_images_kalos[self.img_int]
+         self.type1 = pokemon_type_kalos1[self.img_int]
+         self.type2 = pokemon_type_kalos2[self.img_int]
+         self.hp = pokemon_hp_kalos[self.img_int]
       else:
          raise ValueError("img_int fuera de rango")
       #self.image.set_colorkey(WHITE)
@@ -122,12 +128,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -427,7 +433,30 @@ for img in pokemon_list_teselia:
 
 pokemon_images_kalos = []
 pokemon_list_kalos = [
- #  "img/pok/.png"
+   "img/pok/chespin.png","img/pok/quilladin.png","img/pok/chesnaught.png",
+   "img/pok/fennekin.png","img/pok/braixen.png","img/pok/delphox.png",
+   "img/pok/froakie.png","img/pok/frogadier.png","img/pok/greninja.png",
+   "img/pok/bunnelby.png","img/pok/diggersby.png","img/pok/fletchling.png"
+   ,"img/pok/fletchinder.png","img/pok/talonflame.png","img/pok/scatterbug.png",
+   "img/pok/spewpa.png","img/pok/vivillon.png","img/pok/litleo.png",
+   "img/pok/pyroar.png","img/pok/flabebe.png","img/pok/floette.png",
+   "img/pok/florges.png","img/pok/skiddo.png","img/pok/gogoat.png",
+   "img/pok/pancham.png","img/pok/pangoro.png","img/pok/furfrou.png",
+   "img/pok/espurr.png","img/pok/meowstic.png","img/pok/honedge.png",
+   "img/pok/doublade.png","img/pok/aegislash.png","img/pok/spritzee.png",
+   "img/pok/aromatisse.png","img/pok/swirlix.png","img/pok/slurpuff.png",
+   "img/pok/inkay.png","img/pok/malamar.png","img/pok/binacle.png",
+   "img/pok/barbaracle.png","img/pok/skrelp.png","img/pok/dragalge.png",
+   "img/pok/clauncher.png","img/pok/clawitzer.png","img/pok/helioptile.png",
+   "img/pok/heliolisk.png","img/pok/tyrunt.png","img/pok/tyrantrum.png",
+   "img/pok/amaura.png","img/pok/aurorus.png","img/pok/sylveon.png",
+   "img/pok/hawlucha.png","img/pok/dedenne.png","img/pok/carbink.png",
+   "img/pok/goomy.png","img/pok/sliggoo.png","img/pok/goodra.png",
+   "img/pok/klefki.png","img/pok/phantump.png","img/pok/trevenant.png",
+   "img/pok/pumpkaboo.png","img/pok/gourgeist.png","img/pok/bergmite.png",
+   "img/pok/avalugg.png","img/pok/noibat.png","img/pok/noivern.png",
+   "img/pok/xerneas.png","img/pok/yveltal.png","img/pok/zygarde.png",
+   "img/pok/diancie.png","img/pok/hoopa.png","img/pok/volcanion.png",
 ]
 for img in pokemon_list_kalos:
 	pokemon_images_kalos.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
@@ -602,6 +631,18 @@ pokemon_type_teselia2 = [
    17,8,8,1,1,1,18,2,8,11, 2,16,1,12,15
    ]
 
+pokemon_type_kalos1 = [
+   10,10,10,8,8,8,9,9,9,0,0, 0,8,8,6,6,6,8,8,14,14, 14,10,10,1,1,0,12,12,15,15,#30
+   15,14,14,14,14,13,13,5,5,3, 3,9,9,11,11,5,5,5,5,14, 1,11,5,17,17,17,15,7,7,7,#60
+   7,16,16,2,2,14,13,17,5,12, 8
+   ]
+
+pokemon_type_kalos2 = [
+   18,18,1,18,18,12,18,18,13,18,4, 2,2,2,18,18,2,0,0,18,18, 18,18,18,18,13,18,18,18,7,7,#30
+   7,18,18,18,18,12,12,9,9,9, 17,18,18,0,0,17,17,16,16,18, 2,14,14,18,18,18,14,10,10,10,#60
+   10,18,18,17,17,18,2,4,14,7, 9
+]
+
 pokemon_hp_kanto = [
    75,72,95,75,71,66,81,76,72,120,126, 69,113,120,73,91,90,81,77,68,84,#20
    71,73,68,72,63,75,71,98,91,78, 86,80,71,97,83,77,72,174,123,91,#40
@@ -647,6 +688,14 @@ pokemon_hp_teselia = [
    68,91,74,96,67,60,67,86,73,66, 59,77,84,77,91,99,77,57,84,80, 68,74,62,71,65,71,62,62,61,61,#150
    64,75,65,67,57
    ]
+
+pokemon_hp_kalos = [
+   87,74,71,74,70,62,76,70,66,97,98, 89,80,75,104,115,84,81,72,77,72,#20
+   62,89,93,84,77,75,86,75,12,12, 12,102,88,89,78,90,77,79,65,82,#40
+   64,82,63,81,60,71,66,95,93,74, 72,74,70,81,71,67,65,73,74,75,#60
+   60,81,72,91,71,75,75,57,50,57, 60
+   ]
+
 pokemon_attack = []
 
 pokemon_def = []
@@ -761,7 +810,7 @@ op_pokemon_attack = 0
 fighting = True
 
 numero_max_pokemon = 458
-numero_de_regiones = 4
+numero_de_regiones = 5
 
 carga1 = True
 game_over1 = False
