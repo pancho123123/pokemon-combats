@@ -104,7 +104,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.type2 = pokemon_type_kalos2[self.img_int]
          self.hp = pokemon_hp_kalos[self.img_int]
       elif reg_int == 6:
-         self.img_int = randint(0,106)
+         self.img_int = randint(0,105)
          self.image = pokemon_images_alola[self.img_int]
          self.type1 = pokemon_type_alola1[self.img_int]
          self.type2 = pokemon_type_alola2[self.img_int]
