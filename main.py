@@ -103,6 +103,12 @@ class Pokemon(pygame.sprite.Sprite):
          self.type1 = pokemon_type_kalos1[self.img_int]
          self.type2 = pokemon_type_kalos2[self.img_int]
          self.hp = pokemon_hp_kalos[self.img_int]
+      elif reg_int == 6:
+         self.img_int = randint(0,106)
+         self.image = pokemon_images_alola[self.img_int]
+         self.type1 = pokemon_type_alola1[self.img_int]
+         self.type2 = pokemon_type_alola2[self.img_int]
+         self.hp = pokemon_hp_alola[self.img_int]
       else:
          raise ValueError("img_int fuera de rango")
       #self.image.set_colorkey(WHITE)
@@ -128,12 +134,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -185,285 +191,320 @@ class Pokeball(pygame.sprite.Sprite):
 
 pokemon_images_kanto = []
 pokemon_list_kanto = [
-   "img/pok/bulbasaur.png","img/pok/ivysaur.png","img/pok/venusaur.png",
-   "img/pok/charmander.png","img/pok/charmeleon.png","img/pok/charizard.png",
-   "img/pok/squirtle.png","img/pok/wartortle.png","img/pok/blastoise.png",
-   "img/pok/caterpie.png","img/pok/metapod.png","img/pok/butterfree.png", #10 metap
-   "img/pok/weedle.png","img/pok/kakuna.png","img/pok/beedrill.png",
-   "img/pok/pidgey.png","img/pok/pidgeotto.png","img/pok/pidgeot.png",
-   "img/pok/rattata.png","img/pok/raticate.png","img/pok/spearow.png", #20 spearow
-   "img/pok/fearow.png","img/pok/ekans.png","img/pok/arbok.png",
-   "img/pok/pikachu.png","img/pok/raichu.png","img/pok/sandshrew.png",
-   "img/pok/sandslash.png","img/pok/nidoran1.png","img/pok/nidorino.png",
-   "img/pok/nidoking.png","img/pok/nidoran2.png","img/pok/nidorina.png", #30 nidoking
-   "img/pok/nidoqueen.png","img/pok/clefairy.png","img/pok/clefable.png",
-   "img/pok/vulpix.png","img/pok/ninetales.png","img/pok/jigglypuff.png",
-   "img/pok/wigglytuff.png","img/pok/zubat.png","img/pok/golbat.png", #40 zubat
-   "img/pok/oddish.png","img/pok/gloom.png","img/pok/vileplume.png",
-   "img/pok/paras.png","img/pok/parasect.png","img/pok/venonat.png",
-   "img/pok/venomoth.png","img/pok/diglett.png","img/pok/dugtrio.png", #50 dugtrio
-   "img/pok/meowth.png","img/pok/persian.png","img/pok/psyduck.png",
-   "img/pok/golduck.png","img/pok/mankey.png","img/pok/primeape.png",
-   "img/pok/growlithe.png","img/pok/arcanine.png","img/pok/poliwag.png", 
-   "img/pok/poliwhirl.png","img/pok/poliwrath.png","img/pok/abra.png", #60 poliwhi
-   "img/pok/kadabra.png","img/pok/alakazam.png","img/pok/machop.png",
-   "img/pok/machoke.png","img/pok/machamp.png","img/pok/bellsprout.png",
-   "img/pok/weepinbell.png","img/pok/victreebel.png","img/pok/tentacool.png", #70 victr
-   "img/pok/tentacruel.png","img/pok/geodude.png","img/pok/graveler.png",
-   "img/pok/golem.png","img/pok/ponyta.png","img/pok/rapidash.png",
-   "img/pok/slowpoke.png","img/pok/slowbro.png","img/pok/magnemite.png", # 80 magnemite
-   "img/pok/magneton.png","img/pok/farfetchd.png","img/pok/doduo.png",
-   "img/pok/dodrio.png","img/pok/seel.png","img/pok/dewgong.png",
-   "img/pok/grimer.png","img/pok/muk.png","img/pok/shellder.png",
-   "img/pok/cloyster.png","img/pok/gastly.png","img/pok/haunter.png",  # 90 cloyster
-   "img/pok/gengar.png","img/pok/onix.png","img/pok/drowzee.png",
-   "img/pok/hypno.png","img/pok/krabby.png","img/pok/kingler.png",
-   "img/pok/voltorb.png","img/pok/electrode.png","img/pok/exeggcute.png", # 100 electrode
-   "img/pok/exeggutor.png","img/pok/cubone.png","img/pok/marowak.png",
-   "img/pok/hitmonlee.png","img/pok/hitmonchan.png","img/pok/lickitung.png",
-   "img/pok/koffing.png","img/pok/weezing.png","img/pok/rhyhorn.png", # 110 rhyhorn
-   "img/pok/rhydon.png","img/pok/chansey.png","img/pok/tangela.png",
-   "img/pok/kangaskhan.png","img/pok/horsea.png","img/pok/seadra.png",
-   "img/pok/goldeen.png","img/pok/seaking.png","img/pok/staryu.png",
-   "img/pok/starmie.png","img/pok/mrmime.png","img/pok/scyther.png", # 120 starmie
-   "img/pok/jynx.png","img/pok/electabuzz.png","img/pok/magmar.png",
-   "img/pok/pinsir.png","img/pok/tauros.png","img/pok/magikarp.png",
-   "img/pok/gyarados.png","img/pok/lapras.png","img/pok/ditto.png", # 130 lapras
-   "img/pok/eevee.png","img/pok/vaporeon.png","img/pok/jolteon.png",
-   "img/pok/flareon.png","img/pok/porygon.png","img/pok/omanyte.png",
-   "img/pok/omastar.png","img/pok/kabuto.png","img/pok/kabutops.png", # 140 kabutops
-   "img/pok/aerodactyl.png","img/pok/snorlax.png","img/pok/articuno.png",
-   "img/pok/zapdos.png","img/pok/moltres.png","img/pok/dratini.png",
-   "img/pok/dragonair.png","img/pok/dragonite.png","img/pok/mewtwo.png",
-   "img/pok/mew.png"           # 150 mew
+   "img/pok/kanto/bulbasaur.png","img/pok/kanto/ivysaur.png","img/pok/kanto/venusaur.png",
+   "img/pok/kanto/charmander.png","img/pok/kanto/charmeleon.png","img/pok/kanto/charizard.png",
+   "img/pok/kanto/squirtle.png","img/pok/kanto/wartortle.png","img/pok/kanto/blastoise.png",
+   "img/pok/kanto/caterpie.png","img/pok/kanto/metapod.png","img/pok/kanto/butterfree.png", #10 metap
+   "img/pok/kanto/weedle.png","img/pok/kanto/kakuna.png","img/pok/kanto/beedrill.png",
+   "img/pok/kanto/pidgey.png","img/pok/kanto/pidgeotto.png","img/pok/kanto/pidgeot.png",
+   "img/pok/kanto/rattata.png","img/pok/kanto/raticate.png","img/pok/kanto/spearow.png", #20 spearow
+   "img/pok/kanto/fearow.png","img/pok/kanto/ekans.png","img/pok/kanto/arbok.png",
+   "img/pok/kanto/pikachu.png","img/pok/kanto/raichu.png","img/pok/kanto/sandshrew.png",
+   "img/pok/kanto/sandslash.png","img/pok/kanto/nidoran1.png","img/pok/kanto/nidorino.png",
+   "img/pok/kanto/nidoking.png","img/pok/kanto/nidoran2.png","img/pok/kanto/nidorina.png", #30 nidoking
+   "img/pok/kanto/nidoqueen.png","img/pok/kanto/clefairy.png","img/pok/kanto/clefable.png",
+   "img/pok/kanto/vulpix.png","img/pok/kanto/ninetales.png","img/pok/kanto/jigglypuff.png",
+   "img/pok/kanto/wigglytuff.png","img/pok/kanto/zubat.png","img/pok/kanto/golbat.png", #40 zubat
+   "img/pok/kanto/oddish.png","img/pok/kanto/gloom.png","img/pok/kanto/vileplume.png",
+   "img/pok/kanto/paras.png","img/pok/kanto/parasect.png","img/pok/kanto/venonat.png",
+   "img/pok/kanto/venomoth.png","img/pok/kanto/diglett.png","img/pok/kanto/dugtrio.png", #50 dugtrio
+   "img/pok/kanto/meowth.png","img/pok/kanto/persian.png","img/pok/kanto/psyduck.png",
+   "img/pok/kanto/golduck.png","img/pok/kanto/mankey.png","img/pok/kanto/primeape.png",
+   "img/pok/kanto/growlithe.png","img/pok/kanto/arcanine.png","img/pok/kanto/poliwag.png", 
+   "img/pok/kanto/poliwhirl.png","img/pok/kanto/poliwrath.png","img/pok/kanto/abra.png", #60 poliwhi
+   "img/pok/kanto/kadabra.png","img/pok/kanto/alakazam.png","img/pok/kanto/machop.png",
+   "img/pok/kanto/machoke.png","img/pok/kanto/machamp.png","img/pok/kanto/bellsprout.png",
+   "img/pok/kanto/weepinbell.png","img/pok/kanto/victreebel.png","img/pok/kanto/tentacool.png", #70 victr
+   "img/pok/kanto/tentacruel.png","img/pok/kanto/geodude.png","img/pok/kanto/graveler.png",
+   "img/pok/kanto/golem.png","img/pok/kanto/ponyta.png","img/pok/kanto/rapidash.png",
+   "img/pok/kanto/slowpoke.png","img/pok/kanto/slowbro.png","img/pok/kanto/magnemite.png", # 80 magnemite
+   "img/pok/kanto/magneton.png","img/pok/kanto/farfetchd.png","img/pok/kanto/doduo.png",
+   "img/pok/kanto/dodrio.png","img/pok/kanto/seel.png","img/pok/kanto/dewgong.png",
+   "img/pok/kanto/grimer.png","img/pok/kanto/muk.png","img/pok/kanto/shellder.png",
+   "img/pok/kanto/cloyster.png","img/pok/kanto/gastly.png","img/pok/kanto/haunter.png",  # 90 cloyster
+   "img/pok/kanto/gengar.png","img/pok/kanto/onix.png","img/pok/kanto/drowzee.png",
+   "img/pok/kanto/hypno.png","img/pok/kanto/krabby.png","img/pok/kanto/kingler.png",
+   "img/pok/kanto/voltorb.png","img/pok/kanto/electrode.png","img/pok/kanto/exeggcute.png", # 100 electrode
+   "img/pok/kanto/exeggutor.png","img/pok/kanto/cubone.png","img/pok/kanto/marowak.png",
+   "img/pok/kanto/hitmonlee.png","img/pok/kanto/hitmonchan.png","img/pok/kanto/lickitung.png",
+   "img/pok/kanto/koffing.png","img/pok/kanto/weezing.png","img/pok/kanto/rhyhorn.png", # 110 rhyhorn
+   "img/pok/kanto/rhydon.png","img/pok/kanto/chansey.png","img/pok/kanto/tangela.png",
+   "img/pok/kanto/kangaskhan.png","img/pok/kanto/horsea.png","img/pok/kanto/seadra.png",
+   "img/pok/kanto/goldeen.png","img/pok/kanto/seaking.png","img/pok/kanto/staryu.png",
+   "img/pok/kanto/starmie.png","img/pok/kanto/mrmime.png","img/pok/kanto/scyther.png", # 120 starmie
+   "img/pok/kanto/jynx.png","img/pok/kanto/electabuzz.png","img/pok/kanto/magmar.png",
+   "img/pok/kanto/pinsir.png","img/pok/kanto/tauros.png","img/pok/kanto/magikarp.png",
+   "img/pok/kanto/gyarados.png","img/pok/kanto/lapras.png","img/pok/kanto/ditto.png", # 130 lapras
+   "img/pok/kanto/eevee.png","img/pok/kanto/vaporeon.png","img/pok/kanto/jolteon.png",
+   "img/pok/kanto/flareon.png","img/pok/kanto/porygon.png","img/pok/kanto/omanyte.png",
+   "img/pok/kanto/omastar.png","img/pok/kanto/kabuto.png","img/pok/kanto/kabutops.png", # 140 kabutops
+   "img/pok/kanto/aerodactyl.png","img/pok/kanto/snorlax.png","img/pok/kanto/articuno.png",
+   "img/pok/kanto/zapdos.png","img/pok/kanto/moltres.png","img/pok/kanto/dratini.png",
+   "img/pok/kanto/dragonair.png","img/pok/kanto/dragonite.png","img/pok/kanto/mewtwo.png",
+   "img/pok/kanto/mew.png"           # 150 mew
                 ]
 for img in pokemon_list_kanto:
 	pokemon_images_kanto.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_johto = []
 pokemon_list_johto = [
-   "img/pok/chikorita.png","img/pok/bayleef.png","img/pok/meganium.png",
-   "img/pok/cyndaquil.png","img/pok/quilava.png","img/pok/typhlosion.png",
-   "img/pok/totodile.png","img/pok/croconaw.png","img/pok/feraligatr.png",
-   "img/pok/sentret.png","img/pok/furret.png","img/pok/hoothoot.png", # 10 furret
-   "img/pok/noctowl.png","img/pok/ledyba.png","img/pok/ledian.png",
-   "img/pok/spinarak.png","img/pok/ariados.png","img/pok/crobat.png",
-   "img/pok/chinchou.png","img/pok/lanturn.png","img/pok/pichu.png", # 20 pichu
-   "img/pok/cleffa.png","img/pok/igglybuff.png","img/pok/togepi.png",
-   "img/pok/togetic.png","img/pok/natu.png","img/pok/xatu.png",
-   "img/pok/mareep.png","img/pok/flaaffy.png","img/pok/ampharos.png",
-   "img/pok/bellossom.png","img/pok/marill.png","img/pok/azumarill.png", # 30 bellosom
-   "img/pok/sudowoodo.png","img/pok/politoed.png","img/pok/hoppip.png",
-   "img/pok/skiploom.png","img/pok/jumpluff.png","img/pok/aipom.png",
-   "img/pok/sunkern.png","img/pok/sunflora.png","img/pok/yanma.png", # 40 sunflora
-   "img/pok/wooper.png","img/pok/quagsire.png","img/pok/espeon.png",
-   "img/pok/umbreon.png","img/pok/murkrow.png","img/pok/slowking.png",
-   "img/pok/misdreavus.png","img/pok/unown.png","img/pok/wobbuffet.png", # 50 wobbuffet
-   "img/pok/girafarig.png","img/pok/pineco.png","img/pok/forretress.png",
-   "img/pok/dunsparce.png","img/pok/gligar.png","img/pok/steelix.png",
-   "img/pok/snubbull.png","img/pok/granbull.png","img/pok/qwilfish.png",
-   "img/pok/scizor.png","img/pok/shukle.png","img/pok/heracross.png", #60 scizor
-   "img/pok/sneasel.png","img/pok/teddiursa.png","img/pok/ursaring.png",
-   "img/pok/slugma.png","img/pok/magcargo.png","img/pok/swinub.png",
-   "img/pok/piloswine.png","img/pok/corsola.png","img/pok/remoraid.png", # 70 corsola
-   "img/pok/octillery.png","img/pok/delibird.png","img/pok/mantine.png",
-   "img/pok/skarmory.png","img/pok/houndour.png","img/pok/houndoom.png",
-   "img/pok/kingdra.png","img/pok/phanpy.png","img/pok/donphan.png", # 80 donphan
-   "img/pok/porygon2.png","img/pok/stantler.png","img/pok/smeargle.png",
-   "img/pok/tyrogue.png","img/pok/hitmontop.png","img/pok/smoochum.png",
-   "img/pok/elekid.png","img/pok/magby.png","img/pok/miltank.png",
-   "img/pok/blissey.png","img/pok/raikou.png","img/pok/entei.png", # 90 blissey
-   "img/pok/suicune.png","img/pok/larvitar.png","img/pok/pupitar.png",
-   "img/pok/tyranitar.png","img/pok/lugia.png","img/pok/ho-oh.png",
-   "img/pok/celebi.png",
+   "img/pok/johto/chikorita.png","img/pok/johto/bayleef.png","img/pok/johto/meganium.png",
+   "img/pok/johto/cyndaquil.png","img/pok/johto/quilava.png","img/pok/johto/typhlosion.png",
+   "img/pok/johto/totodile.png","img/pok/johto/croconaw.png","img/pok/johto/feraligatr.png",
+   "img/pok/johto/sentret.png","img/pok/johto/furret.png","img/pok/johto/hoothoot.png", # 10 furret
+   "img/pok/johto/noctowl.png","img/pok/johto/ledyba.png","img/pok/johto/ledian.png",
+   "img/pok/johto/spinarak.png","img/pok/johto/ariados.png","img/pok/johto/crobat.png",
+   "img/pok/johto/chinchou.png","img/pok/johto/lanturn.png","img/pok/johto/pichu.png", # 20 pichu
+   "img/pok/johto/cleffa.png","img/pok/johto/igglybuff.png","img/pok/johto/togepi.png",
+   "img/pok/johto/togetic.png","img/pok/johto/natu.png","img/pok/johto/xatu.png",
+   "img/pok/johto/mareep.png","img/pok/johto/flaaffy.png","img/pok/johto/ampharos.png",
+   "img/pok/johto/bellossom.png","img/pok/johto/marill.png","img/pok/johto/azumarill.png", # 30 bellosom
+   "img/pok/johto/sudowoodo.png","img/pok/johto/politoed.png","img/pok/johto/hoppip.png",
+   "img/pok/johto/skiploom.png","img/pok/johto/jumpluff.png","img/pok/johto/aipom.png",
+   "img/pok/johto/sunkern.png","img/pok/johto/sunflora.png","img/pok/johto/yanma.png", # 40 sunflora
+   "img/pok/johto/wooper.png","img/pok/johto/quagsire.png","img/pok/johto/espeon.png",
+   "img/pok/johto/umbreon.png","img/pok/johto/murkrow.png","img/pok/johto/slowking.png",
+   "img/pok/johto/misdreavus.png","img/pok/johto/unown.png","img/pok/johto/wobbuffet.png", # 50 wobbuffet
+   "img/pok/johto/girafarig.png","img/pok/johto/pineco.png","img/pok/johto/forretress.png",
+   "img/pok/johto/dunsparce.png","img/pok/johto/gligar.png","img/pok/johto/steelix.png",
+   "img/pok/johto/snubbull.png","img/pok/johto/granbull.png","img/pok/johto/qwilfish.png",
+   "img/pok/johto/scizor.png","img/pok/johto/shukle.png","img/pok/johto/heracross.png", #60 scizor
+   "img/pok/johto/sneasel.png","img/pok/johto/teddiursa.png","img/pok/johto/ursaring.png",
+   "img/pok/johto/slugma.png","img/pok/johto/magcargo.png","img/pok/johto/swinub.png",
+   "img/pok/johto/piloswine.png","img/pok/johto/corsola.png","img/pok/johto/remoraid.png", # 70 corsola
+   "img/pok/johto/octillery.png","img/pok/johto/delibird.png","img/pok/johto/mantine.png",
+   "img/pok/johto/skarmory.png","img/pok/johto/houndour.png","img/pok/johto/houndoom.png",
+   "img/pok/johto/kingdra.png","img/pok/johto/phanpy.png","img/pok/johto/donphan.png", # 80 donphan
+   "img/pok/johto/porygon2.png","img/pok/johto/stantler.png","img/pok/johto/smeargle.png",
+   "img/pok/johto/tyrogue.png","img/pok/johto/hitmontop.png","img/pok/johto/smoochum.png",
+   "img/pok/johto/elekid.png","img/pok/johto/magby.png","img/pok/johto/miltank.png",
+   "img/pok/johto/blissey.png","img/pok/johto/raikou.png","img/pok/johto/entei.png", # 90 blissey
+   "img/pok/johto/suicune.png","img/pok/johto/larvitar.png","img/pok/johto/pupitar.png",
+   "img/pok/johto/tyranitar.png","img/pok/johto/lugia.png","img/pok/johto/ho-oh.png",
+   "img/pok/johto/celebi.png",
          ]
 for img in pokemon_list_johto:
 	pokemon_images_johto.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_hoenn = []
 pokemon_list_hoenn = [
-   "img/pok/treecko.png","img/pok/grovyle.png","img/pok/sceptille.png",
-   "img/pok/torchik.png","img/pok/combusken.png","img/pok/blaziken.png",
-   "img/pok/mudkip.png","img/pok/marshtomp.png","img/pok/swampert.png",
-   "img/pok/poochyena.png","img/pok/mightyena.png","img/pok/zigzagoon.png",# 10 mightyena
-   "img/pok/linoone.png","img/pok/wurmple.png","img/pok/silcoon.png",
-   "img/pok/beautifly.png","img/pok/cascoon.png","img/pok/dustox.png",
-   "img/pok/lotad.png","img/pok/lombre.png","img/pok/ludicolo.png",     # 20 ludicolo
-   "img/pok/seedot.png","img/pok/nuzleaf.png","img/pok/shiftry.png",
-   "img/pok/taillow.png","img/pok/swellow.png","img/pok/wingull.png",
-   "img/pok/pelipper.png","img/pok/ralts.png","img/pok/kirlia.png",
-   "img/pok/gardevoir.png","img/pok/surskit.png","img/pok/masquerain.png",#  30 gardevoir
-   "img/pok/shroomish.png","img/pok/breloom.png","img/pok/slakoth.png",
-   "img/pok/vigoroth.png","img/pok/slaking.png","img/pok/nincada.png",
-   "img/pok/ninjask.png","img/pok/shedinja.png","img/pok/whismur.png",# 40 shedinja
-   "img/pok/loudred.png","img/pok/exploud.png","img/pok/makuhita.png",
-   "img/pok/hariyama.png","img/pok/azurill.png","img/pok/nosepass.png",
-   "img/pok/skitty.png","img/pok/delcatty.png","img/pok/sableye.png",# 50 sableye
-   "img/pok/mawile.png","img/pok/aron.png","img/pok/lairon.png",
-   "img/pok/aggron.png","img/pok/meditite.png","img/pok/medicham.png",
-   "img/pok/electrike.png","img/pok/manectric.png","img/pok/plusle.png",
-   "img/pok/minum.png","img/pok/volbeat.png","img/pok/illumise.png",# 60 minum
-   "img/pok/roselia.png","img/pok/gulpin.png","img/pok/swalot.png",
-   "img/pok/carvanha.png","img/pok/sharpedo.png","img/pok/wailmer.png",
-   "img/pok/wailord.png","img/pok/numel.png","img/pok/camerupt.png",# 70 numel
-   "img/pok/torkoal.png","img/pok/spoink.png","img/pok/grumpig.png",
-   "img/pok/spinda.png","img/pok/trapinch.png","img/pok/vibrava.png",
-   "img/pok/flygon.png","img/pok/cacnea.png","img/pok/cacturne.png",# 80 cacturne
-   "img/pok/swablu.png","img/pok/altaria.png","img/pok/zangoose.png",
-   "img/pok/seviper.png","img/pok/lunatone.png","img/pok/solrock.png",
-   "img/pok/barboach.png","img/pok/whiscash.png","img/pok/corpish.png",
-   "img/pok/crawdaunt.png","img/pok/baltoy.png","img/pok/claydol.png",# 90 crawdaunt
-   "img/pok/lileep.png","img/pok/cradily.png","img/pok/anorith.png",
-   "img/pok/armaldo.png","img/pok/feebas.png","img/pok/milotic.png",
-   "img/pok/castform.png","img/pok/kecleon.png","img/pok/shuppet.png",# 100 kecleon
-   "img/pok/banette.png","img/pok/duskull.png","img/pok/dusclops.png",
-   "img/pok/tropius.png","img/pok/chimecho.png","img/pok/absol.png",
-   "img/pok/wynaut.png","img/pok/snorunt.png","img/pok/glalie.png",# 110 glalie
-   "img/pok/spheal.png","img/pok/sealeo.png","img/pok/walrein.png",
-   "img/pok/clamperl.png","img/pok/huntail.png","img/pok/gorebyss.png",
-   "img/pok/relicanth.png","img/pok/luvdisc.png","img/pok/bagon.png",
-   "img/pok/shelgon.png","img/pok/salamence.png","img/pok/beldum.png",# 120 shelgon
-   "img/pok/metang.png","img/pok/metagross.png","img/pok/regirock.png",
-   "img/pok/regice.png","img/pok/registeel.png","img/pok/latias.png",
-   "img/pok/latios.png","img/pok/kyogre.png","img/pok/groudon.png",# 130 kyogre
-   "img/pok/rayquaza.png","img/pok/jirachi.png","img/pok/deoxys.png"
+   "img/pok/hoenn/treecko.png","img/pok/hoenn/grovyle.png","img/pok/hoenn/sceptille.png",
+   "img/pok/hoenn/torchik.png","img/pok/hoenn/combusken.png","img/pok/hoenn/blaziken.png",
+   "img/pok/hoenn/mudkip.png","img/pok/hoenn/marshtomp.png","img/pok/hoenn/swampert.png",
+   "img/pok/hoenn/poochyena.png","img/pok/hoenn/mightyena.png","img/pok/hoenn/zigzagoon.png",# 10 mightyena
+   "img/pok/hoenn/linoone.png","img/pok/hoenn/wurmple.png","img/pok/hoenn/silcoon.png",
+   "img/pok/hoenn/beautifly.png","img/pok/hoenn/cascoon.png","img/pok/hoenn/dustox.png",
+   "img/pok/hoenn/lotad.png","img/pok/hoenn/lombre.png","img/pok/hoenn/ludicolo.png",     # 20 ludicolo
+   "img/pok/hoenn/seedot.png","img/pok/hoenn/nuzleaf.png","img/pok/hoenn/shiftry.png",
+   "img/pok/hoenn/taillow.png","img/pok/hoenn/swellow.png","img/pok/hoenn/wingull.png",
+   "img/pok/hoenn/pelipper.png","img/pok/hoenn/ralts.png","img/pok/hoenn/kirlia.png",
+   "img/pok/hoenn/gardevoir.png","img/pok/hoenn/surskit.png","img/pok/hoenn/masquerain.png",#  30 gardevoir
+   "img/pok/hoenn/shroomish.png","img/pok/hoenn/breloom.png","img/pok/hoenn/slakoth.png",
+   "img/pok/hoenn/vigoroth.png","img/pok/hoenn/slaking.png","img/pok/hoenn/nincada.png",
+   "img/pok/hoenn/ninjask.png","img/pok/hoenn/shedinja.png","img/pok/hoenn/whismur.png",# 40 shedinja
+   "img/pok/hoenn/loudred.png","img/pok/hoenn/exploud.png","img/pok/hoenn/makuhita.png",
+   "img/pok/hoenn/hariyama.png","img/pok/hoenn/azurill.png","img/pok/hoenn/nosepass.png",
+   "img/pok/hoenn/skitty.png","img/pok/hoenn/delcatty.png","img/pok/hoenn/sableye.png",# 50 sableye
+   "img/pok/hoenn/mawile.png","img/pok/hoenn/aron.png","img/pok/hoenn/lairon.png",
+   "img/pok/hoenn/aggron.png","img/pok/hoenn/meditite.png","img/pok/hoenn/medicham.png",
+   "img/pok/hoenn/electrike.png","img/pok/hoenn/manectric.png","img/pok/hoenn/plusle.png",
+   "img/pok/hoenn/minum.png","img/pok/hoenn/volbeat.png","img/pok/hoenn/illumise.png",# 60 minum
+   "img/pok/hoenn/roselia.png","img/pok/hoenn/gulpin.png","img/pok/hoenn/swalot.png",
+   "img/pok/hoenn/carvanha.png","img/pok/hoenn/sharpedo.png","img/pok/hoenn/wailmer.png",
+   "img/pok/hoenn/wailord.png","img/pok/hoenn/numel.png","img/pok/hoenn/camerupt.png",# 70 numel
+   "img/pok/hoenn/torkoal.png","img/pok/hoenn/spoink.png","img/pok/hoenn/grumpig.png",
+   "img/pok/hoenn/spinda.png","img/pok/hoenn/trapinch.png","img/pok/hoenn/vibrava.png",
+   "img/pok/hoenn/flygon.png","img/pok/hoenn/cacnea.png","img/pok/hoenn/cacturne.png",# 80 cacturne
+   "img/pok/hoenn/swablu.png","img/pok/hoenn/altaria.png","img/pok/hoenn/zangoose.png",
+   "img/pok/hoenn/seviper.png","img/pok/hoenn/lunatone.png","img/pok/hoenn/solrock.png",
+   "img/pok/hoenn/barboach.png","img/pok/hoenn/whiscash.png","img/pok/hoenn/corpish.png",
+   "img/pok/hoenn/crawdaunt.png","img/pok/hoenn/baltoy.png","img/pok/hoenn/claydol.png",# 90 crawdaunt
+   "img/pok/hoenn/lileep.png","img/pok/hoenn/cradily.png","img/pok/hoenn/anorith.png",
+   "img/pok/hoenn/armaldo.png","img/pok/hoenn/feebas.png","img/pok/hoenn/milotic.png",
+   "img/pok/hoenn/castform.png","img/pok/hoenn/kecleon.png","img/pok/hoenn/shuppet.png",# 100 kecleon
+   "img/pok/hoenn/banette.png","img/pok/hoenn/duskull.png","img/pok/hoenn/dusclops.png",
+   "img/pok/hoenn/tropius.png","img/pok/hoenn/chimecho.png","img/pok/hoenn/absol.png",
+   "img/pok/hoenn/wynaut.png","img/pok/hoenn/snorunt.png","img/pok/hoenn/glalie.png",# 110 glalie
+   "img/pok/hoenn/spheal.png","img/pok/hoenn/sealeo.png","img/pok/hoenn/walrein.png",
+   "img/pok/hoenn/clamperl.png","img/pok/hoenn/huntail.png","img/pok/hoenn/gorebyss.png",
+   "img/pok/hoenn/relicanth.png","img/pok/hoenn/luvdisc.png","img/pok/hoenn/bagon.png",
+   "img/pok/hoenn/shelgon.png","img/pok/hoenn/salamence.png","img/pok/hoenn/beldum.png",# 120 shelgon
+   "img/pok/hoenn/metang.png","img/pok/hoenn/metagross.png","img/pok/hoenn/regirock.png",
+   "img/pok/hoenn/regice.png","img/pok/hoenn/registeel.png","img/pok/hoenn/latias.png",
+   "img/pok/hoenn/latios.png","img/pok/hoenn/kyogre.png","img/pok/hoenn/groudon.png",# 130 kyogre
+   "img/pok/hoenn/rayquaza.png","img/pok/hoenn/jirachi.png","img/pok/hoenn/deoxys.png"
                 ]
 for img in pokemon_list_hoenn:
 	pokemon_images_hoenn.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_sinnoh = []
 pokemon_list_sinnoh = [
-   "img/pok/turtwig.png","img/pok/grotle.png","img/pok/torterra.png",
-   "img/pok/chimchar.png","img/pok/monferno.png","img/pok/infernape.png",
-   "img/pok/piplup.png","img/pok/prinplup.png","img/pok/empoleon.png",
-   "img/pok/starly.png","img/pok/staravia.png","img/pok/staraptor.png",# 10 staravia
-   "img/pok/bidoof.png","img/pok/bibarel.png","img/pok/kricketot.png",
-   "img/pok/kricketune.png","img/pok/shinx.png","img/pok/luxio.png",
-   "img/pok/luxray.png","img/pok/budew.png","img/pok/roserade.png",# 20 roserade
-   "img/pok/cranidos.png","img/pok/rampardos.png","img/pok/shieldon.png",
-   "img/pok/bastiodon.png","img/pok/burmy.png","img/pok/wormadam.png",
-   "img/pok/mothim.png","img/pok/combee.png","img/pok/vespiquen.png",
-   "img/pok/pachirisu.png","img/pok/buizel.png","img/pok/floatzel.png", # 30 parichisu
-   "img/pok/cherubi.png","img/pok/cherrim.png","img/pok/shellos.png",
-   "img/pok/gastrodon.png","img/pok/ambipom.png","img/pok/drifloon.png",
-   "img/pok/drifblim.png","img/pok/buneary.png","img/pok/lopunny.png",# 40 buneary
-   "img/pok/mismagius.png","img/pok/honchkrow.png","img/pok/glameow.png",
-   "img/pok/purugly.png","img/pok/chingling.png","img/pok/stunky.png",
-   "img/pok/skuntank.png","img/pok/bronzor.png","img/pok/bronzong.png", # 50 bronzong
-   "img/pok/bonsly.png","img/pok/mimejr.png","img/pok/happiny.png",
-   "img/pok/chatot.png","img/pok/spiritomb.png","img/pok/gible.png",
-   "img/pok/gabite.png","img/pok/garchomp.png","img/pok/munchlax.png",
-   "img/pok/riolu.png","img/pok/lucario.png","img/pok/hippopotas.png",# 60 riolu
-   "img/pok/hippowdon.png","img/pok/skorupi.png","img/pok/drapion.png",
-   "img/pok/croagunk.png","img/pok/toxicroak.png","img/pok/carnivine.png",
-   "img/pok/finneon.png","img/pok/lumineon.png","img/pok/mantyke.png",# 70 lumineon
-   "img/pok/snover.png","img/pok/abomasnow.png","img/pok/weavile.png",
-   "img/pok/magnezone.png","img/pok/lickilicky.png","img/pok/rhyperior.png",
-   "img/pok/tangrowth.png","img/pok/electivire.png","img/pok/magmortar.png",
-   "img/pok/togekiss.png","img/pok/yanmega.png","img/pok/leafeon.png",
-   "img/pok/glaceon.png","img/pok/gliscor.png","img/pok/mamoswine.png",
-   "img/pok/porygon-z.png","img/pok/gallade.png","img/pok/probopass.png",
-   "img/pok/dusknoir.png","img/pok/froslass.png","img/pok/rotom.png",
-   "img/pok/uxie.png","img/pok/mesprit.png","img/pok/azelf.png",
-   "img/pok/dialga.png","img/pok/palkia.png",
-   "img/pok/heatran.png","img/pok/regigigas.png","img/pok/giratina.png",
-   "img/pok/cresselia.png","img/pok/phione.png","img/pok/manaphy.png",
-   "img/pok/darkrai.png","img/pok/shaymin.png","img/pok/arceus.png"
+   "img/pok/sinnoh/turtwig.png","img/pok/sinnoh/grotle.png","img/pok/sinnoh/torterra.png",
+   "img/pok/sinnoh/chimchar.png","img/pok/sinnoh/monferno.png","img/pok/sinnoh/infernape.png",
+   "img/pok/sinnoh/piplup.png","img/pok/sinnoh/prinplup.png","img/pok/sinnoh/empoleon.png",
+   "img/pok/sinnoh/starly.png","img/pok/sinnoh/staravia.png","img/pok/sinnoh/staraptor.png",# 10 staravia
+   "img/pok/sinnoh/bidoof.png","img/pok/sinnoh/bibarel.png","img/pok/sinnoh/kricketot.png",
+   "img/pok/sinnoh/kricketune.png","img/pok/sinnoh/shinx.png","img/pok/sinnoh/luxio.png",
+   "img/pok/sinnoh/luxray.png","img/pok/sinnoh/budew.png","img/pok/sinnoh/roserade.png",# 20 roserade
+   "img/pok/sinnoh/cranidos.png","img/pok/sinnoh/rampardos.png","img/pok/sinnoh/shieldon.png",
+   "img/pok/sinnoh/bastiodon.png","img/pok/sinnoh/burmy.png","img/pok/sinnoh/wormadam.png",
+   "img/pok/sinnoh/mothim.png","img/pok/sinnoh/combee.png","img/pok/sinnoh/vespiquen.png",
+   "img/pok/sinnoh/pachirisu.png","img/pok/sinnoh/buizel.png","img/pok/sinnoh/floatzel.png", # 30 parichisu
+   "img/pok/sinnoh/cherubi.png","img/pok/sinnoh/cherrim.png","img/pok/sinnoh/shellos.png",
+   "img/pok/sinnoh/gastrodon.png","img/pok/sinnoh/ambipom.png","img/pok/sinnoh/drifloon.png",
+   "img/pok/sinnoh/drifblim.png","img/pok/sinnoh/buneary.png","img/pok/sinnoh/lopunny.png",# 40 buneary
+   "img/pok/sinnoh/mismagius.png","img/pok/sinnoh/honchkrow.png","img/pok/sinnoh/glameow.png",
+   "img/pok/sinnoh/purugly.png","img/pok/sinnoh/chingling.png","img/pok/sinnoh/stunky.png",
+   "img/pok/sinnoh/skuntank.png","img/pok/sinnoh/bronzor.png","img/pok/sinnoh/bronzong.png", # 50 bronzong
+   "img/pok/sinnoh/bonsly.png","img/pok/sinnoh/mimejr.png","img/pok/sinnoh/happiny.png",
+   "img/pok/sinnoh/chatot.png","img/pok/sinnoh/spiritomb.png","img/pok/sinnoh/gible.png",
+   "img/pok/sinnoh/gabite.png","img/pok/sinnoh/garchomp.png","img/pok/sinnoh/munchlax.png",
+   "img/pok/sinnoh/riolu.png","img/pok/sinnoh/lucario.png","img/pok/sinnoh/hippopotas.png",# 60 riolu
+   "img/pok/sinnoh/hippowdon.png","img/pok/sinnoh/skorupi.png","img/pok/sinnoh/drapion.png",
+   "img/pok/sinnoh/croagunk.png","img/pok/sinnoh/toxicroak.png","img/pok/sinnoh/carnivine.png",
+   "img/pok/sinnoh/finneon.png","img/pok/sinnoh/lumineon.png","img/pok/sinnoh/mantyke.png",# 70 lumineon
+   "img/pok/sinnoh/snover.png","img/pok/sinnoh/abomasnow.png","img/pok/sinnoh/weavile.png",
+   "img/pok/sinnoh/magnezone.png","img/pok/sinnoh/lickilicky.png","img/pok/sinnoh/rhyperior.png",
+   "img/pok/sinnoh/tangrowth.png","img/pok/sinnoh/electivire.png","img/pok/sinnoh/magmortar.png",
+   "img/pok/sinnoh/togekiss.png","img/pok/sinnoh/yanmega.png","img/pok/sinnoh/leafeon.png",
+   "img/pok/sinnoh/glaceon.png","img/pok/sinnoh/gliscor.png","img/pok/sinnoh/mamoswine.png",
+   "img/pok/sinnoh/porygon-z.png","img/pok/sinnoh/gallade.png","img/pok/sinnoh/probopass.png",
+   "img/pok/sinnoh/dusknoir.png","img/pok/sinnoh/froslass.png","img/pok/sinnoh/rotom.png",
+   "img/pok/sinnoh/uxie.png","img/pok/sinnoh/mesprit.png","img/pok/sinnoh/azelf.png",
+   "img/pok/sinnoh/dialga.png","img/pok/sinnoh/palkia.png",
+   "img/pok/sinnoh/heatran.png","img/pok/sinnoh/regigigas.png","img/pok/sinnoh/giratina.png",
+   "img/pok/sinnoh/cresselia.png","img/pok/sinnoh/phione.png","img/pok/sinnoh/manaphy.png",
+   "img/pok/sinnoh/darkrai.png","img/pok/sinnoh/shaymin.png","img/pok/sinnoh/arceus.png"
    ]
 for img in pokemon_list_sinnoh:
 	pokemon_images_sinnoh.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_teselia = []
 pokemon_list_teselia = [
-   "img/pok/victini.png","img/pok/snivy.png","img/pok/servine.png",
-   "img/pok/serperior.png","img/pok/tepig.png","img/pok/pignite.png",
-   "img/pok/emboar.png","img/pok/oshawott.png","img/pok/dewott.png",
-   "img/pok/samurott.png","img/pok/patrat.png","img/pok/watchog.png",#10patrat
-   "img/pok/lillipup.png","img/pok/herdier.png","img/pok/stoutland.png",
-   "img/pok/purrloin.png","img/pok/liepard.png","img/pok/pansage.png",
-   "img/pok/simisage.png","img/pok/pansear.png","img/pok/simisear.png",#20simisear
-   "img/pok/panpour.png","img/pok/simipour.png","img/pok/munna.png",
-   "img/pok/musharna.png","img/pok/pidove.png","img/pok/tranquill.png",
-   "img/pok/unfezant.png","img/pok/blitzle.png","img/pok/zebstrika.png",
-   "img/pok/roggenrola.png","img/pok/boldore.png","img/pok/gigalith.png",#30 roggenrola
-   "img/pok/woobat.png","img/pok/swoobat.png","img/pok/drilbur.png",
-   "img/pok/excadrill.png","img/pok/audino.png","img/pok/timburr.png",
-   "img/pok/gurdurr.png","img/pok/conkeldurr.png","img/pok/tympole.png",#40 conkeldurr
-   "img/pok/palpitoad.png","img/pok/seismitoad.png","img/pok/throh.png",
-   "img/pok/sawk.png","img/pok/sewaddle.png","img/pok/swadloon.png",
-   "img/pok/leavanny.png","img/pok/venipede.png","img/pok/whirlipede.png",#50 whirlipede
-   "img/pok/scolipede.png","img/pok/coottonee.png","img/pok/whimsicott.png",
-   "img/pok/petilil.png","img/pok/lilligant.png","img/pok/basculin.png",
-   "img/pok/sandile.png","img/pok/krokorok.png","img/pok/krookodile.png",#60 darumka
-   "img/pok/darumka.png","img/pok/darmanitan.png","img/pok/maractus.png",
-   "img/pok/dwebble.png","img/pok/crustle.png","img/pok/scraggy.png",
-   "img/pok/scrafty.png","img/pok/sigilyph.png","img/pok/yamask.png",
-   "img/pok/cofagrigus.png","img/pok/tirtouga.png","img/pok/carracosta.png",#70 tirtoga
-   "img/pok/archen.png","img/pok/archeops.png","img/pok/trubbish.png",
-   "img/pok/garbodor.png","img/pok/zorua.png","img/pok/zoroark.png",
-   "img/pok/minccino.png","img/pok/cinccino.png","img/pok/gothita.png",#80 gothita
-   "img/pok/gothorita.png","img/pok/gothitelle.png","img/pok/solosis.png",
-   "img/pok/duosion.png","img/pok/reuniclus.png","img/pok/ducklett.png",
-   "img/pok/swanna.png","img/pok/vanillite.png","img/pok/vanillish.png",#90 vanilluxe
-   "img/pok/vanilluxe.png","img/pok/deerling.png","img/pok/sawsbuck.png",
-   "img/pok/emolga.png","img/pok/karrablast.png","img/pok/escavalier.png",
-   "img/pok/foongus.png","img/pok/amoonguss.png","img/pok/frillish.png",
-   "img/pok/jellicent.png","img/pok/alomomola.png","img/pok/joltik.png",#100 alomomola
-   "img/pok/galvantula.png","img/pok/ferroseed.png","img/pok/ferrothorn.png",
-   "img/pok/klink.png","img/pok/klang.png","img/pok/klinklang.png",
-   "img/pok/tynamo.png","img/pok/eelektrik.png","img/pok/eelektross.png",
-   "img/pok/elgyem.png","img/pok/beheeyem.png","img/pok/litwick.png",
-   "img/pok/lampent.png","img/pok/chandelure.png","img/pok/axew.png",
-   "img/pok/fraxure.png","img/pok/haxorus.png","img/pok/cubchoo.png",
-   "img/pok/beartic.png","img/pok/cryogonal.png","img/pok/shelmet.png",
-   "img/pok/accelgor.png","img/pok/stunfisk.png","img/pok/mienfoo.png",
-   "img/pok/mienshao.png","img/pok/druddigon.png","img/pok/golett.png",
-   "img/pok/golurk.png","img/pok/pawniard.png","img/pok/bisharp.png",
-   "img/pok/bouffalant.png","img/pok/rufflet.png","img/pok/braviary.png",
-   "img/pok/vullaby.png","img/pok/mandibuzz.png","img/pok/heatmor.png",
-   "img/pok/durant.png","img/pok/deino.png","img/pok/zweilous.png",
-   "img/pok/hydreigon.png","img/pok/larvesta.png","img/pok/volcarona.png",
-   "img/pok/cobalion.png","img/pok/terrakion.png","img/pok/virizion.png",
-   "img/pok/tornadus.png","img/pok/thundurus.png","img/pok/reshiram.png",
-   "img/pok/zekrom.png","img/pok/landorus.png","img/pok/kyurem.png",
-   "img/pok/keldeo.png","img/pok/meloetta.png","img/pok/genesect.png"
+   "img/pok/teselia/victini.png","img/pok/teselia/snivy.png","img/pok/teselia/servine.png",
+   "img/pok/teselia/serperior.png","img/pok/teselia/tepig.png","img/pok/teselia/pignite.png",
+   "img/pok/teselia/emboar.png","img/pok/teselia/oshawott.png","img/pok/teselia/dewott.png",
+   "img/pok/teselia/samurott.png","img/pok/teselia/patrat.png","img/pok/teselia/watchog.png",#10patrat
+   "img/pok/teselia/lillipup.png","img/pok/teselia/herdier.png","img/pok/teselia/stoutland.png",
+   "img/pok/teselia/purrloin.png","img/pok/teselia/liepard.png","img/pok/teselia/pansage.png",
+   "img/pok/teselia/simisage.png","img/pok/teselia/pansear.png","img/pok/teselia/simisear.png",#20simisear
+   "img/pok/teselia/panpour.png","img/pok/teselia/simipour.png","img/pok/teselia/munna.png",
+   "img/pok/teselia/musharna.png","img/pok/teselia/pidove.png","img/pok/teselia/tranquill.png",
+   "img/pok/teselia/unfezant.png","img/pok/teselia/blitzle.png","img/pok/teselia/zebstrika.png",
+   "img/pok/teselia/roggenrola.png","img/pok/teselia/boldore.png","img/pok/teselia/gigalith.png",#30 roggenrola
+   "img/pok/teselia/woobat.png","img/pok/teselia/swoobat.png","img/pok/teselia/drilbur.png",
+   "img/pok/teselia/excadrill.png","img/pok/teselia/audino.png","img/pok/teselia/timburr.png",
+   "img/pok/teselia/gurdurr.png","img/pok/teselia/conkeldurr.png","img/pok/teselia/tympole.png",#40 conkeldurr
+   "img/pok/teselia/palpitoad.png","img/pok/teselia/seismitoad.png","img/pok/teselia/throh.png",
+   "img/pok/teselia/sawk.png","img/pok/teselia/sewaddle.png","img/pok/teselia/swadloon.png",
+   "img/pok/teselia/leavanny.png","img/pok/teselia/venipede.png","img/pok/teselia/whirlipede.png",#50 whirlipede
+   "img/pok/teselia/scolipede.png","img/pok/teselia/coottonee.png","img/pok/teselia/whimsicott.png",
+   "img/pok/teselia/petilil.png","img/pok/teselia/lilligant.png","img/pok/teselia/basculin.png",
+   "img/pok/teselia/sandile.png","img/pok/teselia/krokorok.png","img/pok/teselia/krookodile.png",#60 darumka
+   "img/pok/teselia/darumka.png","img/pok/teselia/darmanitan.png","img/pok/teselia/maractus.png",
+   "img/pok/teselia/dwebble.png","img/pok/teselia/crustle.png","img/pok/teselia/scraggy.png",
+   "img/pok/teselia/scrafty.png","img/pok/teselia/sigilyph.png","img/pok/teselia/yamask.png",
+   "img/pok/teselia/cofagrigus.png","img/pok/teselia/tirtouga.png","img/pok/teselia/carracosta.png",#70 tirtoga
+   "img/pok/teselia/archen.png","img/pok/teselia/archeops.png","img/pok/teselia/trubbish.png",
+   "img/pok/teselia/garbodor.png","img/pok/teselia/zorua.png","img/pok/teselia/zoroark.png",
+   "img/pok/teselia/minccino.png","img/pok/teselia/cinccino.png","img/pok/teselia/gothita.png",#80 gothita
+   "img/pok/teselia/gothorita.png","img/pok/teselia/gothitelle.png","img/pok/teselia/solosis.png",
+   "img/pok/teselia/duosion.png","img/pok/teselia/reuniclus.png","img/pok/teselia/ducklett.png",
+   "img/pok/teselia/swanna.png","img/pok/teselia/vanillite.png","img/pok/teselia/vanillish.png",#90 vanilluxe
+   "img/pok/teselia/vanilluxe.png","img/pok/teselia/deerling.png","img/pok/teselia/sawsbuck.png",
+   "img/pok/teselia/emolga.png","img/pok/teselia/karrablast.png","img/pok/teselia/escavalier.png",
+   "img/pok/teselia/foongus.png","img/pok/teselia/amoonguss.png","img/pok/teselia/frillish.png",
+   "img/pok/teselia/jellicent.png","img/pok/teselia/alomomola.png","img/pok/teselia/joltik.png",#100 alomomola
+   "img/pok/teselia/galvantula.png","img/pok/teselia/ferroseed.png","img/pok/teselia/ferrothorn.png",
+   "img/pok/teselia/klink.png","img/pok/teselia/klang.png","img/pok/teselia/klinklang.png",
+   "img/pok/teselia/tynamo.png","img/pok/teselia/eelektrik.png","img/pok/teselia/eelektross.png",
+   "img/pok/teselia/elgyem.png","img/pok/teselia/beheeyem.png","img/pok/teselia/litwick.png",
+   "img/pok/teselia/lampent.png","img/pok/teselia/chandelure.png","img/pok/teselia/axew.png",
+   "img/pok/teselia/fraxure.png","img/pok/teselia/haxorus.png","img/pok/teselia/cubchoo.png",
+   "img/pok/teselia/beartic.png","img/pok/teselia/cryogonal.png","img/pok/teselia/shelmet.png",
+   "img/pok/teselia/accelgor.png","img/pok/teselia/stunfisk.png","img/pok/teselia/mienfoo.png",
+   "img/pok/teselia/mienshao.png","img/pok/teselia/druddigon.png","img/pok/teselia/golett.png",
+   "img/pok/teselia/golurk.png","img/pok/teselia/pawniard.png","img/pok/teselia/bisharp.png",
+   "img/pok/teselia/bouffalant.png","img/pok/teselia/rufflet.png","img/pok/teselia/braviary.png",
+   "img/pok/teselia/vullaby.png","img/pok/teselia/mandibuzz.png","img/pok/teselia/heatmor.png",
+   "img/pok/teselia/durant.png","img/pok/teselia/deino.png","img/pok/teselia/zweilous.png",
+   "img/pok/teselia/hydreigon.png","img/pok/teselia/larvesta.png","img/pok/teselia/volcarona.png",
+   "img/pok/teselia/cobalion.png","img/pok/teselia/terrakion.png","img/pok/teselia/virizion.png",
+   "img/pok/teselia/tornadus.png","img/pok/teselia/thundurus.png","img/pok/teselia/reshiram.png",
+   "img/pok/teselia/zekrom.png","img/pok/teselia/landorus.png","img/pok/teselia/kyurem.png",
+   "img/pok/teselia/keldeo.png","img/pok/teselia/meloetta.png","img/pok/teselia/genesect.png"
 ]
 for img in pokemon_list_teselia:
 	pokemon_images_teselia.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_kalos = []
 pokemon_list_kalos = [
-   "img/pok/chespin.png","img/pok/quilladin.png","img/pok/chesnaught.png",
-   "img/pok/fennekin.png","img/pok/braixen.png","img/pok/delphox.png",
-   "img/pok/froakie.png","img/pok/frogadier.png","img/pok/greninja.png",
-   "img/pok/bunnelby.png","img/pok/diggersby.png","img/pok/fletchling.png"
-   ,"img/pok/fletchinder.png","img/pok/talonflame.png","img/pok/scatterbug.png",
-   "img/pok/spewpa.png","img/pok/vivillon.png","img/pok/litleo.png",
-   "img/pok/pyroar.png","img/pok/flabebe.png","img/pok/floette.png",
-   "img/pok/florges.png","img/pok/skiddo.png","img/pok/gogoat.png",
-   "img/pok/pancham.png","img/pok/pangoro.png","img/pok/furfrou.png",
-   "img/pok/espurr.png","img/pok/meowstic.png","img/pok/honedge.png",
-   "img/pok/doublade.png","img/pok/aegislash.png","img/pok/spritzee.png",
-   "img/pok/aromatisse.png","img/pok/swirlix.png","img/pok/slurpuff.png",
-   "img/pok/inkay.png","img/pok/malamar.png","img/pok/binacle.png",
-   "img/pok/barbaracle.png","img/pok/skrelp.png","img/pok/dragalge.png",
-   "img/pok/clauncher.png","img/pok/clawitzer.png","img/pok/helioptile.png",
-   "img/pok/heliolisk.png","img/pok/tyrunt.png","img/pok/tyrantrum.png",
-   "img/pok/amaura.png","img/pok/aurorus.png","img/pok/sylveon.png",
-   "img/pok/hawlucha.png","img/pok/dedenne.png","img/pok/carbink.png",
-   "img/pok/goomy.png","img/pok/sliggoo.png","img/pok/goodra.png",
-   "img/pok/klefki.png","img/pok/phantump.png","img/pok/trevenant.png",
-   "img/pok/pumpkaboo.png","img/pok/gourgeist.png","img/pok/bergmite.png",
-   "img/pok/avalugg.png","img/pok/noibat.png","img/pok/noivern.png",
-   "img/pok/xerneas.png","img/pok/yveltal.png","img/pok/zygarde.png",
-   "img/pok/diancie.png","img/pok/hoopa.png","img/pok/volcanion.png",
+   "img/pok/kalos/chespin.png","img/pok/kalos/quilladin.png","img/pok/kalos/chesnaught.png",
+   "img/pok/kalos/fennekin.png","img/pok/kalos/braixen.png","img/pok/kalos/delphox.png",
+   "img/pok/kalos/froakie.png","img/pok/kalos/frogadier.png","img/pok/kalos/greninja.png",
+   "img/pok/kalos/bunnelby.png","img/pok/kalos/diggersby.png","img/pok/kalos/fletchling.png",
+   "img/pok/kalos/fletchinder.png","img/pok/kalos/talonflame.png","img/pok/kalos/scatterbug.png",
+   "img/pok/kalos/spewpa.png","img/pok/kalos/vivillon.png","img/pok/kalos/litleo.png",
+   "img/pok/kalos/pyroar.png","img/pok/kalos/flabebe.png","img/pok/kalos/floette.png",
+   "img/pok/kalos/florges.png","img/pok/kalos/skiddo.png","img/pok/kalos/gogoat.png",
+   "img/pok/kalos/pancham.png","img/pok/kalos/pangoro.png","img/pok/kalos/furfrou.png",
+   "img/pok/kalos/espurr.png","img/pok/kalos/meowstic.png","img/pok/kalos/honedge.png",
+   "img/pok/kalos/doublade.png","img/pok/kalos/aegislash.png","img/pok/kalos/spritzee.png",
+   "img/pok/kalos/aromatisse.png","img/pok/kalos/swirlix.png","img/pok/kalos/slurpuff.png",
+   "img/pok/kalos/inkay.png","img/pok/kalos/malamar.png","img/pok/kalos/binacle.png",
+   "img/pok/kalos/barbaracle.png","img/pok/kalos/skrelp.png","img/pok/kalos/dragalge.png",
+   "img/pok/kalos/clauncher.png","img/pok/kalos/clawitzer.png","img/pok/kalos/helioptile.png",
+   "img/pok/kalos/heliolisk.png","img/pok/kalos/tyrunt.png","img/pok/kalos/tyrantrum.png",
+   "img/pok/kalos/amaura.png","img/pok/kalos/aurorus.png","img/pok/kalos/sylveon.png",
+   "img/pok/kalos/hawlucha.png","img/pok/kalos/dedenne.png","img/pok/kalos/carbink.png",
+   "img/pok/kalos/goomy.png","img/pok/kalos/sliggoo.png","img/pok/kalos/goodra.png",
+   "img/pok/kalos/klefki.png","img/pok/kalos/phantump.png","img/pok/kalos/trevenant.png",
+   "img/pok/kalos/pumpkaboo.png","img/pok/kalos/gourgeist.png","img/pok/kalos/bergmite.png",
+   "img/pok/kalos/avalugg.png","img/pok/kalos/noibat.png","img/pok/kalos/noivern.png",
+   "img/pok/kalos/xerneas.png","img/pok/kalos/yveltal.png","img/pok/kalos/zygarde.png",
+   "img/pok/kalos/diancie.png","img/pok/kalos/hoopa.png","img/pok/kalos/volcanion.png",
 ]
 for img in pokemon_list_kalos:
 	pokemon_images_kalos.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_alola = []
 pokemon_list_alola = [
-#   "img/pok/.png"
+   "img/pok/alola/rattata.png","img/pok/alola/raticate.png","img/pok/alola/raichu.png",
+   "img/pok/alola/sandshrew.png","img/pok/alola/sandslash.png","img/pok/alola/vulpix.png",
+   "img/pok/alola/ninetales.png","img/pok/alola/diglett.png","img/pok/alola/dugtrio.png",
+   "img/pok/alola/meowth.png","img/pok/alola/persian.png","img/pok/alola/geodude.png",
+   "img/pok/alola/graveler.png","img/pok/alola/golem.png","img/pok/alola/grimer.png",
+   "img/pok/alola/muk.png","img/pok/alola/exeggutor.png","img/pok/alola/marowak.png",
+   "img/pok/alola/rowlet.png","img/pok/alola/dartrix.png","img/pok/alola/decidueye.png",
+   "img/pok/alola/litten.png","img/pok/alola/torracat.png","img/pok/alola/incineroar.png",
+   "img/pok/alola/popplio.png","img/pok/alola/brionne.png","img/pok/alola/primarina.png",
+   "img/pok/alola/pikipek.png","img/pok/alola/trumbeak.png","img/pok/alola/toucannon.png",
+   "img/pok/alola/yungoos.png","img/pok/alola/gumshoos.png","img/pok/alola/grubbin.png",
+   "img/pok/alola/charjabug.png","img/pok/alola/vikavolt.png","img/pok/alola/crabrawler.png",
+   "img/pok/alola/crabominable.png","img/pok/alola/oricorio.png","img/pok/alola/cutiefly.png",
+   "img/pok/alola/ribombee.png","img/pok/alola/rockruff.png","img/pok/alola/lycanroc.png",
+   "img/pok/alola/wishiwashi.png","img/pok/alola/mareanie.png","img/pok/alola/toxapex.png",
+   "img/pok/alola/mudbray.png","img/pok/alola/mudsdale.png","img/pok/alola/dewpider.png",
+   "img/pok/alola/araquanid.png","img/pok/alola/fomantis.png","img/pok/alola/lurantis.png",
+   "img/pok/alola/morelull.png","img/pok/alola/shiinotic.png","img/pok/alola/salandit.png",
+   "img/pok/alola/salazzle.png","img/pok/alola/stufful.png","img/pok/alola/bewear.png",
+   "img/pok/alola/bounsweet.png","img/pok/alola/steenee.png","img/pok/alola/tsareena.png",
+   "img/pok/alola/comfey.png","img/pok/alola/oranguru.png","img/pok/alola/passimian.png",
+   "img/pok/alola/wimpod.png","img/pok/alola/golisopod.png","img/pok/alola/sandygast.png",
+   "img/pok/alola/palossand.png","img/pok/alola/pyukumuku.png","img/pok/alola/typeNull.png",
+   "img/pok/alola/silvally.png","img/pok/alola/minior.png","img/pok/alola/komala.png",
+   "img/pok/alola/turtonator.png","img/pok/alola/togedemaru.png","img/pok/alola/mimikyu.png",
+   "img/pok/alola/bruxish.png","img/pok/alola/drampa.png","img/pok/alola/dhelmise.png",
+   "img/pok/alola/jangmo-o.png","img/pok/alola/hakamo-o.png","img/pok/alola/kommo-o.png",
+   "img/pok/alola/tapukoko.png","img/pok/alola/tapulele.png","img/pok/alola/tapubulu.png",
+   "img/pok/alola/tapufini.png","img/pok/alola/cosmog.png","img/pok/alola/cosmoem.png",
+   "img/pok/alola/solgaleo.png","img/pok/alola/lunala.png","img/pok/alola/nihilego.png",
+   "img/pok/alola/buzzwole.png","img/pok/alola/pheromosa.png","img/pok/alola/xurkitree.png",
+   "img/pok/alola/celesteela.png","img/pok/alola/kartana.png","img/pok/alola/guzzlord.png",
+   "img/pok/alola/necrozma.png","img/pok/alola/magearna.png","img/pok/alola/marshadow.png",
+   "img/pok/alola/poipole.png","img/pok/alola/naganadel.png","img/pok/alola/stakataka.png",
+   "img/pok/alola/blacephalon.png","img/pok/alola/zeraora.png","img/pok/alola/meltan.png",
+   "img/pok/alola/melmetal.png"
 ]
 for img in pokemon_list_alola:
 	pokemon_images_alola.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
@@ -553,7 +594,7 @@ pokemon_type_kanto1 = [
    10,10,10,8,8,8,9,9,9,6,6, 6,6,6,6,0,0,0,0,0,0, 0,3,3,11,11,4,4,3,3,3, #30
    3,3,3,14,14,8,8,0,0,3, 3,10,10,10,6,6,6,6,4,4, 0,0,9,9,1,1,8,8,9,9,   #60
    9,12,12,12,1,1,1,10,10,10, 9,9,5,5,5,8,8,9,9,11, 11,0,0,0,9,9,3,3,9,9,#90
-   7,7,7,5,12,12,9,9,12,12, 10,10,4,4,1,1,0,3,3,4, 4,0,10,0,9,9,9,9,9,9, #120
+   7,7,7,5,12,12,9,9,11,11, 10,10,4,4,1,1,0,3,3,4, 4,0,10,0,9,9,9,9,9,9, #120
    12,6,16,11,8,6,0,9,9,9, 0,0,9,11,8,0,5,5,5,5, 5,0,16,11,8,17,17,17,12,12#150
 ]
 
@@ -643,6 +684,20 @@ pokemon_type_kalos2 = [
    10,18,18,17,17,18,2,4,14,7, 9
 ]
 
+pokemon_type_alola1 = [
+   13,13,11,16,16,16,16,4,4,13,13, 5,5,5,3,3,10,8,10,10,10, 8,8,8,9,9,9,0,0,0,0,#30
+   0,6,6,6,1,1,8,6,6,5, 5,9,3,3,4,4,9,9,10,10, 10,10,3,3,0,0,10,10,10,14,#60
+   0,1,6,6,7,7,9,0,0,5, 0,8,11,7,9,0,7,17,17,17, 11,12,10,9,12,12,12,12,5,6,#90
+   6,11,15,10,13,12,15,1,3,3, 5,8,11,15,15
+   ]
+
+pokemon_type_alola2 = [
+   0,0,12,15,15,18,14,15,15,18,18, 11,11,11,13,13,17,7,2,2,7, 18,18,13,18,18,14,2,2,2,18,#30
+   18,18,11,11,18,16,2,14,14,18, 18,18,9,9,18,18,6,6,18,18, 14,14,8,8,1,1,18,18,18,18,#60
+   12,18,9,9,4,4,18,18,18,2, 18,17,15,14,12,17,10,18,1,1, 14,14,14,14,18,18,15,7,3,1,#90
+   1,18,2,15,17,18,14,7,18,17, 15,7,18,18,18
+   ]
+
 pokemon_hp_kanto = [
    75,72,95,75,71,66,81,76,72,120,126, 69,113,120,73,91,90,81,77,68,84,#20
    71,73,68,72,63,75,71,98,91,78, 86,80,71,97,83,77,72,174,123,91,#40
@@ -694,6 +749,15 @@ pokemon_hp_kalos = [
    62,89,93,84,77,75,86,75,12,12, 12,102,88,89,78,90,77,79,65,82,#40
    64,82,63,81,60,71,66,95,93,74, 72,74,70,81,71,67,65,73,74,75,#60
    60,81,72,91,71,75,75,57,50,57, 60
+   ]
+
+pokemon_hp_alola = [
+   77,83,63,74,71,77,70,55,51,83,75, 66,66,66,96,83,74,69,99,87,67,#20
+   77,77,74,79,69,65,73,74,71,89, 84,83,70,63,70,78,71,79,63,82,#40
+   67,44,87,65,76,77,86,77,87,67, 74,69,78,66,90,88,112,102,62,59,#60
+   80,77,85,62,80,77,77,78,75,77, 62,63,66,60,66,67,62,81,69,59,#90
+   58,55,57,62,117,88,76,76,70,70, 63,59,75,44,152,67,59,64,80,61,#120
+   52,48,67,78,81
    ]
 
 pokemon_attack = []
@@ -810,7 +874,7 @@ op_pokemon_attack = 0
 fighting = True
 
 numero_max_pokemon = 458
-numero_de_regiones = 5
+numero_de_regiones = 6
 
 carga1 = True
 game_over1 = False
