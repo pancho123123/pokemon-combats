@@ -145,12 +145,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_type_attack,self.attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -181,6 +181,9 @@ class Pokeball(pygame.sprite.Sprite):
    def __init__(self,team_int,img_int):
       super().__init__()
       self.int = img_int
+      self.image1 = pygame.image.load("img/text/1.png")
+      self.image2 = pygame.image.load("img/text/2.png")
+      self.image3 = pygame.image.load("img/text/3.png")
       self.image = pygame.image.load("img/text/3.png")
       
       self.image.set_colorkey(WHITE)
@@ -193,9 +196,9 @@ class Pokeball(pygame.sprite.Sprite):
 
    def update(self):
       if self.int == 2:
-         self.image = pygame.image.load("img/text/2.png")
-      elif self.int == 1:
-         self.image = pygame.image.load("img/text/1.png")
+         self.image = self.image2
+      if self.int == 1:
+         self.image = self.image1
       self.image.set_colorkey(WHITE)
 
 
