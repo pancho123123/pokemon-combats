@@ -73,42 +73,56 @@ class Pokemon(pygame.sprite.Sprite):
          self.type1 = pokemon_type_kanto1[self.img_int]
          self.type2 = pokemon_type_kanto2[self.img_int]
          self.hp = pokemon_hp_kanto[self.img_int]
+         self.defense = pokemon_defense_kanto[self.img_int]
+         self.attack = pokemon_attack_kanto[self.img_int]
       elif reg_int == 1:
          self.img_int = randint(0,99)
          self.image = pokemon_images_johto[self.img_int]
          self.type1 = pokemon_type_johto1[self.img_int]
          self.type2 = pokemon_type_johto2[self.img_int]
          self.hp = pokemon_hp_johto[self.img_int]
+         self.defense = pokemon_defense_johto[self.img_int]
+         self.attack = pokemon_attack_johto[self.img_int]
       elif reg_int == 2:
          self.img_int = randint(0,134)
          self.image = pokemon_images_hoenn[self.img_int]
          self.type1 = pokemon_type_hoenn1[self.img_int]
          self.type2 = pokemon_type_hoenn2[self.img_int]
          self.hp = pokemon_hp_hoenn[self.img_int]
+         self.defense = pokemon_defense_hoenn[self.img_int]
+         self.attack = pokemon_attack_hoenn[self.img_int]
       elif reg_int == 3:
          self.img_int = randint(0,106)
          self.image = pokemon_images_sinnoh[self.img_int]
          self.type1 = pokemon_type_sinnoh1[self.img_int]
          self.type2 = pokemon_type_sinnoh2[self.img_int]
          self.hp = pokemon_hp_sinnoh[self.img_int]
+         self.defense = pokemon_defense_sinnoh[self.img_int]
+         self.attack = pokemon_attack_sinnoh[self.img_int]
       elif reg_int == 4:
          self.img_int = randint(0,155)
          self.image = pokemon_images_teselia[self.img_int]
          self.type1 = pokemon_type_teselia1[self.img_int]
          self.type2 = pokemon_type_teselia2[self.img_int]
          self.hp = pokemon_hp_teselia[self.img_int]
+         self.defense = pokemon_defense_teselia[self.img_int]
+         self.attack = pokemon_attack_teselia[self.img_int]
       elif reg_int == 5:
          self.img_int = randint(0,71)
          self.image = pokemon_images_kalos[self.img_int]
          self.type1 = pokemon_type_kalos1[self.img_int]
          self.type2 = pokemon_type_kalos2[self.img_int]
          self.hp = pokemon_hp_kalos[self.img_int]
+         self.defense = pokemon_defense_kalos[self.img_int]
+         self.attack = pokemon_attack_kalos[self.img_int]
       elif reg_int == 6:
          self.img_int = randint(0,105)
          self.image = pokemon_images_alola[self.img_int]
          self.type1 = pokemon_type_alola1[self.img_int]
          self.type2 = pokemon_type_alola2[self.img_int]
          self.hp = pokemon_hp_alola[self.img_int]
+         self.defense = pokemon_defense_alola[self.img_int]
+         self.attack = pokemon_attack_alola[self.img_int]
       else:
          raise ValueError("img_int fuera de rango")
       #self.image.set_colorkey(WHITE)
@@ -120,11 +134,8 @@ class Pokemon(pygame.sprite.Sprite):
          self.rect.bottomleft = 600,250
 
       self.pc = pc
-      
       self.ultimo_ataque = 0
       self.tiempo_entre_ataques = 1100#milisegs
-      self.defense = 0
-      self.attack = 0
       self.speed = 0
 
    def update(self):
@@ -132,14 +143,14 @@ class Pokemon(pygame.sprite.Sprite):
          for pok in all_sprites:
             if pok.team_int == 0:
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-                  pok.hp -= damage(op_pokemon_attack,pok)
+                  pok.hp -= damage(op_pokemon_type_attack,self.attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -708,6 +719,7 @@ pokemon_hp_kanto = [
    50,62,62,64,64,57,68,100,70,101, 90,87,93,58,57,76,57,62,55,58,#140
    68,107,71,66,67,74,72,65,62,74
 ]
+
 pokemon_hp_johto = [
    82,78,74,75,73,66,78,77,71,89,89, 113,95,89,77,83,79,74,103,109,81,#20
    103,169,87,69,72,66,89,84,74,73, 153,106,72,80,90,91,84,77,98,75,#40
@@ -755,14 +767,141 @@ pokemon_hp_alola = [
    77,83,63,74,71,77,70,55,51,83,75, 66,66,66,96,83,74,69,99,87,67,#20
    77,77,74,79,69,65,73,74,71,89, 84,83,70,63,70,78,71,79,63,82,#40
    67,44,87,65,76,77,86,77,87,67, 74,69,78,66,90,88,112,102,62,59,#60
-   80,77,85,62,80,77,77,78,75,77, 62,63,66,60,66,67,62,81,69,59,#90
-   58,55,57,62,117,88,76,76,70,70, 63,59,75,44,152,67,59,64,80,61,#120
+   80,77,85,62,80,77,77,78,75,77, 62,63,66,60,66,67,62,81,69,59,#80
+   58,55,57,62,117,88,76,76,70,70, 63,59,75,44,152,67,59,64,80,61,#100
    52,48,67,78,81
    ]
 
-pokemon_attack = []
+pokemon_defense_kanto = [
+   67,68,68,61,61,61,78,78,80,58,79, 62,53,75,59,59,61,64,55,65,46,#20
+   59,65,68,63,63,67,68,64,66,66, 54,59,59,63,64,74,76,37,42,59,#40
+   65,63,65,63,62,66,64,61,63,66, 60,65,57,63,50,56,53,58,59,65,#60
+   69,46,51,58,47,55,55,41,47,54, 89,81,72,73,70,60,63,56,68,65,#80
+   65,64,49,56,77,76,49,62,79,94, 40,48,54,131,82,80,61,65,69,72,#100
+   72,52,87,82,68,76,71,79,79,61, 58,71,69,62,64,66,64,61,65,69,#120
+   82,63,57,62,61,64,68,84,61,65, 64,70,56,64,62,63,75,72,73,68,#140
+   58,57,80,60,58,59,63,61,53,70
+   ]
 
-pokemon_def = []
+pokemon_defense_johto = [
+   78,78,78,61,61,62,65,66,67,62,59, 69,68,87,93,55,58,67,58,58,55,#20
+   64,35,90,83,55,60,53,56,60,75, 88,73,74,70,78,77,87,61,58,57,#40
+   50,56,62,60,97,45,68,67,53,66, 57,73,82,61,81,104,49,50,59,62,#60
+   345,62,62,52,51,50,88,54,55,82, 48,56,56,93,93,48,54,71,57,64,#80
+   65,55,82,63,84,52,59,55,75,61, 64,56,80,59,62,64,94,75,68
+]
+
+pokemon_defense_hoenn = [
+   59,58,61,54,57,52,56,62,61,51,58, 73,61,54,68,47,68,90,66,68,69,#20
+   66,47,49,48,56,48,72,56,60,67, 63,61,77,55,59,63,48,90,50,73,#40
+   39,47,55,42,43,72,130,60,65,69, 69,76,82,87,81,78,53,51,60,69,#60
+   76,76,60,68,69,29,36,38,38,50, 56,84,65,73,66,46,56,63,44,47,#80
+   91,86,50,51,61,61,59,60,57,54, 87,97,80,78,52,63,84,75,68,80,#100
+   44,52,115,110,71,69,47,77,65,68, 59,63,64,74,70,68,76,86,56,67,#120
+   53,83,82,70,104,104,108,75,65,66, 66,53,68,41
+]
+
+pokemon_defense_sinnoh = [
+   63,64,67,57,54,57,62,66,66,47,53, 51,57,55,74,50,47,50,57,74,64,#20
+   35,37,125,136,78,82,47,77,81,95, 44,46,60,65,63,57,57,48,42,59,#40
+   81,70,39,55,59,60,55,53,120,85, 72,82,77,44,82,52,57,58,54,51,#60
+   55,64,66,91,78,51,52,58,75,78, 96,62,62,59,70,71,59,63,57,60,#80
+   71,54,75,70,82,49,50,67,112,97, 63,67,100,72,53,61,63,66,61,73,#100
+   91,68,68,61,68,71
+]
+
+pokemon_defense_teselia = [
+   68,73,78,82,53,48,45,55,55,57,55, 65,58,63,66,55,49,62,53,62,53,#20
+   62,53,56,61,57,56,54,46,54,63, 63,68,55,58,48,45,77,50,56,52,#40
+   56,59,57,61,56,77,85,62,75,98, 68,84,75,58,59,55,46,49,55,46,#60
+   41,54,72,75,70,88,63,87,94,74, 74,42,47,75,64,48,49,56,54,72,#80
+   74,79,46,47,53,67,56,66,67,66, 60,58,62,52,65,60,59,73,70,54,#100
+   62,53,97,88,78,77,79,57,62,56, 55,59,63,56,60,55,51,55,48,53,#120
+   78,93,48,69,53,48,62,54,56,59, 64,66,50,53,75,85,52,70,58,61,#140
+   58,55,59,78,60,78,54,54,61,61, 57,53,60,69,65
+   ]
+
+pokemon_defense_kalos = [
+   64,74,70,63,61,65,74,57,58,64,78, 58,57,63,62,82,48,58,55,72,75,#20
+   79,58,54,56,54,70,64,70,12,12, 12,65,59,69,66,64,65,77,75,67,#40
+   80,70,62,53,63,61,66,59,59,70, 60,61,138,70,76,78,77,62,59,70,#60
+   87,68,80,59,63,58,58,68,100,61, 67
+]
+
+pokemon_defense_alola = [
+   56,73,62,70,75,73,76,64,63,57,63, 72,72,69,49,62,53,82,61,65,65,#20
+   51,50,61,62,64,65,43,53,55,42, 48,55,76,55,57,51,58,56,60,53,#40
+   52,80,70,124,55,60,87,96,51,66, 73,75,50,51,52,50,68,69,68,89,#60
+   75,56,70,75,66,69,112,67,69,54, 62,86,60,80,57,58,63,69,76,78,#80
+   61,66,70,90,60,159,56,56,63,64, 33,44,68,57,37,60,70,59,65,55,#100
+   95,49,58,61,60,
+   
+]
+
+pokemon_attack_kanto = [
+   70,71,72,74,74,77,62,65,67,58,50, 74,64,51,75,68,68,70,77,74,79,#20
+   78,71,72,73,78,70,71,62,64,69, 73,71,76,63,69,65,69,62,68,66,#40
+   70,74,72,75,74,74,64,75,84,80, 69,71,73,74,84,83,75,77,71,68,#60
+   68,101,95,91,74,75,79,84,82,80, 61,64,72,72,73,79,79,62,67,86,#80
+   84,69,88,84,56,61,71,68,70,70, 100,95,92,53,57,61,87,84,69,72,#100
+   63,79,57,65,83,75,58,68,69,67, 74,37,74,68,78,78,71,72,78,78,#120
+   77,79,83,77,80,82,73,36,77,62, 64,64,70,80,83,72,76,74,78,80,#140
+   79,63,66,80,80,74,75,80,86,69
+]
+
+pokemon_attack_johto = [
+   61,63,66,73,74,77,69,69,73,66,68, 55,62,56,58,74,74,72,63,62,74,#20
+   61,63,56,66,79,77,72,72,75,69, 42,56,70,68,58,60,58,72,58,77,#40
+   78,62,66,86,53,84,67,72,76,41, 76,65,66,63,64,59,77,79,77,80,#60
+   26,79,79,77,82,78,65,67,71,64, 82,77,76,63,63,83,83,72,62,73,#80
+   71,78,46,63,72,82,76,81,62,48, 78,76,62,71,71,77,60,73,68
+]
+
+pokemon_attack_hoenn = [
+   75,80,79,77,77,85,74,72,72,74,74, 57,67,66,56,86,56,57,61,64,68,#20
+   61,75,78,76,80,77,73,71,74,80, 67,76,55,89,66,69,80,60,85,141,#40
+   72,73,70,70,75,42,54,64,68,72, 74,66,69,68,62,64,78,83,75,69,#60
+   66,66,82,56,61,105,97,69,69,72, 78,64,67,67,66,87,74,76,85,88,#80
+   55,61,85,81,71,71,66,64,78,86, 57,61,58,62,86,79,36,66,68,70,#100
+   84,87,56,61,60,71,91,42,64,68, 62,65,66,73,76,81,61,58,78,74,#120
+   84,62,66,78,61,61,56,73,81,77, 77,85,69,115
+]
+
+pokemon_attack_sinnoh = [
+   68,70,71,72,76,81,67,71,75,76,78, 83,62,72,50,77,77,80,81,64,82,#20
+   95,94,53,49,53,65,84,58,65,55, 79,85,70,73,62,67,67,70,72,66,#40
+   78,87,71,74,72,71,72,42,66,68, 74,33,83,71,73,75,78,62,80,85,#60
+   66,69,60,70,74,81,78,62,66,59, 67,69,82,80,62,74,71,84,84,73,#80
+   79,75,80,68,80,85,80,58,70,72, 77,60,72,88,80,81,77,80,61,56,#100
+   68,69,87,68,72
+]
+
+pokemon_attack_teselia = [
+   68,62,63,65,69,75,80,71,73,76,70, 74,71,70,73,71,83,67,80,67,80,#20
+   67,80,65,66,68,73,80,79,81,69, 74,74,67,75,79,84,55,72,74,78,#40
+   68,67,70,65,82,62,61,76,64,60, 78,57,70,73,79,79,80,80,78,77,#60
+   88,80,66,70,69,65,76,61,65,67, 71,93,93,62,71,86,92,67,79,64,#80
+   67,69,88,88,75,59,76,73,73,78, 68,77,74,78,78,63,64,64,64,58,#100
+   68,81,55,63,64,67,74,74,73,77, 76,79,68,78,88,81,85,88,77,79,#120
+   68,53,85,60,82,93,77,73,79,79, 82,70,75,79,59,55,79,81,70,71,#140
+   78,77,80,66,79,66,86,86,80,80, 80,75,79,74,81
+]
+
+pokemon_attack_kalos = [
+   66,69,69,72,78,78,76,79,82,62,58, 68,74,71,62,50,78,71,79,66,68,#20
+   70,68,70,73,79,69,67,70,12,12, 12,62,68,63,68,65,69,63,72,67,#40
+   69,65,79,74,81,75,76,66,67,69, 76,73,49,65,67,70,69,73,75,69,#60
+   69,67,66,67,73,76,76,79,68,84, 78
+]
+
+pokemon_attack_alola = [
+   77,64,81,68,69,65,69,82,88,71,73, 72,72,73,70,68,78,65,63,67,75,#20
+   77,81,73,71,75,77,87,80,81,81, 78,72,69,86,79,80,76,73,79,75,#40
+   84,82,64,55,77,73,57,59,74,75, 67,69,79,88,72,77,57,60,76,69,#60
+   66,76,64,73,67,69,52,69,69,87, 80,67,76,72,80,80,80,66,69,72,#80
+   81,80,80,68,57,43,74,73,74,76, 111,97,71,98,68,77,75,81,69,89,#100
+   69,100,81,72,69
+]
 
 pokemon_sta = []
 
@@ -847,7 +986,7 @@ matriz_efectividad = [
    [1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,0.391,  0.625,  1,  1.6],#18dragon
 ]
 
-def damage(tip_atacante,defensor):
+def damage(tip_atacante,attack_atacante,defensor):
 #   poder_de_ataque = atacante.poder_de_ataque
    tipo_atacante = tip_atacante
    tipo_defensor1 = defensor.type1
@@ -861,19 +1000,18 @@ def damage(tip_atacante,defensor):
    else:
       efectividad_total *= matriz_efectividad[tipo_atacante][tipo_defensor1]
 
-   daño = 6*efectividad_total
+   daño = 6*(attack_atacante/(defensor.defense))*efectividad_total #60 es el valor del ataque, promedio.
    return daño
 
 
 player_pokemon_list = []
 op_pokemon_list = []
 
-player_pokemon_attack = 0
-op_pokemon_attack = 0
+player_pokemon_type_attack = 0
+op_pokemon_type_attack = 0
 
 fighting = True
 
-numero_max_pokemon = 458
 numero_de_regiones = 6
 
 carga1 = True
@@ -926,10 +1064,10 @@ while fighting:
       player_pokemon_hp = pokemon1.hp
       if pokemon1.type2 != 18:
       
-         player_pokemon_attack = random.choice([pokemon1.type1,pokemon1.type2])
+         player_pokemon_type_attack = random.choice([pokemon1.type1,pokemon1.type2])
       else:
-         player_pokemon_attack = pokemon1.type1
-      type1 = Type(player_pokemon_attack,270,460,0,50,50)
+         player_pokemon_type_attack = pokemon1.type1
+      type1 = Type(player_pokemon_type_attack,270,460,0,50,50)
       type_pokemon.add(type1)
       type1a = Type(pokemon1.type1,pokemon1.rect.x,pokemon1.rect.top - 30,0,25,25)
       type1b = Type(pokemon1.type2,pokemon1.rect.x + 30,pokemon1.rect.top - 30,0,25,25)
@@ -943,10 +1081,10 @@ while fighting:
       all_sprites.add(pokemon4)
       op_pokemon_hp = pokemon4.hp
       if pokemon4.type2 != 18:
-         op_pokemon_attack = random.choice([pokemon4.type1,pokemon4.type2])
+         op_pokemon_type_attack = random.choice([pokemon4.type1,pokemon4.type2])
       else:
-         op_pokemon_attack = pokemon4.type1
-      type2 = Type(op_pokemon_attack,670,260,1,50,50)
+         op_pokemon_type_attack = pokemon4.type1
+      type2 = Type(op_pokemon_type_attack,670,260,1,50,50)
       type_pokemon.add(type2)
       type2a = Type(pokemon4.type1,pokemon4.rect.x,pokemon4.rect.top - 30,1,25,25)
       type2b = Type(pokemon4.type2,pokemon4.rect.x + 30,pokemon4.rect.top - 30,1,25,25)
@@ -968,13 +1106,13 @@ while fighting:
                   if poke.team_int == 1:
                      op_pokemon_hp = poke.hp
                      if poke.type2 != 18:
-                        op_pokemon_attack = random.choice([poke.type1,poke.type2])
+                        op_pokemon_type_attack = random.choice([poke.type1,poke.type2])
                      else:
-                        op_pokemon_attack = poke.type1
+                        op_pokemon_type_attack = poke.type1
                      for ty in type_pokemon:
                         if ty.team_int == 1:
                            ty.kill()
-                           type2 = Type(op_pokemon_attack,670,260,1,50,50)
+                           type2 = Type(op_pokemon_type_attack,670,260,1,50,50)
                            type_pokemon.add(type2)
                      for ty in type2_pokemon:
                         if ty.team_int == 1:
@@ -988,13 +1126,13 @@ while fighting:
                   if pokem.team_int == 0:
                      player_pokemon_hp = pokem.hp
                      if pokem.type2 != 18:
-                        player_pokemon_attack = random.choice([pokem.type1,pokem.type2])
+                        player_pokemon_type_attack = random.choice([pokem.type1,pokem.type2])
                      else:
-                        player_pokemon_attack = pokem.type1
+                        player_pokemon_type_attack = pokem.type1
                      for typ in type_pokemon:
                         if typ.team_int == 0:
                            typ.kill()
-                           type1 = Type(player_pokemon_attack,270,460,0,50,50)
+                           type1 = Type(player_pokemon_type_attack,270,460,0,50,50)
                            type_pokemon.add(type1)
                      for typ in type2_pokemon:
                         if typ.team_int == 0:
