@@ -1005,7 +1005,7 @@ def damage(tip_atacante,attack_atacante,defensor):
    else:
       efectividad_total *= matriz_efectividad[tipo_atacante][tipo_defensor1]
 
-   daño = 6*(attack_atacante/(defensor.defense))*efectividad_total #60 es el valor del ataque, promedio.
+   daño = 6*(attack_atacante/(defensor.defense))*efectividad_total #6 es un valor de ataque, medio.
    return daño
 
 
@@ -1042,7 +1042,7 @@ while fighting:
                if pygame.time.get_ticks() - pok.ultimo_ataque > pok.tiempo_entre_ataques:
                   for poke in all_sprites:
                      if poke.team_int == 1:
-                        poke.hp -= damage(pok.type,pok.attack,poke)
+                        poke.hp -= damage(player_pokemon_type_attack,pok.attack,poke)
                         pok.ultimo_ataque = pygame.time.get_ticks()
 
    if game_over1:
