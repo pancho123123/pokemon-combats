@@ -157,8 +157,10 @@ class Pokemon(pygame.sprite.Sprite):
       if self.hp <= 0:
          if self.team_int ==0:
             player_pokemon_list.remove(self)
+            pokeball1.int -= 1
          else:
             op_pokemon_list.remove(self)
+            pokeball2.int -= 1
             
          self.kill()
 
@@ -1040,7 +1042,7 @@ while fighting:
                if pygame.time.get_ticks() - pok.ultimo_ataque > pok.tiempo_entre_ataques:
                   for poke in all_sprites:
                      if poke.team_int == 1:
-                        poke.hp -= damage(pok,poke)
+                        poke.hp -= damage(pok.type,pok.attack,poke)
                         pok.ultimo_ataque = pygame.time.get_ticks()
 
    if game_over1:
@@ -1096,8 +1098,8 @@ while fighting:
       op_pokemon_list.append(pokemon5)
       pokemon6 = Pokemon(randint(0,numero_de_regiones),1)
       op_pokemon_list.append(pokemon6)
-      pokeball1 = Pokeball(0,0)
-      pokeball2 = Pokeball(1,0)
+      pokeball1 = Pokeball(0,3)
+      pokeball2 = Pokeball(1,3)
       pokeballs.add(pokeball1,pokeball2)
 
    if len(player_pokemon_list) != 0 and len(op_pokemon_list) != 0:
@@ -1154,8 +1156,8 @@ while fighting:
 
    screen.fill(BLACK)
    all_sprites.update()
-   pokeball1.int = len(player_pokemon_list)
-   pokeball2.int = len(op_pokemon_list)
+   # pokeball1.int = len(player_pokemon_list)
+   # pokeball2.int = len(op_pokemon_list)
    pokeballs.update()
    all_sprites.draw(screen)
    type_pokemon.draw(screen)
