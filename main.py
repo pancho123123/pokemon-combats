@@ -1084,6 +1084,7 @@ while fighting:
    if carga1:
       carga1 = False
       all_sprites.empty()
+	  pokeballs.empty()
       player_pokemon_list = []
       op_pokemon_list = []
       pokemon1 = Pokemon(randint(0,numero_de_regiones),0)
