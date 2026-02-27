@@ -156,12 +156,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_type_attack,self.attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -744,97 +744,64 @@ while fighting:
       pokeball2 = Pokeball(1,3)
       pokeballs.add(pokeball1,pokeball2)
 
-   if len(player_pokemon_list) != 0 and len(op_pokemon_list) != 0:
-      while len(all_sprites) < 2:
-         if len(all_sprites) == 1:
-            for pok in all_sprites:
-               if pok.team_int == 0:
-                  all_sprites.add(random.choice(op_pokemon_list))
-                  for poke in all_sprites:
-                     if poke.team_int == 1:
-                        op_pokemon_hp = poke.hp
-                        if poke.type2 != 18:
-                           op_pokemon_type_attack = random.choice([poke.type1,poke.type2])
-                        else:
-                           op_pokemon_type_attack = poke.type1
-                        for ty in type_pokemon:
-                           if ty.team_int == 1:
-                              ty.kill()
-                              type2 = Type(op_pokemon_type_attack,670,260,1,50,50)
-                              type_pokemon.add(type2)
-                        for ty in type2_pokemon:
-                           if ty.team_int == 1:
-                              ty.kill()
-                        type2a = Type(poke.type1,poke.rect.x,poke.rect.top - 30,1,25,25)
-                        type2b = Type(poke.type2,poke.rect.x + 30,poke.rect.top - 30,1,25,25)
-                        type2_pokemon.add(type2a,type2b)
-               else:
-                  all_sprites.add(random.choice(player_pokemon_list))
-                  for pokem in all_sprites:
-                     if pokem.team_int == 0:
-                        player_pokemon_hp = pokem.hp
-                        if pokem.type2 != 18:
-                           player_pokemon_type_attack = random.choice([pokem.type1,pokem.type2])
-                        else:
-                           player_pokemon_type_attack = pokem.type1
-                        for typ in type_pokemon:
-                           if typ.team_int == 0:
-                              typ.kill()
-                              type1 = Type(player_pokemon_type_attack,270,460,0,50,50)
-                              type_pokemon.add(type1)
-                        for typ in type2_pokemon:
-                           if typ.team_int == 0:
-                              typ.kill()
-                        type1a = Type(pokem.type1,pokem.rect.x,pokem.rect.top - 30,0,25,25)
-                        type1b = Type(pokem.type2,pokem.rect.x + 30,pokem.rect.top - 30,0,25,25)
-                        type2_pokemon.add(type1a,type1b)
-         elif len(all_sprites) == 0:
-            all_sprites.add(random.choice(op_pokemon_list))
-            for poke in all_sprites:
-               if poke.team_int == 1:
-                  op_pokemon_hp = poke.hp
-                  if poke.type2 != 18:
-                     op_pokemon_type_attack = random.choice([poke.type1,poke.type2])
-                  else:
-                     op_pokemon_type_attack = poke.type1
-                  for ty in type_pokemon:
-                     if ty.team_int == 1:
-                        ty.kill()
-                        type2 = Type(op_pokemon_type_attack,670,260,1,50,50)
-                        type_pokemon.add(type2)
-                  for ty in type2_pokemon:
-                     if ty.team_int == 1:
-                        ty.kill()
-                  type2a = Type(poke.type1,poke.rect.x,poke.rect.top - 30,1,25,25)
-                  type2b = Type(poke.type2,poke.rect.x + 30,poke.rect.top - 30,1,25,25)
-                  type2_pokemon.add(type2a,type2b)
-            all_sprites.add(random.choice(player_pokemon_list))
-            for pokem in all_sprites:
-               if pokem.team_int == 0:
-                  player_pokemon_hp = pokem.hp
-                  if pokem.type2 != 18:
-                     player_pokemon_type_attack = random.choice([pokem.type1,pokem.type2])
-                  else:
-                     player_pokemon_type_attack = pokem.type1
-                  for typ in type_pokemon:
-                     if typ.team_int == 0:
-                        typ.kill()
-                        type1 = Type(player_pokemon_type_attack,270,460,0,50,50)
-                        type_pokemon.add(type1)
-                  for typ in type2_pokemon:
-                     if typ.team_int == 0:
-                        typ.kill()
-                  type1a = Type(pokem.type1,pokem.rect.x,pokem.rect.top - 30,0,25,25)
-                  type1b = Type(pokem.type2,pokem.rect.x + 30,pokem.rect.top - 30,0,25,25)
-                  type2_pokemon.add(type1a,type1b)
+
+
+   if len(all_sprites) < 2 and not (game_over1 or game_over2 or game_over3):
+      # Determine which team needs a new pokemon
+      active_teams = [p.team_int for p in all_sprites]
+    
+      if 0 not in active_teams and len(player_pokemon_list) > 0:
+         new_pok = random.choice(player_pokemon_list)
+         all_sprites.add(new_pok)
+         player_pokemon_hp = new_pok.hp # Store max HP for the bar
+         # Update Attack Type and Icons... (Apply your icon logic here)
+         if new_pok.type2 != 18:
+            player_pokemon_type_attack = random.choice([new_pok.type1,new_pok.type2])
+         else:
+            player_pokemon_type_attack = new_pok.type1
+         for typ in type_pokemon:
+            if typ.team_int == 0:
+               typ.kill()
+               type1 = Type(player_pokemon_type_attack,270,460,0,50,50)
+               type_pokemon.add(type1)
+         for typ in type2_pokemon:
+            if typ.team_int == 0:
+               typ.kill()
+         type1a = Type(new_pok.type1,new_pok.rect.x,new_pok.rect.top - 30,0,25,25)
+         type1b = Type(new_pok.type2,new_pok.rect.x + 30,new_pok.rect.top - 30,0,25,25)
+         type2_pokemon.add(type1a,type1b)
+
+         
+      if 1 not in active_teams and len(op_pokemon_list) > 0:
+         new_pok = random.choice(op_pokemon_list)
+         all_sprites.add(new_pok)
+         op_pokemon_hp = new_pok.hp
+         # Update Attack Type and Icons...
+         if new_pok.type2 != 18:
+            op_pokemon_type_attack = random.choice([new_pok.type1,new_pok.type2])
+         else:
+            op_pokemon_type_attack = new_pok.type1
+         for ty in type_pokemon:
+            if ty.team_int == 1:
+               ty.kill()
+               type2 = Type(op_pokemon_type_attack,670,260,1,50,50)
+               type_pokemon.add(type2)
+         for ty in type2_pokemon:
+            if ty.team_int == 1:
+               ty.kill()
+         type2a = Type(new_pok.type1,new_pok.rect.x,new_pok.rect.top - 30,1,25,25)
+         type2b = Type(new_pok.type2,new_pok.rect.x + 30,new_pok.rect.top - 30,1,25,25)
+         type2_pokemon.add(type2a,type2b)
+
+
+
    #print(len(player_pokemon_list))
-   if len(player_pokemon_list) == 0 or len(op_pokemon_list) == 0:
-      if len(player_pokemon_list) == 0 and len(op_pokemon_list) == 0:
-         game_over3 = True
-      elif len(player_pokemon_list) == 0:
-         game_over2 = True
-      else:
-         game_over1 = True
+   if len(player_pokemon_list) == 0 and len(op_pokemon_list) == 0:
+      game_over3 = True
+   elif len(player_pokemon_list) == 0:
+      game_over2 = True
+   elif len(op_pokemon_list) == 0:
+      game_over1 = True
 
    
 
