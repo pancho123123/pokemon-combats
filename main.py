@@ -315,8 +315,8 @@ for img in pokemon_list_johto:
 
 pokemon_images_hoenn = []
 pokemon_list_hoenn = [
-   "img/pok/hoenn/treecko.png","img/pok/hoenn/grovyle.png","img/pok/hoenn/sceptille.png",
-   "img/pok/hoenn/torchik.png","img/pok/hoenn/combusken.png","img/pok/hoenn/blaziken.png",
+   "img/pok/hoenn/treecko.png","img/pok/hoenn/grovyle.png","img/pok/hoenn/sceptile.png",
+   "img/pok/hoenn/torchic.png","img/pok/hoenn/combusken.png","img/pok/hoenn/blaziken.png",
    "img/pok/hoenn/mudkip.png","img/pok/hoenn/marshtomp.png","img/pok/hoenn/swampert.png",
    "img/pok/hoenn/poochyena.png","img/pok/hoenn/mightyena.png","img/pok/hoenn/zigzagoon.png",# 10 mightyena
    "img/pok/hoenn/linoone.png","img/pok/hoenn/wurmple.png","img/pok/hoenn/silcoon.png",
