@@ -3,16 +3,16 @@ from random import randint
 import random
 from utils.matriz import matriz_efectividad
 from utils.pokattack import (pokemon_attack_kanto, pokemon_attack_johto, pokemon_attack_hoenn,
-pokemon_attack_sinnoh, pokemon_attack_teselia, pokemon_attack_kalos, pokemon_attack_alola)
+pokemon_attack_sinnoh, pokemon_attack_teselia, pokemon_attack_kalos, pokemon_attack_alola, pokemon_attack_unknown)
 from utils.pokdefense import (pokemon_defense_kanto, pokemon_defense_johto, pokemon_defense_hoenn,
-                              pokemon_defense_sinnoh, pokemon_defense_teselia, pokemon_defense_kalos, pokemon_defense_alola)
+                              pokemon_defense_sinnoh, pokemon_defense_teselia, pokemon_defense_kalos, pokemon_defense_alola, pokemon_defense_unknown)
 from utils.pokhp import (pokemon_hp_kanto, pokemon_hp_johto, pokemon_hp_hoenn,
-                         pokemon_hp_sinnoh, pokemon_hp_teselia, pokemon_hp_kalos, pokemon_hp_alola)
+                         pokemon_hp_sinnoh, pokemon_hp_teselia, pokemon_hp_kalos, pokemon_hp_alola, pokemon_hp_unknown)
 from utils.poktype import (pokemon_type_kanto1, pokemon_type_kanto2, pokemon_type_johto1,
                            pokemon_type_johto2, pokemon_type_hoenn1, pokemon_type_hoenn2,
                            pokemon_type_sinnoh1, pokemon_type_sinnoh2, pokemon_type_teselia1,
                            pokemon_type_teselia2, pokemon_type_kalos1, pokemon_type_kalos2,
-                           pokemon_type_alola1, pokemon_type_alola2)
+                           pokemon_type_alola1, pokemon_type_alola2, pokemon_type_unknown1, pokemon_type_unknown2)
 ancho = 900
 alto = 600
 
@@ -127,13 +127,21 @@ class Pokemon(pygame.sprite.Sprite):
          self.defense = pokemon_defense_kalos[self.img_int]
          self.attack = pokemon_attack_kalos[self.img_int]
       elif reg_int == 6:
-         self.img_int = randint(0,105)
+         self.img_int = randint(0,103)
          self.image = pokemon_images_alola[self.img_int]
          self.type1 = pokemon_type_alola1[self.img_int]
          self.type2 = pokemon_type_alola2[self.img_int]
          self.hp = pokemon_hp_alola[self.img_int]
          self.defense = pokemon_defense_alola[self.img_int]
          self.attack = pokemon_attack_alola[self.img_int]
+      elif reg_int == 7:
+         self.img_int = randint(0,1)
+         self.image = pokemon_images_unknown[self.img_int]
+         self.type1 = pokemon_type_unknown1[self.img_int]
+         self.type2 = pokemon_type_unknown2[self.img_int]
+         self.hp = pokemon_hp_unknown[self.img_int]
+         self.defense = pokemon_defense_unknown[self.img_int]
+         self.attack = pokemon_attack_unknown[self.img_int]
       else:
          raise ValueError("img_int fuera de rango")
       #self.image.set_colorkey(WHITE)
@@ -156,12 +164,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_type_attack,self.attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -428,7 +436,7 @@ pokemon_list_teselia = [
    "img/pok/teselia/scolipede.png","img/pok/teselia/coottonee.png","img/pok/teselia/whimsicott.png",
    "img/pok/teselia/petilil.png","img/pok/teselia/lilligant.png","img/pok/teselia/basculin.png",
    "img/pok/teselia/sandile.png","img/pok/teselia/krokorok.png","img/pok/teselia/krookodile.png",#60 darumka
-   "img/pok/teselia/darumka.png","img/pok/teselia/darmanitan.png","img/pok/teselia/maractus.png",
+   "img/pok/teselia/darumaka.png","img/pok/teselia/darmanitan.png","img/pok/teselia/maractus.png",
    "img/pok/teselia/dwebble.png","img/pok/teselia/crustle.png","img/pok/teselia/scraggy.png",
    "img/pok/teselia/scrafty.png","img/pok/teselia/sigilyph.png","img/pok/teselia/yamask.png",
    "img/pok/teselia/cofagrigus.png","img/pok/teselia/tirtouga.png","img/pok/teselia/carracosta.png",#70 tirtoga
@@ -530,11 +538,14 @@ pokemon_list_alola = [
    "img/pok/alola/celesteela.png","img/pok/alola/kartana.png","img/pok/alola/guzzlord.png",
    "img/pok/alola/necrozma.png","img/pok/alola/magearna.png","img/pok/alola/marshadow.png",
    "img/pok/alola/poipole.png","img/pok/alola/naganadel.png","img/pok/alola/stakataka.png",
-   "img/pok/alola/blacephalon.png","img/pok/alola/zeraora.png","img/pok/alola/meltan.png",
-   "img/pok/alola/melmetal.png"
+   "img/pok/alola/blacephalon.png","img/pok/alola/zeraora.png"
 ]
 for img in pokemon_list_alola:
 	pokemon_images_alola.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
+
+pokemon_images_unknown = []
+pokemon_images_unknown.append(pygame.transform.scale(pygame.image.load("img/pok/alola/meltan.png"),(200,200)).convert())
+pokemon_images_unknown.append(pygame.transform.scale(pygame.image.load("img/pok/alola/melmetal.png"),(200,200)).convert())
 
 pokemon_images_galar = []
 pokemon_list_galar = [
@@ -762,8 +773,8 @@ while fighting:
          for typ in type_pokemon:
             if typ.team_int == 0:
                typ.kill()
-               type1 = Type(player_pokemon_type_attack,270,460,0,50,50)
-               type_pokemon.add(type1)
+         type1 = Type(player_pokemon_type_attack,270,460,0,50,50)
+         type_pokemon.add(type1)
          for typ in type2_pokemon:
             if typ.team_int == 0:
                typ.kill()
@@ -784,8 +795,8 @@ while fighting:
          for ty in type_pokemon:
             if ty.team_int == 1:
                ty.kill()
-               type2 = Type(op_pokemon_type_attack,670,260,1,50,50)
-               type_pokemon.add(type2)
+         type2 = Type(op_pokemon_type_attack,670,260,1,50,50)
+         type_pokemon.add(type2)
          for ty in type2_pokemon:
             if ty.team_int == 1:
                ty.kill()
