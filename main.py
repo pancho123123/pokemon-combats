@@ -433,7 +433,7 @@ pokemon_list_teselia = [
    "img/pok/teselia/palpitoad.png","img/pok/teselia/seismitoad.png","img/pok/teselia/throh.png",
    "img/pok/teselia/sawk.png","img/pok/teselia/sewaddle.png","img/pok/teselia/swadloon.png",
    "img/pok/teselia/leavanny.png","img/pok/teselia/venipede.png","img/pok/teselia/whirlipede.png",#50 whirlipede
-   "img/pok/teselia/scolipede.png","img/pok/teselia/coottonee.png","img/pok/teselia/whimsicott.png",
+   "img/pok/teselia/scolipede.png","img/pok/teselia/cottonee.png","img/pok/teselia/whimsicott.png",
    "img/pok/teselia/petilil.png","img/pok/teselia/lilligant.png","img/pok/teselia/basculin.png",
    "img/pok/teselia/sandile.png","img/pok/teselia/krokorok.png","img/pok/teselia/krookodile.png",#60 darumka
    "img/pok/teselia/darumaka.png","img/pok/teselia/darmanitan.png","img/pok/teselia/maractus.png",
