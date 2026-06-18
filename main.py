@@ -164,12 +164,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_type_attack,self.attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      else:
-         for poke in all_sprites:
-            if poke.team_int == 1:
-               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-                  poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
-                  self.ultimo_ataque = pygame.time.get_ticks()
+      # else:
+      #    for poke in all_sprites:
+      #       if poke.team_int == 1:
+      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+      #             poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
+      #             self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -544,8 +544,8 @@ for img in pokemon_list_alola:
 	pokemon_images_alola.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_unknown = []
-pokemon_images_unknown.append(pygame.transform.scale(pygame.image.load("img/pok/alola/meltan.png"),(200,200)).convert())
-pokemon_images_unknown.append(pygame.transform.scale(pygame.image.load("img/pok/alola/melmetal.png"),(200,200)).convert())
+pokemon_images_unknown.append(pygame.transform.scale(pygame.image.load("img/pok/unknown/meltan.png"),(200,200)).convert())
+pokemon_images_unknown.append(pygame.transform.scale(pygame.image.load("img/pok/unknown/melmetal.png"),(200,200)).convert())
 
 pokemon_images_galar = []
 pokemon_list_galar = [
