@@ -3,16 +3,20 @@ from random import randint
 import random
 from utils.matriz import matriz_efectividad
 from utils.pokattack import (pokemon_attack_kanto, pokemon_attack_johto, pokemon_attack_hoenn,
-pokemon_attack_sinnoh, pokemon_attack_teselia, pokemon_attack_kalos, pokemon_attack_alola, pokemon_attack_unknown)
+pokemon_attack_sinnoh, pokemon_attack_teselia, pokemon_attack_kalos, pokemon_attack_alola, pokemon_attack_unknown, 
+pokemon_attack_galar)
 from utils.pokdefense import (pokemon_defense_kanto, pokemon_defense_johto, pokemon_defense_hoenn,
-                              pokemon_defense_sinnoh, pokemon_defense_teselia, pokemon_defense_kalos, pokemon_defense_alola, pokemon_defense_unknown)
+                              pokemon_defense_sinnoh, pokemon_defense_teselia, pokemon_defense_kalos, pokemon_defense_alola, 
+                              pokemon_defense_unknown, pokemon_defense_galar)
 from utils.pokhp import (pokemon_hp_kanto, pokemon_hp_johto, pokemon_hp_hoenn,
-                         pokemon_hp_sinnoh, pokemon_hp_teselia, pokemon_hp_kalos, pokemon_hp_alola, pokemon_hp_unknown)
+                         pokemon_hp_sinnoh, pokemon_hp_teselia, pokemon_hp_kalos, pokemon_hp_alola, 
+                         pokemon_hp_unknown, pokemon_hp_galar)
 from utils.poktype import (pokemon_type_kanto1, pokemon_type_kanto2, pokemon_type_johto1,
                            pokemon_type_johto2, pokemon_type_hoenn1, pokemon_type_hoenn2,
                            pokemon_type_sinnoh1, pokemon_type_sinnoh2, pokemon_type_teselia1,
                            pokemon_type_teselia2, pokemon_type_kalos1, pokemon_type_kalos2,
-                           pokemon_type_alola1, pokemon_type_alola2, pokemon_type_unknown1, pokemon_type_unknown2)
+                           pokemon_type_alola1, pokemon_type_alola2, pokemon_type_unknown1, pokemon_type_unknown2, 
+                           pokemon_type_galar1, pokemon_type_galar2)
 ancho = 900
 alto = 600
 
@@ -132,6 +136,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.type1 = pokemon_type_alola1[self.img_int]
          self.type2 = pokemon_type_alola2[self.img_int]
          self.hp = pokemon_hp_alola[self.img_int]
+         print(self.img_int)
          self.defense = pokemon_defense_alola[self.img_int]
          self.attack = pokemon_attack_alola[self.img_int]
       elif reg_int == 7:
@@ -142,6 +147,14 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_unknown[self.img_int]
          self.defense = pokemon_defense_unknown[self.img_int]
          self.attack = pokemon_attack_unknown[self.img_int]
+      elif reg_int == 8:
+         self.img_int = randint(0,107)
+         self.image = pokemon_images_galar[self.img_int]
+         self.type1 = pokemon_type_galar1[self.img_int]
+         self.type2 = pokemon_type_galar2[self.img_int]
+         self.hp = pokemon_hp_galar[self.img_int]
+         self.defense = pokemon_defense_galar[self.img_int]
+         self.attack = pokemon_attack_galar[self.img_int]
       else:
          raise ValueError("img_int fuera de rango")
       #self.image.set_colorkey(WHITE)
@@ -164,12 +177,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_type_attack,self.attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -400,7 +413,7 @@ pokemon_list_sinnoh = [
    "img/pok/sinnoh/finneon.png","img/pok/sinnoh/lumineon.png","img/pok/sinnoh/mantyke.png",# 70 lumineon
    "img/pok/sinnoh/snover.png","img/pok/sinnoh/abomasnow.png","img/pok/sinnoh/weavile.png",
    "img/pok/sinnoh/magnezone.png","img/pok/sinnoh/lickilicky.png","img/pok/sinnoh/rhyperior.png",
-   "img/pok/sinnoh/tangrowth.png","img/pok/sinnoh/electivire.png","img/pok/sinnoh/magmortar.png",
+   "img/pok/sinnoh/tangrowth.png","img/pok/sinnoh/electivire.png","img/pok/sinnoh/magmortar.png",# 80 magmortar
    "img/pok/sinnoh/togekiss.png","img/pok/sinnoh/yanmega.png","img/pok/sinnoh/leafeon.png",
    "img/pok/sinnoh/glaceon.png","img/pok/sinnoh/gliscor.png","img/pok/sinnoh/mamoswine.png",
    "img/pok/sinnoh/porygon-z.png","img/pok/sinnoh/gallade.png","img/pok/sinnoh/probopass.png",
@@ -549,21 +562,58 @@ pokemon_images_unknown.append(pygame.transform.scale(pygame.image.load("img/pok/
 
 pokemon_images_galar = []
 pokemon_list_galar = [
- #  "img/pok/.png"
+   "img/pok/galar/meowth.png","img/pok/galar/ponyta.png","img/pok/galar/rapidash.png",
+   "img/pok/galar/slowpoke.png","img/pok/galar/slowbro.png","img/pok/galar/farfetchd.png",
+   "img/pok/galar/weezing.png","img/pok/galar/mrmime.png","img/pok/galar/articuno.png",
+   "img/pok/galar/zapdos.png","img/pok/galar/moltres.png","img/pok/galar/slowking.png",
+   "img/pok/galar/corsola.png","img/pok/galar/zigzagoon.png","img/pok/galar/linoone.png",
+   "img/pok/galar/darumaka.png","img/pok/galar/darmanitan.png","img/pok/galar/yamask.png",
+   "img/pok/galar/stunfisk.png",
+   "img/pok/galar/grookey.png","img/pok/galar/thwackey.png","img/pok/galar/rillaboom.png",
+   "img/pok/galar/scorbunny.png","img/pok/galar/raboot.png","img/pok/galar/cinderace.png",
+   "img/pok/galar/sobble.png","img/pok/galar/drizzile.png","img/pok/galar/inteleon.png",
+   "img/pok/galar/skwovet.png","img/pok/galar/greedent.png","img/pok/galar/rookidee.png",
+   "img/pok/galar/corvisquire.png","img/pok/galar/corviknight.png","img/pok/galar/blipbug.png",
+   "img/pok/galar/dottler.png","img/pok/galar/orbeetle.png","img/pok/galar/nickit.png",
+   "img/pok/galar/thievul.png","img/pok/galar/gossifleur.png","img/pok/galar/eldegoss.png",
+   "img/pok/galar/wooloo.png","img/pok/galar/dubwool.png","img/pok/galar/chewtle.png",
+   "img/pok/galar/drednaw.png","img/pok/galar/yamper.png","img/pok/galar/boltund.png",
+   "img/pok/galar/rolycoly.png","img/pok/galar/carkol.png","img/pok/galar/coalossal.png",
+   "img/pok/galar/applin.png","img/pok/galar/flapple.png","img/pok/galar/appletun.png",
+   "img/pok/galar/silicobra.png","img/pok/galar/sandaconda.png","img/pok/galar/cramorant.png",
+   "img/pok/galar/arrokuda.png","img/pok/galar/barraskewda.png","img/pok/galar/toxel.png",
+   "img/pok/galar/toxtricity.png","img/pok/galar/sizzlipede.png","img/pok/galar/centiskorch.png",
+   "img/pok/galar/clobbopus.png","img/pok/galar/grapploct.png","img/pok/galar/sinistea.png",
+   "img/pok/galar/polteageist.png","img/pok/galar/hatenna.png","img/pok/galar/hattrem.png",
+   "img/pok/galar/hatterene.png","img/pok/galar/impidimp.png","img/pok/galar/morgrem.png",
+   "img/pok/galar/grimmsnarl.png","img/pok/galar/obstagoon.png","img/pok/galar/perrserker.png",
+   "img/pok/galar/cursola.png","img/pok/galar/sirfetchd.png","img/pok/galar/mrrime.png",
+   "img/pok/galar/runerigus.png","img/pok/galar/milcery.png","img/pok/galar/alcremie.png",
+   "img/pok/galar/falinks.png","img/pok/galar/pincurchin.png","img/pok/galar/snom.png",
+   "img/pok/galar/frosmoth.png","img/pok/galar/stonjourner.png","img/pok/galar/eiscue.png",
+   "img/pok/galar/indeedee.png","img/pok/galar/morpeko.png","img/pok/galar/cufant.png",
+   "img/pok/galar/copperajah.png","img/pok/galar/dracozolt.png","img/pok/galar/arctozolt.png",
+   "img/pok/galar/dracovish.png","img/pok/galar/arctovish.png","img/pok/galar/duraludon.png",
+   "img/pok/galar/dreepy.png","img/pok/galar/drakloak.png","img/pok/galar/dragapult.png",
+   "img/pok/galar/zacian.png","img/pok/galar/zamazenta.png","img/pok/galar/eternatus.png",
+   "img/pok/galar/kubfu.png","img/pok/galar/urshifu.png","img/pok/galar/zarude.png",
+   "img/pok/galar/regieleki.png","img/pok/galar/regidrago.png","img/pok/galar/glastrier.png",
+   "img/pok/galar/spectrier.png","img/pok/galar/calyrex.png",
+ #  "img/pok/galar/.png"
 ]
 for img in pokemon_list_galar:
 	pokemon_images_galar.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_hisui = []
 pokemon_list_hisui = [
- #  "img/pok/.png"
+ #  "img/pok/hisui/.png"
 ]
 for img in pokemon_list_hisui:
 	pokemon_images_hisui.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
 
 pokemon_images_paldea = []
 pokemon_list_paldea = [
-  # "img/pok/.png"
+  # "img/pok/paldea/.png"
 ]
 for img in pokemon_list_paldea:
 	pokemon_images_paldea.append(pygame.transform.scale(pygame.image.load(img),(200,200)).convert())
@@ -663,7 +713,7 @@ op_pokemon_type_attack = 0
 
 fighting = True
 
-numero_de_regiones = 6
+numero_de_regiones = 8
 
 carga1 = True
 game_over1 = False
