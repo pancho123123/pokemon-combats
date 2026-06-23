@@ -82,7 +82,7 @@ class Pokemon(pygame.sprite.Sprite):
       super().__init__()
       self.reg_int = reg_int
       self.img_int = img_int
-      if reg_int == 0:
+      if reg_int <= 151:
          self.img_int = randint(0,150)
          self.image = pokemon_images_kanto[self.img_int]
          self.type1 = pokemon_type_kanto1[self.img_int]
@@ -90,7 +90,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_kanto[self.img_int]
          self.defense = pokemon_defense_kanto[self.img_int]
          self.attack = pokemon_attack_kanto[self.img_int]
-      elif reg_int == 1:
+      elif reg_int <= 252:
          self.img_int = randint(0,99)
          self.image = pokemon_images_johto[self.img_int]
          self.type1 = pokemon_type_johto1[self.img_int]
@@ -98,7 +98,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_johto[self.img_int]
          self.defense = pokemon_defense_johto[self.img_int]
          self.attack = pokemon_attack_johto[self.img_int]
-      elif reg_int == 2:
+      elif reg_int <= 388:
          self.img_int = randint(0,134)
          self.image = pokemon_images_hoenn[self.img_int]
          self.type1 = pokemon_type_hoenn1[self.img_int]
@@ -106,7 +106,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_hoenn[self.img_int]
          self.defense = pokemon_defense_hoenn[self.img_int]
          self.attack = pokemon_attack_hoenn[self.img_int]
-      elif reg_int == 3:
+      elif reg_int <= 496:
          self.img_int = randint(0,106)
          self.image = pokemon_images_sinnoh[self.img_int]
          self.type1 = pokemon_type_sinnoh1[self.img_int]
@@ -114,7 +114,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_sinnoh[self.img_int]
          self.defense = pokemon_defense_sinnoh[self.img_int]
          self.attack = pokemon_attack_sinnoh[self.img_int]
-      elif reg_int == 4:
+      elif reg_int <= 653:
          self.img_int = randint(0,155)
          self.image = pokemon_images_teselia[self.img_int]
          self.type1 = pokemon_type_teselia1[self.img_int]
@@ -122,7 +122,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_teselia[self.img_int]
          self.defense = pokemon_defense_teselia[self.img_int]
          self.attack = pokemon_attack_teselia[self.img_int]
-      elif reg_int == 5:
+      elif reg_int <= 726:
          self.img_int = randint(0,71)
          self.image = pokemon_images_kalos[self.img_int]
          self.type1 = pokemon_type_kalos1[self.img_int]
@@ -130,7 +130,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_kalos[self.img_int]
          self.defense = pokemon_defense_kalos[self.img_int]
          self.attack = pokemon_attack_kalos[self.img_int]
-      elif reg_int == 6:
+      elif reg_int <= 831:
          self.img_int = randint(0,103)
          self.image = pokemon_images_alola[self.img_int]
          self.type1 = pokemon_type_alola1[self.img_int]
@@ -139,7 +139,7 @@ class Pokemon(pygame.sprite.Sprite):
          print(self.img_int)
          self.defense = pokemon_defense_alola[self.img_int]
          self.attack = pokemon_attack_alola[self.img_int]
-      elif reg_int == 7:
+      elif reg_int <= 833:
          self.img_int = randint(0,1)
          self.image = pokemon_images_unknown[self.img_int]
          self.type1 = pokemon_type_unknown1[self.img_int]
@@ -147,7 +147,7 @@ class Pokemon(pygame.sprite.Sprite):
          self.hp = pokemon_hp_unknown[self.img_int]
          self.defense = pokemon_defense_unknown[self.img_int]
          self.attack = pokemon_attack_unknown[self.img_int]
-      elif reg_int == 8:
+      elif reg_int <= 942:
          self.img_int = randint(0,107)
          self.image = pokemon_images_galar[self.img_int]
          self.type1 = pokemon_type_galar1[self.img_int]
@@ -177,12 +177,12 @@ class Pokemon(pygame.sprite.Sprite):
                if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
                   pok.hp -= damage(op_pokemon_type_attack,self.attack,pok)
                   self.ultimo_ataque = pygame.time.get_ticks()
-      # else:
-      #    for poke in all_sprites:
-      #       if poke.team_int == 1:
-      #          if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
-      #             poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
-      #             self.ultimo_ataque = pygame.time.get_ticks()
+      else:
+         for poke in all_sprites:
+            if poke.team_int == 1:
+               if pygame.time.get_ticks() - self.ultimo_ataque > self.tiempo_entre_ataques:
+                  poke.hp -= damage(player_pokemon_type_attack,self.attack,poke)
+                  self.ultimo_ataque = pygame.time.get_ticks()
                
             
 
@@ -713,7 +713,7 @@ op_pokemon_type_attack = 0
 
 fighting = True
 
-numero_de_regiones = 8
+numero_aleatorio = 942
 
 carga1 = True
 game_over1 = False
@@ -766,7 +766,7 @@ while fighting:
       pokeballs.empty()
       player_pokemon_list = []
       op_pokemon_list = []
-      pokemon1 = Pokemon(randint(0,numero_de_regiones),0)
+      pokemon1 = Pokemon(randint(1,numero_aleatorio),0)
       player_pokemon_list.append(pokemon1)
       all_sprites.add(pokemon1)
       player_pokemon_hp = pokemon1.hp
@@ -780,11 +780,11 @@ while fighting:
       type1a = Type(pokemon1.type1,pokemon1.rect.x,pokemon1.rect.top - 30,0,25,25)
       type1b = Type(pokemon1.type2,pokemon1.rect.x + 30,pokemon1.rect.top - 30,0,25,25)
       type2_pokemon.add(type1a,type1b)
-      pokemon2 = Pokemon(randint(0,numero_de_regiones),0)
+      pokemon2 = Pokemon(randint(1,numero_aleatorio),0)
       player_pokemon_list.append(pokemon2)
-      pokemon3 = Pokemon(randint(0,numero_de_regiones),0)
+      pokemon3 = Pokemon(randint(1,numero_aleatorio),0)
       player_pokemon_list.append(pokemon3)
-      pokemon4 = Pokemon(randint(0,numero_de_regiones),1)
+      pokemon4 = Pokemon(randint(1,numero_aleatorio),1)
       op_pokemon_list.append(pokemon4)
       all_sprites.add(pokemon4)
       op_pokemon_hp = pokemon4.hp
@@ -797,9 +797,9 @@ while fighting:
       type2a = Type(pokemon4.type1,pokemon4.rect.x,pokemon4.rect.top - 30,1,25,25)
       type2b = Type(pokemon4.type2,pokemon4.rect.x + 30,pokemon4.rect.top - 30,1,25,25)
       type2_pokemon.add(type2a,type2b)
-      pokemon5 = Pokemon(randint(0,numero_de_regiones),1)
+      pokemon5 = Pokemon(randint(1,numero_aleatorio),1)
       op_pokemon_list.append(pokemon5)
-      pokemon6 = Pokemon(randint(0,numero_de_regiones),1)
+      pokemon6 = Pokemon(randint(1,numero_aleatorio),1)
       op_pokemon_list.append(pokemon6)
       pokeball1 = Pokeball(0,3)
       pokeball2 = Pokeball(1,3)
