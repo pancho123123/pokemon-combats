@@ -316,7 +316,7 @@ pokemon_list_johto = [
    "img/pok/johto/girafarig.png","img/pok/johto/pineco.png","img/pok/johto/forretress.png",
    "img/pok/johto/dunsparce.png","img/pok/johto/gligar.png","img/pok/johto/steelix.png",
    "img/pok/johto/snubbull.png","img/pok/johto/granbull.png","img/pok/johto/qwilfish.png",
-   "img/pok/johto/scizor.png","img/pok/johto/shukle.png","img/pok/johto/heracross.png", #60 scizor
+   "img/pok/johto/scizor.png","img/pok/johto/shuckle.png","img/pok/johto/heracross.png", #60 scizor
    "img/pok/johto/sneasel.png","img/pok/johto/teddiursa.png","img/pok/johto/ursaring.png",
    "img/pok/johto/slugma.png","img/pok/johto/magcargo.png","img/pok/johto/swinub.png",
    "img/pok/johto/piloswine.png","img/pok/johto/corsola.png","img/pok/johto/remoraid.png", # 70 corsola
